@@ -13,6 +13,7 @@ function Login() {
                 type="email"
                 name="email"
                 placeholder="E-mail"
+                required
               />
             </div>
             <div>
@@ -24,10 +25,11 @@ function Login() {
                 type="password"
                 name="password"
                 placeholder="Senha"
+                required
               />
             </div>
             <button
-              className="w-full py-1 rounded-md bg-blue-500 text-white hover:bg-blue-600"
+              className="w-full py-1 rounded-md bg-gray-500 text-white hover:bg-gray-600"
               type="submit"
             >
               Entrar

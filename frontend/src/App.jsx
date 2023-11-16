@@ -1,12 +1,11 @@
-import Login from './components/Login'
+import Header from "./components/Header";
 
 function App() {
-
   return (
     <>
-      <Login />
+      <Header/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
