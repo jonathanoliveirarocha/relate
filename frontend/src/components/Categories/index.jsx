@@ -8,7 +8,7 @@ function Categories() {
   return (
     <>
       <div
-        className={`w-36 m-1 p-2 flex items-center bg-gray-100 rounded-lg trasition-transform duration-300 transform -translate-x-[138px] sm:translate-x-[0] relative ${
+        className={`w-36 h-fit m-1 p-2 flex items-center bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] sm:translate-x-[0] relative ${
           menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
         }`}
       >
