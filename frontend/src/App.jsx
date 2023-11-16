@@ -1,9 +1,13 @@
 import Header from "./components/Header";
+import Categories from "./components/Categories";
 
 function App() {
   return (
     <>
-      <Header/>
+      <Header />
+      <div className="flex">
+        <Categories />
+      </div>
     </>
   );
 }

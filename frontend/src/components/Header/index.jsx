@@ -1,7 +1,7 @@
 function Header() {
   return (
     <>
-      <header className="fixed top-0 w-full h-14 bg-gray-800 min-w-[385px]">
+      <header className="abosolute top-0 w-full h-14 bg-gray-800 min-w-[385px] shadow-md">
         <div className="w-full flex items-center relative h-full">
           <a href="/">
             <h1 className="text-white font-bold text-lg ml-4">Dev Relate</h1>
