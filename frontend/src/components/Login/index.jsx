@@ -1,4 +1,4 @@
-function Login() {
+const Login = () => {
   return (
     <>
       <div className="h-screen w-full flex items-center justify-center">
@@ -39,6 +39,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
 export default Login;

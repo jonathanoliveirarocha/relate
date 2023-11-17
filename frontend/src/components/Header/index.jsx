@@ -1,4 +1,4 @@
-function Header() {
+const Header = () => {
   return (
     <>
       <header className="abosolute top-0 w-full h-14 bg-gray-800 min-w-[385px] shadow-md">
@@ -26,6 +26,6 @@ function Header() {
       </header>
     </>
   );
-}
+};
 
 export default Header;

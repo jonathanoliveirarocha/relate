@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewArticle() {
+const NewArticle = () => {
   return (
     <>
       <div className="w-full h-screen flex items-center justify-center">
@@ -19,9 +19,9 @@ function NewArticle() {
       </div>
     </>
   );
-}
+};
 
-function Info() {
+const Info = () => {
   return (
     <div className="flex gap-4">
       <div className="w-1/2">
@@ -51,9 +51,9 @@ function Info() {
       </div>
     </div>
   );
-}
+};
 
-function Article() {
+const Article = () => {
   const [textHTML, setTextHTML] = useState("Preview...");
   const setNewText = (event) => {
     setTextHTML(event.target.value);
@@ -81,6 +81,6 @@ function Article() {
       </div>
     </>
   );
-}
+};
 
 export default NewArticle;

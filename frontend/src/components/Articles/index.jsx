@@ -1,4 +1,4 @@
-function Articles() {
+const Articles = () => {
   return (
     <>
       <div className="w-full flex-1 mx-[18px] sm:mx-2 my-4">
@@ -7,9 +7,9 @@ function Articles() {
       <ScrollUp />
     </>
   );
-}
+};
 
-function ScrollUp() {
+const ScrollUp = () => {
   return (
     <>
       <a href="#">
@@ -19,9 +19,9 @@ function ScrollUp() {
       </a>
     </>
   );
-}
+};
 
-function Article() {
+const Article = () => {
   return (
     <>
       <div className="w-full h-24 shadow-lg rounded-lg p-1 relative">
@@ -40,6 +40,6 @@ function Article() {
       </div>
     </>
   );
-}
+};
 
 export default Articles;

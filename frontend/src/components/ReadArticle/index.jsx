@@ -1,4 +1,4 @@
-function ReadArticle() {
+const ReadArticle = () => {
   return (
     <>
       <div className="w-full flex justify-center py-8 px-4">
@@ -49,7 +49,7 @@ function ReadArticle() {
       </div>
     </>
   );
-}
+};
 
 const Text = ({ content }) => {
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Categories() {
+const Categories = () => {
   const [menuActive, setMenuActive] = useState(false);
   const changeMenu = () => {
     setMenuActive(!menuActive);
@@ -27,9 +27,9 @@ function Categories() {
       </div>
     </>
   );
-}
+};
 
-function Category() {
+const Category = () => {
   return (
     <>
       <li>
@@ -69,6 +69,6 @@ function Category() {
       </li>
     </>
   );
-}
+};
 
 export default Categories;

@@ -6,7 +6,7 @@ import NewArticle from "./components/NewArticle";
 import Login from "./components/Login";
 import ReadArticle from "./components/ReadArticle";
 
-function App() {
+const App = () => {
   return (
     <>
       <Header />
@@ -17,6 +17,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;

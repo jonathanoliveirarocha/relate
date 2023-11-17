@@ -1,4 +1,4 @@
-function Footer() {
+const Footer = () => {
   return (
     <>
       <footer className="flex mt-auto w-full h-8 border-t border-gray-200 text-sm items-center justify-center text-gray-700">
@@ -15,6 +15,6 @@ function Footer() {
       </footer>
     </>
   );
-}
+};
 
 export default Footer;
