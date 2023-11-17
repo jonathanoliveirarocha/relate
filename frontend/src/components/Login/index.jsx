@@ -3,7 +3,7 @@ function Login() {
     <>
       <div className="h-screen w-full flex items-center justify-center">
         <form>
-          <div className="rounded-lg shadow-2xl p-6 space-y-4">
+          <div className="rounded-lg border border-gray-200 p-6 space-y-4">
             <div>
               <label className="text-sm" htmlFor="email">
                 E-mail:
