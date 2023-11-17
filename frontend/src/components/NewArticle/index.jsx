@@ -1,4 +1,12 @@
+import React, { useState } from "react";
+
 function NewArticle() {
+  const [textHTML, setTextHTML] = useState("Preview...");
+
+  const setNewText = (event) => {
+    setTextHTML(event.target.value);
+  };
+
   return (
     <>
       <div className="w-full h-screen flex items-center justify-center">
@@ -19,12 +27,21 @@ function NewArticle() {
                 Conteúdo:
               </label>
               <textarea
-                rows={25}
+                onChange={setNewText}
+                placeholder="Digite o HTML aqui..."
+                rows={12}
                 type="text"
                 name="content"
                 className="w-full border border-gray-200 rounded-md px-2 py-1"
               />
             </div>
+            <div className="h-64 overflow-auto px-2 flex justify-center">
+              <div
+                className="max-w-[1000px]"
+                dangerouslySetInnerHTML={{ __html: textHTML }}
+              />
+            </div>
+
             <button
               type="submit"
               className="w-full py-1 rounded-md bg-gray-500 text-white hover:bg-gray-600"

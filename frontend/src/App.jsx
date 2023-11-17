@@ -11,7 +11,7 @@ function App() {
     <>
       <Header />
       <div className="flex min-h-screen">
-        <ReadArticle />
+        <NewArticle />
         {/* <Categories />
         <Articles /> */}
       </div>
