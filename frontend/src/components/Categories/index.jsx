@@ -34,37 +34,37 @@ function Category() {
     <>
       <li>
         <a href="/">
-          <div className="shadow-md text-center px-2 rounded-md bg-white">
+          <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
             Node.js
-          </div>
+          </button>
         </a>
       </li>
       <li>
         <a href="/">
-          <div className="shadow-md text-center px-2 rounded-md bg-white">
+          <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
             Tailwind
-          </div>
+          </button>
         </a>
       </li>
       <li>
         <a href="/">
-          <div className="shadow-md text-center px-2 rounded-md bg-white">
+          <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
             MongoDB
-          </div>
+          </button>
         </a>
       </li>
       <li>
         <a href="/">
-          <div className="shadow-md text-center px-2 rounded-md bg-white">
+          <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
             SOLID
-          </div>
+          </button>
         </a>
       </li>
       <li>
         <a href="/">
-          <div className="shadow-md text-center px-2 rounded-md bg-white">
+          <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
             Jest
-          </div>
+          </button>
         </a>
       </li>
     </>

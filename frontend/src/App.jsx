@@ -4,14 +4,16 @@ import Articles from "./components/Articles";
 import Footer from "./components/Footer";
 import NewArticle from "./components/NewArticle";
 import Login from "./components/Login";
+import ReadArticle from "./components/ReadArticle";
 
 function App() {
   return (
     <>
       <Header />
-      <div className="flex">
-        <Categories />
-        <Articles />
+      <div className="flex min-h-screen">
+        <ReadArticle />
+        {/* <Categories />
+        <Articles /> */}
       </div>
       <Footer />
     </>

@@ -25,6 +25,12 @@ function NewArticle() {
                 className="w-full border border-gray-200 rounded-md px-2 py-1"
               />
             </div>
+            <button
+              type="submit"
+              className="w-full py-1 rounded-md bg-gray-500 text-white hover:bg-gray-600"
+            >
+              Publicar
+            </button>
           </form>
         </div>
       </div>
