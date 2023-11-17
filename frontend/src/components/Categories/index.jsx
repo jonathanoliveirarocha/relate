@@ -8,7 +8,7 @@ function Categories() {
   return (
     <>
       <div
-        className={`w-36 h-fit m-1 p-2 flex items-center bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] sm:translate-x-[0] relative ${
+        className={`w-36 h-fit m-1 p-2 flex items-center bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
           menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
         }`}
       >
@@ -21,44 +21,52 @@ function Categories() {
         <div>
           <h2 className="m-4 font-bold text-lg">Categorias</h2>
           <ul className="space-y-2">
-            <li>
-              <a href="/">
-                <div className="shadow-md text-center px-2 rounded-md bg-white">
-                  Node.js
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <div className="shadow-md text-center px-2 rounded-md bg-white">
-                  Tailwind
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <div className="shadow-md text-center px-2 rounded-md bg-white">
-                  MongoDB
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <div className="shadow-md text-center px-2 rounded-md bg-white">
-                  SOLID
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <div className="shadow-md text-center px-2 rounded-md bg-white">
-                  Jest
-                </div>
-              </a>
-            </li>
+            <Category />
           </ul>
         </div>
       </div>
+    </>
+  );
+}
+
+function Category() {
+  return (
+    <>
+      <li>
+        <a href="/">
+          <div className="shadow-md text-center px-2 rounded-md bg-white">
+            Node.js
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <div className="shadow-md text-center px-2 rounded-md bg-white">
+            Tailwind
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <div className="shadow-md text-center px-2 rounded-md bg-white">
+            MongoDB
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <div className="shadow-md text-center px-2 rounded-md bg-white">
+            SOLID
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <div className="shadow-md text-center px-2 rounded-md bg-white">
+            Jest
+          </div>
+        </a>
+      </li>
     </>
   );
 }

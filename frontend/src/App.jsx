@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Articles from "./components/Articles";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -8,8 +9,9 @@ function App() {
       <Header />
       <div className="flex">
         <Categories />
-        <Articles/>
+        <Articles />
       </div>
+      <Footer />
     </>
   );
 }

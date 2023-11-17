@@ -10,7 +10,7 @@ function Header() {
             <form className="space-x-1">
               <input
                 type="text"
-                className="rounded-[4px] px-2 bg-gray-800 border border-gray-500"
+                className="rounded-[4px] px-2 bg-gray-800 border border-gray-500 text-white"
                 placeholder="Pesquisar"
                 name="search"
               />
