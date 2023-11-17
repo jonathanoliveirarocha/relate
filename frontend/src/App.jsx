@@ -11,9 +11,8 @@ function App() {
     <>
       <Header />
       <div className="flex min-h-screen">
-        <NewArticle />
-        {/* <Categories />
-        <Articles /> */}
+        <Categories />
+        <Articles />
       </div>
       <Footer />
     </>
