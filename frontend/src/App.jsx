@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import NewArticle from "./components/NewArticle";
 import Login from "./components/Login";
 import ReadArticle from "./components/ReadArticle";
+import NewCategory from "./components/NewCategory";
 
 const App = () => {
   return (

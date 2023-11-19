@@ -75,7 +75,7 @@ const Article = () => {
       </div>
       <div className="h-64 overflow-auto px-2 flex justify-center">
         <div
-          className="max-w-[1000px]"
+          className="max-w-[1000px] w-full"
           dangerouslySetInnerHTML={{ __html: textHTML }}
         />
       </div>
