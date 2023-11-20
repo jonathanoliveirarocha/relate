@@ -4,7 +4,6 @@ const Category = require("../models/Category");
 
 router.post("/create", (req, res) => {
   const { category } = req.body;
-
   Category.findOne({ name: category })
     .then((existing) => {
       if (existing) {

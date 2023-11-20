@@ -32,23 +32,29 @@ router.get("/showone/:id", (req, res) => {
     });
 });
 
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", (req, res) => {
   const { title, category, content } = req.body;
-  try {
-    Article.findOneAndUpdate(
-      { _id: req.params.id },
-      { title, category, content },
-      { new: true }
-    )
-      .then((article) => {
-        return res.status(200).json(article);
-      })
-      .catch((error) => {
-        return res.status(500).json({ error: "Erro ao atualizar artigo!" });
-      });
-  } catch (error) {
-    res.status(500).json({ erro: "Erro ao atualizar artigo!" });
-  }
+  Article.findOneAndUpdate(
+    { _id: req.params.id },
+    { title, category, content },
+    { new: true }
+  )
+    .then((article) => {
+      return res.status(200).json(article);
+    })
+    .catch((error) => {
+      return res.status(500).json({ error: "Erro ao atualizar artigo!" });
+    });
+});
+
+router.delete("/delete/:id", (req, res) => {
+  Article.findByIdAndDelete(req.params.id)
+    .then((article) => {
+      return res.status(200).json({ status: "Deletado com sucesso!" });
+    })
+    .catch((error) => {
+      return res.status(500).json({ error: "Erro ao deletar artigo!" });
+    });
 });
 
 module.exports = router;
