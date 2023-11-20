@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/Category");
+const Article = require("../models/Article");
 
 router.post("/create", (req, res) => {
   const { category } = req.body;
@@ -18,6 +19,24 @@ router.post("/create", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+    });
+});
+
+router.delete("/delete/:id", (req, res) => {
+  Article.deleteMany({ category: req.params.id })
+    .then(() => {
+      Category.findByIdAndDelete(req.params.id)
+        .then(() => {
+          return res
+            .status(200)
+            .json({
+              status: "Categoria e artigos referentes foram deletados!",
+            });
+        })
+        .catch(() => {});
+    })
+    .catch(() => {
+      return res.status(500).json({ error: "Erro ao deletar categoria!" });
     });
 });
 

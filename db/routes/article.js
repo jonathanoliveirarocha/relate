@@ -17,7 +17,7 @@ router.get("/showall", (req, res) => {
     .then((articles) => {
       return res.status(200).json(articles);
     })
-    .catch((error) => {
+    .catch(() => {
       return res.status(500).json({ error: "Erro ao carregar artigos!" });
     });
 });
@@ -27,7 +27,7 @@ router.get("/showone/:id", (req, res) => {
     .then((article) => {
       return res.status(200).json(article);
     })
-    .catch((error) => {
+    .catch(() => {
       return res.status(500).json({ error: "Erro ao carregar artigo!" });
     });
 });
@@ -42,17 +42,17 @@ router.put("/update/:id", (req, res) => {
     .then((article) => {
       return res.status(200).json(article);
     })
-    .catch((error) => {
+    .catch(() => {
       return res.status(500).json({ error: "Erro ao atualizar artigo!" });
     });
 });
 
 router.delete("/delete/:id", (req, res) => {
   Article.findByIdAndDelete(req.params.id)
-    .then((article) => {
+    .then(() => {
       return res.status(200).json({ status: "Deletado com sucesso!" });
     })
-    .catch((error) => {
+    .catch(() => {
       return res.status(500).json({ error: "Erro ao deletar artigo!" });
     });
 });
