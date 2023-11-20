@@ -6,6 +6,7 @@ const session = require("express-session");
 const passport = require("passport");
 require("./config/auth")(passport);
 const auth = require("./routes/auth");
+const category = require("./routes/category");
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", auth);
+app.use("/category", category);
 
 app.listen(PORT, () => {
   console.log(`DB running: http://localhost:${PORT}`);
