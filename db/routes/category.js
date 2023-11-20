@@ -3,7 +3,7 @@ const router = express.Router();
 const Category = require("../models/Category");
 
 router.post("/create", (req, res) => {
-  const {category} = req.body;
+  const { category } = req.body;
 
   Category.findOne({ name: category })
     .then((existing) => {
@@ -14,7 +14,7 @@ router.post("/create", (req, res) => {
       saveNewCategory.save().then(() => {
         return res
           .status(200)
-          .json({ error: "Categoria cadastrada com Sucesso!" });
+          .json({ status: "Categoria cadastrada com Sucesso!" });
       });
     })
     .catch((err) => {
