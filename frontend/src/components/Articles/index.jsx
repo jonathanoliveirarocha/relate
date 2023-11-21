@@ -49,7 +49,7 @@ const Article = ({ context }) => {
           {context?.content ?? "Carregando"}
         </p>
         <a
-          href=""
+          href={`/read/${context?._id ?? null}`}
           className="absolute text-sm right-4 bottom-2 hover:opacity-80"
         >
           Leia Mais

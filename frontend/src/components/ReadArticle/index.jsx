@@ -1,51 +1,32 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 const ReadArticle = () => {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/article/showone/${id}`
+        );
+        const obj = await response.json();
+        setData(obj);
+      } catch (error) {
+        console.log("Erro ao buscar dados da API");
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <div className="w-full flex justify-center py-8 px-4">
-        <a href="">
+      <div className="w-full min-h-[100vb] flex justify-center py-8 px-4">
+        <a href="/">
           <button className="absolute top-16 left-4">{"<"}</button>
         </a>
-        <Text
-          content='
-          <h1 class="h1">Título</h1>
-          <p class="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget metus
-          euismod, semper purus non, congue leo. Vivamus ullamcorper, arcu in
-          condimentum aliquam, massa orci dictum tellus, eu pretium ipsum felis at
-          ligula. Fusce eget scelerisque arcu, in efficitur sem. Duis hendrerit
-          nibh felis. Vestibulum nunc nunc, maximus vitae rhoncus id, maximus in
-          nibh. Nam diam mauris, suscipit ut dictum ac, pulvinar ac nulla. Nam
-          fringilla dui non tincidunt porta. Morbi eu congue sapien. Vivamus nisi
-          erat, vehicula non odio nec, dictum rhoncus nunc.
-          </p>
-          <p class="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget metus
-          euismod, semper purus non, congue leo. Vivamus ullamcorper, arcu in
-          condimentum aliquam, massa orci dictum tellus, eu pretium ipsum felis at
-          ligula. Fusce eget scelerisque arcu, in efficitur sem. Duis hendrerit
-          nibh felis. Vestibulum nunc nunc, maximus vitae rhoncus id, maximus in
-          nibh. Nam diam mauris, suscipit ut dictum ac, pulvinar ac nulla. Nam
-          fringilla dui non tincidunt porta. Morbi eu congue sapien. Vivamus nisi
-          erat, vehicula non odio nec, dictum rhoncus nunc.
-          </p>
-          <h2 class="h2">Sub-Titulo</h2>
-          <p class="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget metus
-          euismod, semper purus non, congue leo. Vivamus ullamcorper, arcu in
-          condimentum aliquam, massa orci dictum tellus, eu pretium ipsum felis at
-          ligula. Fusce eget scelerisque arcu, in efficitur sem. Duis hendrerit
-          nibh felis. Vestibulum nunc nunc, maximus vitae rhoncus id, maximus in
-          nibh. Nam diam mauris, suscipit ut dictum ac, pulvinar ac nulla. Nam
-          fringilla dui non tincidunt porta. Morbi eu congue sapien. Vivamus nisi
-          erat, vehicula non odio nec, dictum rhoncus nunc.
-          </p>
-          <ul class="ul">
-              <li>Linha 1</li>
-              <li>Linha 2</li>
-              <li>Linha 3</li>
-          </ul>
-          <p class="terminal">npm i axios</p>'
-        />
+        <Text content={data.content} />
       </div>
     </>
   );
