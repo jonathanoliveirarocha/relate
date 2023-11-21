@@ -7,6 +7,7 @@ import NewArticle from "./components/NewArticle";
 import Login from "./components/Login";
 import ReadArticle from "./components/ReadArticle";
 import NewCategory from "./components/NewCategory";
+import NotFound from "./components/NotFound"
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/article/edit" element={<NewArticle />} />
           <Route path="/read" element={<ReadArticle />} />
           <Route path="/category/create" element={<NewCategory />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <Footer />
