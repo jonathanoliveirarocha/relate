@@ -1,8 +1,27 @@
+import React, { useEffect, useState } from "react";
+
 const Articles = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/article/showall");
+        const obj = await response.json();
+        setData(obj);
+      } catch (error) {
+        console.log("Erro ao buscar dados da API");
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="w-full flex-1 mx-[18px] sm:mx-2 my-4">
-        <Article />
+        {data.map((article) => (
+          <Article key={article._id} context={article} />
+        ))}
       </div>
       <ScrollUp />
     </>
@@ -21,15 +40,13 @@ const ScrollUp = () => {
   );
 };
 
-const Article = () => {
+const Article = ({ context }) => {
   return (
     <>
       <div className="w-full h-24 shadow-lg rounded-lg p-1 relative">
-        <h1 className="font-bold text-lg">Título</h1>
+        <h1 className="font-bold text-lg">{context?.title ?? "Carregando"}</h1>
         <p className="text-sm text-gray-600 abbreviated-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-          viverra, eros fringilla faucibus dapibus, tortor diam bibendum elit,
-          vitae finibus turpis ligula quis neque...
+          {context?.content ?? "Carregadno"}
         </p>
         <a
           href=""
