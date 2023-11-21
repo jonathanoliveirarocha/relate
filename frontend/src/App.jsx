@@ -1,6 +1,7 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
 import Header from "./components/Header";
-import Categories from "./components/Categories";
-import Articles from "./components/Articles";
 import Footer from "./components/Footer";
 import NewArticle from "./components/NewArticle";
 import Login from "./components/Login";
@@ -11,10 +12,16 @@ const App = () => {
   return (
     <>
       <Header />
-      <div className="flex min-h-screen">
-        <Categories />
-        <Articles />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth/admin" element={<Login />} />
+          <Route path="/article/create" element={<NewArticle />} />
+          <Route path="/article/edit" element={<NewArticle />} />
+          <Route path="/read" element={<ReadArticle />} />
+          <Route path="/category/create" element={<NewCategory />} />
+        </Routes>
+      </Router>
       <Footer />
     </>
   );
