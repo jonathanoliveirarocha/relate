@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Articles = () => {
   const [data, setData] = useState([]);
@@ -46,7 +46,7 @@ const Article = ({ context }) => {
       <div className="w-full h-24 shadow-lg rounded-lg p-1 relative">
         <h1 className="font-bold text-lg">{context?.title ?? "Carregando"}</h1>
         <p className="text-sm text-gray-600 abbreviated-paragraph">
-          {context?.content ?? "Carregadno"}
+          {context?.content ?? "Carregando"}
         </p>
         <a
           href=""

@@ -3,6 +3,17 @@ const router = express.Router();
 const Category = require("../models/Category");
 const Article = require("../models/Article");
 
+router.get("/showall", (req, res) => {
+  Category.find({})
+    .limit(6)
+    .then((categories) => {
+      return res.status(200).json(categories);
+    })
+    .catch(() => {
+      return res.status(500).json({ error: "Erro ao carregar categorias!" });
+    });
+});
+
 router.post("/create", (req, res) => {
   const { category } = req.body;
   Category.findOne({ name: category })
@@ -27,11 +38,9 @@ router.delete("/delete/:id", (req, res) => {
     .then(() => {
       Category.findByIdAndDelete(req.params.id)
         .then(() => {
-          return res
-            .status(200)
-            .json({
-              status: "Categoria e artigos referentes foram deletados!",
-            });
+          return res.status(200).json({
+            status: "Categoria e artigos referentes foram deletados!",
+          });
         })
         .catch(() => {});
     })

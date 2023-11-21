@@ -14,7 +14,13 @@ module.exports = function (passport) {
           } else {
             bcrypt.compare(password, user.password, (err, logged) => {
               if (logged) {
-                return done(null, user);
+                if (user.admin == 1) {
+                  return done(null, user);
+                } else {
+                  return done(null, false, {
+                    message: "Você não é um administador do site!",
+                  });
+                }
               } else {
                 return done(null, false, { message: "Senha incorreta!" });
               }
