@@ -7,6 +7,17 @@ body {
   scroll-behavior: smooth;
 }
 
+.categories::-webkit-scrollbar {
+  background: inherit;
+  width: 7px;
+  height: 7px;
+}
+
+.categories::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.73);
+  border-radius: 8px;
+}
+
 .abbreviated-paragraph {
   max-height: 35px;
   overflow: hidden;

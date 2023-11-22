@@ -24,8 +24,10 @@ const Categories = () => {
   return (
     <>
       <div
-        className={`w-36 h-[250px] m-1 justify-center flex items-center bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
-          menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
+        className={`categories w-36 h-[250px] p-2 overflow-auto overflow-x-hidden m-1 justify-center flex items-center bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
+          menuActive
+            ? "translate-x-[0]"
+            : "-translate-x-[138px] overflow-y-hidden"
         }`}
       >
         <div
@@ -53,7 +55,7 @@ const Category = ({ context }) => {
       <li>
         <a href="">
           <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
-          {context?.name ?? "Carregando"}
+            {context?.name ?? "Carregando"}
           </button>
         </a>
       </li>

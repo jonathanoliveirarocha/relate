@@ -34,6 +34,7 @@ router.get("/showone/:id", (req, res) => {
 
 router.put("/update/:id", (req, res) => {
   const { title, category, content } = req.body;
+  console.log(category )
   Article.findOneAndUpdate(
     { _id: req.params.id },
     { title, category, content },

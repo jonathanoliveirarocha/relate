@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/read/:id" element={<ReadArticle />} />
           <Route path="/auth/admin" element={<Login />} />
           <Route path="/article/create" element={<NewArticle />} />
-          <Route path="/article/edit" element={<NewArticle />} />
+          <Route path="/article/edit/:id" element={<NewArticle />} />
           <Route path="/category/create" element={<NewCategory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
