@@ -26,7 +26,7 @@ const ReadArticle = () => {
         <a href="/">
           <button className="absolute top-16 left-4">{"<"}</button>
         </a>
-        <div>
+        <div className="w-full max-w-[1000px]">
           <h1 className="h1">{data.title}</h1>
           <Text content={data.content} />
         </div>
@@ -38,10 +38,7 @@ const ReadArticle = () => {
 const Text = ({ content }) => {
   return (
     <>
-      <div
-        className="max-w-[1000px]"
-        dangerouslySetInnerHTML={{ __html: content }}
-      ></div>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </>
   );
 };

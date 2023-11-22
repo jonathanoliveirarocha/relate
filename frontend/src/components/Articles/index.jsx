@@ -41,6 +41,13 @@ const ScrollUp = () => {
 };
 
 const Article = ({ context }) => {
+  const removeArticle = async (url) => {
+    const response = await fetch(url, {
+      method: "DELETE",
+    });
+    response.ok ? location.reload() : alert(error);
+  };
+
   return (
     <>
       <div className="w-full h-24 shadow-lg rounded-lg p-1 relative">
@@ -48,6 +55,18 @@ const Article = ({ context }) => {
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
+
+        <button
+          className="absolute right-24 bottom-2 text-sm bg-red-400 text-white px-2 rounded-sm hover:bg-red-500"
+          onClick={() => {
+            removeArticle(
+              `http://localhost:5000/article/delete/${context?._id ?? null}`
+            );
+          }}
+        >
+          Excluir
+        </button>
+
         <a
           href={`/read/${context?._id ?? null}`}
           className="absolute text-sm right-4 bottom-2 hover:opacity-80"
