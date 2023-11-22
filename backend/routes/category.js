@@ -5,7 +5,6 @@ const Article = require("../models/Article");
 
 router.get("/showall", (req, res) => {
   Category.find({})
-    .limit(6)
     .then((categories) => {
       return res.status(200).json(categories);
     })

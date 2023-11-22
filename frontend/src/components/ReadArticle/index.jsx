@@ -26,7 +26,10 @@ const ReadArticle = () => {
         <a href="/">
           <button className="absolute top-16 left-4">{"<"}</button>
         </a>
-        <Text content={data.content} />
+        <div>
+          <h1 className="h1">{data.title}</h1>
+          <Text content={data.content} />
+        </div>
       </div>
     </>
   );

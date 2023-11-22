@@ -46,7 +46,8 @@ const Article = ({ context }) => {
       <div className="w-full h-24 shadow-lg rounded-lg p-1 relative">
         <h1 className="font-bold text-lg">{context?.title ?? "Carregando"}</h1>
         <p className="text-sm text-gray-600 abbreviated-paragraph">
-          {context?.content ?? "Carregando"}
+          <Text content={context?.content ?? "Carregando"}/>
+          
         </p>
         <a
           href={`/read/${context?._id ?? null}`}
@@ -55,6 +56,17 @@ const Article = ({ context }) => {
           Leia Mais
         </a>
       </div>
+    </>
+  );
+};
+
+
+const Text = ({ content }) => {
+  return (
+    <>
+      <div
+        dangerouslySetInnerHTML={{ __html: `${content}` }}
+      ></div>
     </>
   );
 };
