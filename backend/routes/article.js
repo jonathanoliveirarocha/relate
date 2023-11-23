@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Article = require("../models/Article");
 const Category = require("../models/Category");
+const { ObjectId } = require("mongodb");
 
 router.post("/create", async (req, res) => {
   try {
@@ -55,15 +56,30 @@ router.delete("/delete/:id", async (req, res) => {
   }
 });
 
-router.get('/search/keyword/:keyword', async (req, res) => {
+router.get("/search/keyword/:keyword", async (req, res) => {
   try {
-    const  keyword  = req.params.keyword;
-    const articles = await Article.find({
-      $or: [
-        { content: { $regex: keyword, $options: 'i' } },
-      ],
-    });
-    res.json(articles);
+    const keyword = req.params.keyword;
+    const searchByKeyword = async (keyword) => {
+      const articles = await Article.find({
+        $or: [
+          { content: { $regex: keyword, $options: "i" } },
+          { title: { $regex: keyword, $options: "i" } },
+        ],
+      });
+      res.json(articles);
+    };
+
+    if (keyword.length == 24) {
+      const category = await Category.findOne({ _id: new ObjectId(keyword) });
+      if (category) {
+        const articles = await Article.find({ category: keyword });
+        res.json(articles);
+      } else {
+        searchByKeyword(keyword);
+      }
+    } else {
+      searchByKeyword(keyword);
+    }
   } catch (error) {
     res.status(500).json({ erro: "Erro interno!" });
   }

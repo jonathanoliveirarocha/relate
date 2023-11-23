@@ -36,12 +36,24 @@ const Categories = (props) => {
         </div>
         <div>
           <h2 className="mx-4 mb-1 font-bold text-lg">Categorias</h2>
-          <a href="/category/create">
-            <button className="bg-green-600 hover:bg-green-700 w-full mb-2 rounded-md text-white">
-              Nova
-            </button>
-          </a>
           <ul className="space-y-2">
+            <li>
+              <a href="/category/create">
+                <button className="bg-green-600 hover:bg-green-700 w-full rounded-md text-white">
+                  Nova
+                </button>
+              </a>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  props.setSearch("");
+                }}
+                className="shadow-md w-full text-center px-2 rounded-md bg-white"
+              >
+                Tudo
+              </button>
+            </li>
             {data.map((category) => (
               <Category
                 setSearch={props.setSearch}
