@@ -3,12 +3,13 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const User = require("../models/User");
 
-module.exports = function (passport) {
+module.exports = (passport) => {
   passport.use(
     new localStrategy(
       { usernameField: "email", passwordField: "password" },
-      (email, password, done) => {
-        User.findOne({ email: email }).then((user) => {
+      async (email, password, done) => {
+        try {
+          const user = await User.findOne({ email: email });
           if (!user) {
             return done(null, false, { message: "Esta conta não existe!" });
           } else {
@@ -26,22 +27,23 @@ module.exports = function (passport) {
               }
             });
           }
-        });
+        } catch {
+          return done(err);
+        }
       }
     )
   );
 };
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id)
-    .then((user) => {
-      done(null, user.id);
-    })
-    .catch(() => {
-      return done(null, false, { message: "Erro ao buscar usuário!" });
-    });
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user.id);
+  } catch (err) {
+    done(err);
+  }
 });
