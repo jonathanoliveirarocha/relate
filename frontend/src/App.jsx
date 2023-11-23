@@ -13,7 +13,7 @@ const App = () => {
   const [search, setSearch] = useState("")
   return (
     <>
-      <Header search={search} setSearch={setSearch}/>
+      <Header search={search} setSearch={setSearch} location={location}/>
       <Router>
         <Routes>
           <Route path="/" element={<Home search={search} setSearch={setSearch}/>} />
