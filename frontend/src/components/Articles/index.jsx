@@ -19,6 +19,11 @@ const Articles = () => {
   return (
     <>
       <div className="w-full flex-1 mx-[18px] sm:mx-2 my-4">
+        <a href="/article/create">
+          <button className="bg-green-600 px-2 rounded-sm text-white hover:bg-green-700 mb-2">
+            Criar
+          </button>
+        </a>
         {data.map((article) => (
           <Article key={article._id} context={article} />
         ))}
@@ -41,7 +46,8 @@ const ScrollUp = () => {
 };
 
 const Article = ({ context }) => {
-  const removeArticle = async (url) => {
+  const removeArticle = async (id) => {
+    const url = `http://localhost:5000/article/delete/${id}`;
     const response = await fetch(url, {
       method: "DELETE",
     });
@@ -55,18 +61,22 @@ const Article = ({ context }) => {
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
+        <a
+          href={`/article/edit/${context?._id ?? null}`}
+          className="absolute right-44 bottom-2 text-sm bg-yellow-500 text-white px-2 rounded-sm hover:bg-yellow-600"
+        >
+          <button>Editar</button>
+        </a>
 
         <button
           className="absolute right-24 bottom-2 text-sm bg-red-400 text-white px-2 rounded-sm hover:bg-red-500"
           onClick={() => {
-            removeArticle(
-              `http://localhost:5000/article/delete/${context?._id ?? null}`
-            );
+            removeArticle(`${context?._id ?? null}`);
           }}
         >
           Excluir
         </button>
-
+        
         <a
           href={`/read/${context?._id ?? null}`}
           className="absolute text-sm right-4 bottom-2 hover:opacity-80"

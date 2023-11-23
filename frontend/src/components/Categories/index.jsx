@@ -48,11 +48,24 @@ const Categories = () => {
 };
 
 const Category = ({ context }) => {
+  const removeCategory = async (id) => {
+    const url = `http://localhost:5000/category/delete/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+    });
+    response.ok ? location.reload() : alert(error);
+  };
   return (
     <>
       <li>
         <a href="">
-          <button className="shadow-md w-full text-center px-2 rounded-md bg-white">
+          <button className="shadow-md w-full text-center px-2 relative rounded-md bg-white">
+            <button
+              onClick={() => {
+                removeCategory(`${context?._id ?? null}`);
+              }}
+              className="absolute w-2 h-2 bg-red-500 hover:bg-red-600 rounded-full top-[2px] right-[1px]"
+            ></button>
             {context?.name ?? "Carregando"}
           </button>
         </a>
