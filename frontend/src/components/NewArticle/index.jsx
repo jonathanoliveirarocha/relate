@@ -38,7 +38,6 @@ const Form = ({ context }) => {
   const [title, setTitle] = useState(context ? context.title : "");
   const [category, setCategory] = useState(context ? context.category : "");
   const [content, setContent] = useState(context ? context.content : "");
-  const [submitted, setSubmitted] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,9 +70,9 @@ const Form = ({ context }) => {
       body: JSON.stringify({ title, category, content }),
     });
     if (response.ok) {
-      setSubmitted(1);
+      alert("Adicionado com sucesso!");
     } else {
-      setSubmitted(2);
+      alert("Erro Interno");
     }
   };
 
@@ -87,9 +86,9 @@ const Form = ({ context }) => {
       body: JSON.stringify({ title, category, content }),
     });
     if (response.ok) {
-      setSubmitted(1);
+      alert("Atualizado com sucesso!");
     } else {
-      setSubmitted(2);
+      alert("Erro Interno");
     }
   };
 
@@ -100,22 +99,6 @@ const Form = ({ context }) => {
     } else {
       createArticle();
     }
-  };
-
-  const MessageAlert = () => {
-    return (
-      <>
-        {submitted == 1 ? (
-          <p className="text-center text-green-500 mb-2">
-            Adicionado com Sucesso!
-          </p>
-        ) : submitted == 2 ? (
-          <p className="text-center text-red-500 mb-2">
-            Falha ao adicionar Artigo!
-          </p>
-        ) : null}
-      </>
-    );
   };
 
   const SelectCategory = () => {
@@ -145,7 +128,6 @@ const Form = ({ context }) => {
 
   return (
     <>
-      <MessageAlert />
       <form onSubmit={submitForm} className="space-y-4">
         <div className="flex gap-4">
           <div className="w-1/2">
