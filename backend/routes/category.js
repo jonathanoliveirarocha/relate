@@ -8,7 +8,7 @@ router.get("/showall", async (req, res) => {
     const categories = await Category.find({});
     return res.status(200).json(categories);
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 
@@ -24,7 +24,7 @@ router.post("/create", async (req, res) => {
       res.status(200).json({ status: "Categoria cadastrada com Sucesso!" });
     }
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 
@@ -34,7 +34,7 @@ router.delete("/delete/:id", async (req, res) => {
     await Category.findByIdAndDelete(req.params.id);
     res.status(200).json({ status: "Categoria e artigos referentes foram deletados!" });
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 

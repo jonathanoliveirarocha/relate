@@ -1,20 +1,40 @@
 import { useEffect, useState } from "react";
 
-const Articles = () => {
+const Articles = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
+    if (props.search === "") {
+      const fetchData = async () => {
+        try {
+          const response = await fetch("http://localhost:5000/article/showall");
+          const obj = await response.json();
+          setData(obj);
+        } catch (error) {
+          console.log("Erro ao buscar dados da API");
+        }
+      };
+      fetchData();
+    }
+  }, []);
+  useEffect(() => {
     const fetchData = async () => {
+      let response;
       try {
-        const response = await fetch("http://localhost:5000/article/showall");
+        if (props.search === "") {
+          response = await fetch("http://localhost:5000/article/showall");
+        } else {
+          response = await fetch(
+            `http://localhost:5000/article/search/keyword/${props.search}`
+          );
+        }
         const obj = await response.json();
         setData(obj);
       } catch (error) {
         console.log("Erro ao buscar dados da API");
       }
     };
-
     fetchData();
-  }, []);
+  }, [props.search]);
 
   return (
     <>
@@ -76,7 +96,7 @@ const Article = ({ context }) => {
         >
           Excluir
         </button>
-        
+
         <a
           href={`/read/${context?._id ?? null}`}
           className="absolute text-sm right-4 bottom-2 hover:opacity-80"

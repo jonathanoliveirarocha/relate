@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Categories = () => {
+const Categories = (props) => {
   const [menuActive, setMenuActive] = useState(false);
   const [data, setData] = useState([]);
 
@@ -24,7 +24,7 @@ const Categories = () => {
   return (
     <>
       <div
-        className={`categories w-36 h-[250px] p-2 overflow-auto overflow-x-hidden m-1 justify-center flex bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
+        className={`categories items-center w-36 h-[250px] p-2 overflow-auto overflow-x-hidden m-1 justify-center flex bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
           menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
         }`}
       >
@@ -43,7 +43,11 @@ const Categories = () => {
           </a>
           <ul className="space-y-2">
             {data.map((category) => (
-              <Category key={category._id} context={category} />
+              <Category
+                setSearch={props.setSearch}
+                key={category._id}
+                context={category}
+              />
             ))}
           </ul>
         </div>
@@ -52,7 +56,7 @@ const Categories = () => {
   );
 };
 
-const Category = ({ context }) => {
+const Category = ({ context, setSearch }) => {
   const removeCategory = async (id) => {
     const url = `http://localhost:5000/category/delete/${id}`;
     const response = await fetch(url, {
@@ -63,17 +67,20 @@ const Category = ({ context }) => {
   return (
     <>
       <li>
-        <a href="">
-          <button className="shadow-md w-full text-center px-2 relative rounded-md bg-white">
-            <button
-              onClick={() => {
-                removeCategory(`${context?._id ?? null}`);
-              }}
-              className="absolute w-2 h-2 bg-red-500 hover:bg-red-600 rounded-full top-[2px] right-[1px]"
-            ></button>
-            {context?.name ?? "Carregando"}
-          </button>
-        </a>
+        <button
+          onClick={() => {
+            setSearch(context?._id);
+          }}
+          className="shadow-md w-full text-center px-2 relative rounded-md bg-white"
+        >
+          <div
+            onClick={() => {
+              removeCategory(`${context?._id ?? null}`);
+            }}
+            className="absolute w-2 h-2 bg-red-500 hover:bg-red-600 rounded-full top-[2px] right-[1px]"
+          ></div>
+          {context?.name ?? "Carregando"}
+        </button>
       </li>
     </>
   );

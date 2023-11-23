@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Article = require("../models/Article");
+const Category = require("../models/Category");
 
 router.post("/create", async (req, res) => {
   try {
@@ -9,7 +10,7 @@ router.post("/create", async (req, res) => {
     await newArticle.save();
     res.status(200).json({ message: "Criado com sucesso!" });
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 
@@ -18,7 +19,7 @@ router.get("/showall", async (req, res) => {
     const articles = await Article.find({}).sort({ data: -1 }).limit(30);
     res.status(200).json(articles);
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 
@@ -27,7 +28,7 @@ router.get("/showone/:id", async (req, res) => {
     const article = await Article.findById(req.params.id);
     res.status(200).json(article);
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 
@@ -41,7 +42,7 @@ router.put("/update/:id", async (req, res) => {
     );
     res.status(200).json({ message: "Atualizado com sucesso!" });
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 
@@ -50,7 +51,21 @@ router.delete("/delete/:id", async (req, res) => {
     await Article.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Excluído com sucesso!" });
   } catch (error) {
-    res.status(500).json({ erro: "Erro interno do servidor!" });
+    res.status(500).json({ erro: "Erro interno!" });
+  }
+});
+
+router.get('/search/keyword/:keyword', async (req, res) => {
+  try {
+    const  keyword  = req.params.keyword;
+    const articles = await Article.find({
+      $or: [
+        { content: { $regex: keyword, $options: 'i' } },
+      ],
+    });
+    res.json(articles);
+  } catch (error) {
+    res.status(500).json({ erro: "Erro interno!" });
   }
 });
 

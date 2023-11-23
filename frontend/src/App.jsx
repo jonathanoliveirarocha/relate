@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
@@ -10,12 +10,13 @@ import NewCategory from "./components/NewCategory";
 import NotFound from "./components/NotFound";
 
 const App = () => {
+  const [search, setSearch] = useState("")
   return (
     <>
-      <Header />
+      <Header search={search} setSearch={setSearch}/>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home search={search} setSearch={setSearch}/>} />
           <Route path="/read/:id" element={<ReadArticle />} />
           <Route path="/auth/admin" element={<Login />} />
           <Route path="/article/create" element={<NewArticle />} />
