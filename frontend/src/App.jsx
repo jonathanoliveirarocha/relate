@@ -18,7 +18,7 @@ const App = () => {
     const fetchData = async () => {
       try {
         if (token) {
-          const response = await fetch("http://localhost:5000/auth/validate", {
+          const response = await fetch("https://dev-relate.vercel.app/auth/validate", {
             method: "POST",
             headers: {
               Authorization: token,

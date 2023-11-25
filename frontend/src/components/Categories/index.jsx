@@ -7,7 +7,7 @@ const Categories = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/category/showall");
+        const response = await fetch("https://dev-relate.vercel.app/category/showall");
         const obj = await response.json();
         setData(obj);
       } catch (error) {
@@ -75,7 +75,7 @@ const Categories = (props) => {
 const Category = ({ context, setSearch, isAuthenticated, token }) => {
   const removeCategory = async (id) => {
     console.log(token);
-    const url = `http://localhost:5000/category/delete/${id}`;
+    const url = `https://dev-relate.vercel.app/category/delete/${id}`;
     const confirm = window.confirm(
       "Tem certeza que deseja excluir essa categoria?"
     );

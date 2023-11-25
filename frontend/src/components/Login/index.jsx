@@ -6,7 +6,7 @@ const Login = (props) => {
   
   const userLogin = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/auth/admin";
+    const url = "https://dev-relate.vercel.app/auth/admin";
     const response = await fetch(url, {
       method: "POST",
       headers: {

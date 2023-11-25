@@ -15,8 +15,8 @@ const Header = (props) => {
           </a>
 
           <div className="absolute right-[5%] flex gap-2 items-center">
-            {window.location.href === "http://localhost:5173/" ||
-            window.location.href === "http://localhost:5173/#" ? (
+            {window.location.href === "https://jonathanoliveirarocha.github.io/dev-relate/" ||
+            window.location.href === "http://localhost:5173/dev-relate/#" ? (
               <form onSubmit={search} className="space-x-1">
                 <input
                   type="text"

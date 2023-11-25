@@ -4,7 +4,7 @@ const NewCategory = (props) => {
   const [category, setCategory] = useState(null);
   const createCategory = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/category/create";
+    const url = "https://dev-relate.vercel.app/category/create";
     const response = await fetch(url, {
       method: "POST",
       headers: {

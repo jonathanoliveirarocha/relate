@@ -9,7 +9,7 @@ const ReadArticle = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/article/showone/${id}`
+          `https://dev-relate.vercel.app/article/showone/${id}`
         );
         const obj = await response.json();
         setData(obj);

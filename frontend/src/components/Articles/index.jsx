@@ -7,7 +7,7 @@ const Articles = (props) => {
     if (props.search === "") {
       const fetchData = async () => {
         try {
-          const response = await fetch("http://localhost:5000/article/showall");
+          const response = await fetch("https://dev-relate.vercel.app/article/showall");
           const obj = await response.json();
           setData(obj);
         } catch (error) {
@@ -22,10 +22,10 @@ const Articles = (props) => {
       let response;
       try {
         if (props.search === "") {
-          response = await fetch("http://localhost:5000/article/showall");
+          response = await fetch("https://dev-relate.vercel.app/article/showall");
         } else {
           response = await fetch(
-            `http://localhost:5000/article/search/keyword/${props.search}`
+            `https://dev-relate.vercel.app/article/search/keyword/${props.search}`
           );
         }
         const obj = await response.json();
@@ -79,7 +79,7 @@ const ScrollUp = () => {
 
 const Article = ({ context, isAuthenticated, token }) => {
   const removeArticle = async (id) => {
-    const url = `http://localhost:5000/article/delete/${id}`;
+    const url = `https://dev-relate.vercel.app/article/delete/${id}`;
     const confirm = window.confirm(
       "Tem certeza que deseja excluir esse artigo?"
     );
