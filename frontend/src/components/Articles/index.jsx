@@ -70,10 +70,13 @@ const ScrollUp = () => {
 const Article = ({ context }) => {
   const removeArticle = async (id) => {
     const url = `http://localhost:5000/article/delete/${id}`;
-    const response = await fetch(url, {
-      method: "DELETE",
-    });
-    response.ok ? location.reload() : alert(error);
+    const confirm = window.confirm("Tem certeza que deseja excluir esse artigo?");
+    if (confirm) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      response.ok ? location.reload() : alert(error);
+    }
   };
 
   return (
@@ -83,7 +86,11 @@ const Article = ({ context }) => {
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
-        <span className="text-sm text-gray-600 absolute bottom-2">{new Date((context?.data ?? null)).toLocaleString('pt-BR', { timezone: 'UTC' })}</span>
+        <span className="text-sm text-gray-600 absolute bottom-2">
+          {new Date(context?.data ?? null).toLocaleString("pt-BR", {
+            timezone: "UTC",
+          })}
+        </span>
         <a
           href={`/article/edit/${context?._id ?? null}`}
           className="absolute right-44 bottom-2 text-sm bg-yellow-50 border border-yellow-500 text-yellow-600 px-2 rounded-sm hover:bg-yellow-100"

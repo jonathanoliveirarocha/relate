@@ -24,16 +24,14 @@ const Categories = (props) => {
   return (
     <>
       <div
-        className={`categories items-center w-36 h-[250px] p-2 overflow-auto overflow-x-hidden m-1 justify-center flex bg-white rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
+        className={`categories items-center w-36 h-[250px] p-2 overflow-y-auto m-1 justify-center flex bg-white rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
           menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
         }`}
       >
         <div
-          className="absolute w-6 h-6 text-center rounded-full bg-gray-300 -right-3 cursor-pointer block sm:hidden"
+          className="absolute w-2 h-full text-center border-r-2 border-gray-300 -right-0 cursor-pointer block sm:hidden"
           onClick={changeMenu}
-        >
-          {menuActive ? "<" : ">"}
-        </div>
+        ></div>
         <div>
           <h2 className="mx-4 mb-1 font-bold text-lg">Categorias</h2>
           <ul className="space-y-2">
@@ -71,10 +69,15 @@ const Categories = (props) => {
 const Category = ({ context, setSearch }) => {
   const removeCategory = async (id) => {
     const url = `http://localhost:5000/category/delete/${id}`;
-    const response = await fetch(url, {
-      method: "DELETE",
-    });
-    response.ok ? location.reload() : alert(error);
+    const confirm = window.confirm(
+      "Tem certeza que deseja excluir esse artigo?"
+    );
+    if (confirm) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      response.ok ? location.reload() : alert(error);
+    }
   };
   return (
     <>

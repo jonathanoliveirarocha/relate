@@ -19,7 +19,7 @@ const Header = (props) => {
               <form onSubmit={search} className="space-x-1">
                 <input
                   type="text"
-                  className="rounded-[4px] px-2 bg-gray-800 border border-gray-500 text-white"
+                  className="rounded-[4px] px-2 bg-gray-800 border border-gray-500 text-gray-400"
                   placeholder="Pesquisar"
                   name="search"
                   onChange={(e) => {
