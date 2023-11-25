@@ -24,10 +24,10 @@ I've always really enjoyed studying and writing down the content I learned, howe
 <table width="100%"> 
 <tr>
 <td width="50%">
-<img src="./SAMPLE/SAMPLE1.png/">
+<img src="./SAMPLE/SAMPLE1.png/" alt="Site preview">
 </td> 
 <td width="50%">
-<img src="./SAMPLE/SAMPLE2.png/">
+<img src="./SAMPLE/SAMPLE2.png/" alt="Site preview">
 </td> 
 </tr>
 </table>
