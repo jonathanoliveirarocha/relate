@@ -40,13 +40,22 @@ const Articles = (props) => {
   return (
     <>
       <div className="w-full flex-1 mx-[18px] sm:mx-2 my-4">
-        <a href="/article/create">
-          <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 rounded-sm px-2 mb-2">
-            Criar
-          </button>
-        </a>
+        {props.isAuthenticated ? (
+          <>
+            <a href="/article/create">
+              <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 rounded-sm px-2 mb-2">
+                Criar
+              </button>
+            </a>
+          </>
+        ) : null}
+
         {data.map((article) => (
-          <Article key={article._id} context={article} />
+          <Article
+            key={article._id}
+            isAuthenticated={props.isAuthenticated}
+            context={article}
+          />
         ))}
       </div>
       <ScrollUp />
@@ -67,10 +76,12 @@ const ScrollUp = () => {
   );
 };
 
-const Article = ({ context }) => {
+const Article = ({ context, isAuthenticated }) => {
   const removeArticle = async (id) => {
     const url = `http://localhost:5000/article/delete/${id}`;
-    const confirm = window.confirm("Tem certeza que deseja excluir esse artigo?");
+    const confirm = window.confirm(
+      "Tem certeza que deseja excluir esse artigo?"
+    );
     if (confirm) {
       const response = await fetch(url, {
         method: "DELETE",
@@ -91,22 +102,25 @@ const Article = ({ context }) => {
             timezone: "UTC",
           })}
         </span>
-        <a
-          href={`/article/edit/${context?._id ?? null}`}
-          className="absolute right-44 bottom-2 text-sm bg-yellow-50 border border-yellow-500 text-yellow-600 px-2 rounded-sm hover:bg-yellow-100"
-        >
-          <button>Editar</button>
-        </a>
+        {isAuthenticated ? (
+          <>
+            <a
+              href={`/article/edit/${context?._id ?? null}`}
+              className="absolute right-44 bottom-2 text-sm bg-yellow-50 border border-yellow-500 text-yellow-600 px-2 rounded-sm hover:bg-yellow-100"
+            >
+              <button>Editar</button>
+            </a>
 
-        <button
-          className="absolute right-24 bottom-2 text-sm bg-red-50 border border-red-500 text-red-600 px-2 rounded-sm hover:bg-red-100"
-          onClick={() => {
-            removeArticle(`${context?._id ?? null}`);
-          }}
-        >
-          Excluir
-        </button>
-
+            <button
+              className="absolute right-24 bottom-2 text-sm bg-red-50 border border-red-500 text-red-600 px-2 rounded-sm hover:bg-red-100"
+              onClick={() => {
+                removeArticle(`${context?._id ?? null}`);
+              }}
+            >
+              Excluir
+            </button>
+          </>
+        ) : null}
         <a
           href={`/read/${context?._id ?? null}`}
           className="absolute text-sm right-4 bottom-2 hover:opacity-80"

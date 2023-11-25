@@ -13,9 +13,10 @@ const Header = (props) => {
           <a href="/">
             <h1 className="text-white font-bold text-lg ml-4">Dev Relate</h1>
           </a>
-          {window.location.href === "http://localhost:5173/" ||
-          window.location.href === "http://localhost:5173/#" ? (
-            <div className="absolute right-[5%]">
+
+          <div className="absolute right-[5%] flex gap-2 items-center">
+            {window.location.href === "http://localhost:5173/" ||
+            window.location.href === "http://localhost:5173/#" ? (
               <form onSubmit={search} className="space-x-1">
                 <input
                   type="text"
@@ -33,10 +34,32 @@ const Header = (props) => {
                   Buscar
                 </button>
               </form>
-            </div>
-          ) : null}
+            ) : null}
+            {props.isAuthenticated ? (
+              <LogOutButton setToken={props.setToken} />
+            ) : null}
+          </div>
         </div>
       </header>
+    </>
+  );
+};
+
+const LogOutButton = ({ setToken }) => {
+  const deleteToken = () => {
+    localStorage.removeItem("tokenStorage");
+    setToken(null);
+    window.location.href = "/";
+  };
+  return (
+    <>
+      <button
+        onClick={deleteToken}
+        className=" bg-yellow-50 border border-yellow-500 text-yellow-600  hover:bg-yellow-100 px-2 rounded-[4px]"
+        type="submit"
+      >
+        Sair
+      </button>
     </>
   );
 };

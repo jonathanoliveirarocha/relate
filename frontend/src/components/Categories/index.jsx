@@ -24,7 +24,7 @@ const Categories = (props) => {
   return (
     <>
       <div
-        className={`categories items-center w-36 h-[250px] p-2 overflow-y-auto m-1 justify-center flex bg-white rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
+        className={`categories w-36 h-[250px] p-2 overflow-y-auto m-1 justify-center flex bg-white rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
           menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
         }`}
       >
@@ -57,6 +57,7 @@ const Categories = (props) => {
                 setSearch={props.setSearch}
                 key={category._id}
                 context={category}
+                isAuthenticated={props.isAuthenticated}
               />
             ))}
           </ul>
@@ -66,7 +67,7 @@ const Categories = (props) => {
   );
 };
 
-const Category = ({ context, setSearch }) => {
+const Category = ({ context, setSearch, isAuthenticated }) => {
   const removeCategory = async (id) => {
     const url = `http://localhost:5000/category/delete/${id}`;
     const confirm = window.confirm(
@@ -88,12 +89,15 @@ const Category = ({ context, setSearch }) => {
           }}
           className="w-full text-center px-2 relative rounded-md bg-white text-gray-600 border border-gray-500 hover:bg-gray-50"
         >
-          <div
-            onClick={() => {
-              removeCategory(`${context?._id ?? null}`);
-            }}
-            className="absolute w-2 h-2 bg-red-500 hover:bg-red-600 rounded-full top-[2px] right-[1px]"
-          ></div>
+          {isAuthenticated ? (
+            <div
+              onClick={() => {
+                removeCategory(`${context?._id ?? null}`);
+              }}
+              className="absolute w-2 h-2 bg-red-500 hover:bg-red-600 rounded-full top-[2px] right-[1px]"
+            ></div>
+          ) : null}
+
           {context?.name ?? "Carregando"}
         </button>
       </li>

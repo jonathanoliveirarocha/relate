@@ -1,8 +1,32 @@
-const Login = () => {
+import { useState } from "react";
+
+const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+  const userLogin = async (e) => {
+    e.preventDefault();
+    const url = "http://localhost:5000/auth/admin";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      props.setToken(data.token);
+      localStorage.setItem("tokenStorage", JSON.stringify(data.token));
+      window.location.href = "/";
+    } else {
+      alert(data.message);
+    }
+  };
   return (
     <>
       <div className="h-screen w-full flex items-center justify-center">
-        <form>
+        <form onSubmit={userLogin}>
           <div className="rounded-lg border border-gray-200 p-6 space-y-4">
             <div>
               <label className="text-sm" htmlFor="email">
@@ -12,6 +36,9 @@ const Login = () => {
                 className="w-full border border-gray-200 rounded-md px-2 py-1"
                 type="email"
                 name="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 placeholder="E-mail"
                 required
               />
@@ -24,6 +51,9 @@ const Login = () => {
                 className="w-full border border-gray-200 rounded-md px-2 py-1"
                 type="password"
                 name="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 placeholder="Senha"
                 required
               />
