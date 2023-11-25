@@ -43,7 +43,7 @@ const App = () => {
             path="/dev-relate/"
             element={<Home search={search} setSearch={setSearch} isAuthenticated={isAuthenticated} token={token}/>}
           />
-          <Route exact path="/read/:id" element={<ReadArticle />} />
+          <Route exact path="/dev-relate/read/:id" element={<ReadArticle />} />
           <Route
             exact
             path="/dev-relate/auth/admin"

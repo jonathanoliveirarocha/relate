@@ -42,7 +42,7 @@ const Articles = (props) => {
       <div className="w-full flex-1 mx-[18px] sm:mx-2 my-4">
         {props.isAuthenticated ? (
           <>
-            <a href="/article/create">
+            <a href="/dev-relate/article/create">
               <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 rounded-sm px-2 mb-2">
                 Criar
               </button>
