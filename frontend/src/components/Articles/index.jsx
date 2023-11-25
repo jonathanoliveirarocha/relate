@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ArrowUp from "../../assets/arrow-up.svg";
 
 const Articles = (props) => {
   const [data, setData] = useState([]);
@@ -57,8 +58,9 @@ const ScrollUp = () => {
   return (
     <>
       <a href="#">
-        <button className="fixed text-white z-50 bottom-4 right-4 w-8 h-8 bg-gray-800 rounded-md">
-          ^
+        <button className="fixed text-white z-50 bottom-4 right-4 w-7 bg-white">
+          <img src={ArrowUp} alt="Seta para subir página" />
+          {/* Used Image: https://www.svgrepo.com/svg/521979/arrow-up-square */}
         </button>
       </a>
     </>
@@ -76,11 +78,12 @@ const Article = ({ context }) => {
 
   return (
     <>
-      <div className="w-full h-[6.5rem] rounded-md px-2 py-1 mb-3 relative shadow-article">
+      <div className="w-full h-[7rem] rounded-md px-3 py-2 mb-3 relative shadow-article">
         <h1 className="font-bold text-lg">{context?.title ?? "Carregando"}</h1>
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
+        <span className="text-sm text-gray-600 absolute bottom-2">{new Date((context?.data ?? null)).toLocaleString('pt-BR', { timezone: 'UTC' })}</span>
         <a
           href={`/article/edit/${context?._id ?? null}`}
           className="absolute right-44 bottom-2 text-sm bg-yellow-50 border border-yellow-500 text-yellow-600 px-2 rounded-sm hover:bg-yellow-100"

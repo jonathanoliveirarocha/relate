@@ -24,7 +24,7 @@ const Categories = (props) => {
   return (
     <>
       <div
-        className={`categories items-center w-36 h-[250px] p-2 overflow-auto overflow-x-hidden m-1 justify-center flex bg-gray-100 rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
+        className={`categories items-center w-36 h-[250px] p-2 overflow-auto overflow-x-hidden m-1 justify-center flex bg-white rounded-lg z-50 trasition-transform duration-300 transform -translate-x-[138px] absolute sm:relative sm:translate-x-[0] ${
           menuActive ? "translate-x-[0]" : "-translate-x-[138px]"
         }`}
       >
