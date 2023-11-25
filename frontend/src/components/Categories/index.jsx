@@ -58,6 +58,7 @@ const Categories = (props) => {
                 key={category._id}
                 context={category}
                 isAuthenticated={props.isAuthenticated}
+                token={props.token}
               />
             ))}
           </ul>
@@ -67,17 +68,21 @@ const Categories = (props) => {
   );
 };
 
-const Category = ({ context, setSearch, isAuthenticated }) => {
+const Category = ({ context, setSearch, isAuthenticated, token }) => {
   const removeCategory = async (id) => {
+    console.log(token)
     const url = `http://localhost:5000/category/delete/${id}`;
     const confirm = window.confirm(
-      "Tem certeza que deseja excluir esse artigo?"
+      "Tem certeza que deseja excluir essa categoria?"
     );
     if (confirm) {
       const response = await fetch(url, {
+        headers: {
+          Authorization: token,
+        },
         method: "DELETE",
       });
-      response.ok ? location.reload() : alert(error);
+      response.ok ? location.reload() : alert("Erro Interno!");
     }
   };
   return (

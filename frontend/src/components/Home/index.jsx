@@ -5,8 +5,8 @@ const Home = (props) => {
   return (
     <>
       <div className="flex min-h-screen">
-        <Categories search={props.search} isAuthenticated={props.isAuthenticated} setSearch={props.setSearch} />
-        <Articles search={props.search} isAuthenticated={props.isAuthenticated} setSearch={props.setSearch} />
+        <Categories search={props.search} token={props.token} isAuthenticated={props.isAuthenticated} setSearch={props.setSearch} />
+        <Articles search={props.search} token={props.token} isAuthenticated={props.isAuthenticated} setSearch={props.setSearch} />
       </div>
     </>
   );

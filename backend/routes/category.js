@@ -13,7 +13,7 @@ router.get("/showall", async (req, res) => {
   }
 });
 
-router.post("/create", async (req, res) => {
+router.post("/create", verifyToken, async (req, res) => {
   try {
     const { category } = req.body;
     const existing = await Category.findOne({ name: category });
@@ -29,11 +29,13 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", verifyToken, async (req, res) => {
   try {
     await Article.deleteMany({ category: req.params.id });
     await Category.findByIdAndDelete(req.params.id);
-    res.status(200).json({ status: "Categoria e artigos referentes foram deletados!" });
+    res
+      .status(200)
+      .json({ status: "Categoria e artigos referentes foram deletados!" });
   } catch (error) {
     res.status(500).json({ erro: "Erro interno!" });
   }

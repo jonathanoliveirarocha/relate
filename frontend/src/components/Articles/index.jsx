@@ -55,6 +55,7 @@ const Articles = (props) => {
             key={article._id}
             isAuthenticated={props.isAuthenticated}
             context={article}
+            token={props.token}
           />
         ))}
       </div>
@@ -76,7 +77,7 @@ const ScrollUp = () => {
   );
 };
 
-const Article = ({ context, isAuthenticated }) => {
+const Article = ({ context, isAuthenticated, token }) => {
   const removeArticle = async (id) => {
     const url = `http://localhost:5000/article/delete/${id}`;
     const confirm = window.confirm(
@@ -85,8 +86,11 @@ const Article = ({ context, isAuthenticated }) => {
     if (confirm) {
       const response = await fetch(url, {
         method: "DELETE",
+        headers: {
+          Authorization: token,
+        },
       });
-      response.ok ? location.reload() : alert(error);
+      response.ok ? location.reload() : alert("Erro Interno!");
     }
   };
 

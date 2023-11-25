@@ -5,7 +5,7 @@ const Category = require("../models/Category");
 const { ObjectId } = require("mongodb");
 const { verifyToken } = require("../helpers/verifyToken");
 
-router.post("/create", async (req, res) => {
+router.post("/create", verifyToken, async (req, res) => {
   try {
     const { title, category, content } = req.body;
     const newArticle = new Article({ title, category, content });
@@ -34,7 +34,7 @@ router.get("/showone/:id", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", verifyToken, async (req, res) => {
   try {
     const { title, category, content } = req.body;
     await Article.findOneAndUpdate(
@@ -48,7 +48,7 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", verifyToken, async (req, res) => {
   try {
     await Article.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Excluído com sucesso!" });

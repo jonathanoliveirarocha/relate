@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const NewArticle = () => {
+const NewArticle = (props) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   if (id) {
@@ -26,14 +26,14 @@ const NewArticle = () => {
     <>
       <div className="w-full h-screen flex items-center justify-center">
         <div className="w-4/5 rounded-lg border border-gray-200 p-4">
-          <Form context={id ? data : null} />
+          <Form token={props.token} context={id ? data : null} />
         </div>
       </div>
     </>
   );
 };
 
-const Form = ({ context }) => {
+const Form = ({ context, token }) => {
   const [data, setData] = useState([]);
   const [title, setTitle] = useState(context ? context.title : "");
   const [category, setCategory] = useState(context ? context.category : "");
@@ -60,11 +60,21 @@ const Form = ({ context }) => {
     }
   };
 
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (context) {
+      updateArticle();
+    } else {
+      createArticle();
+    }
+  };
+
   const createArticle = async () => {
     const url = "http://localhost:5000/article/create";
     const response = await fetch(url, {
       method: "POST",
       headers: {
+        Authorization: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, category, content }),
@@ -81,6 +91,7 @@ const Form = ({ context }) => {
     const response = await fetch(url, {
       method: "PUT",
       headers: {
+        Authorization: token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, category, content }),
@@ -89,15 +100,6 @@ const Form = ({ context }) => {
       alert("Atualizado com sucesso!");
     } else {
       alert("Erro Interno");
-    }
-  };
-
-  const submitForm = async (e) => {
-    e.preventDefault();
-    if (context) {
-      updateArticle();
-    } else {
-      createArticle();
     }
   };
 

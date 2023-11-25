@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewCategory = () => {
+const NewCategory = (props) => {
   const [category, setCategory] = useState(null);
   const createCategory = async (e) => {
     e.preventDefault();
@@ -8,6 +8,7 @@ const NewCategory = () => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
+        Authorization: props.token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ category }),
@@ -18,7 +19,7 @@ const NewCategory = () => {
       alert("Erro Interno");
     }
   };
-  
+
   return (
     <>
       <div className="h-screen w-full flex items-center justify-center">

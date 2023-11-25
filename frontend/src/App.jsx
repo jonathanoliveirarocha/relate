@@ -41,7 +41,7 @@ const App = () => {
           <Route
             exact
             path="/"
-            element={<Home search={search} setSearch={setSearch} isAuthenticated={isAuthenticated} />}
+            element={<Home search={search} setSearch={setSearch} isAuthenticated={isAuthenticated} token={token}/>}
           />
           <Route exact path="/read/:id" element={<ReadArticle />} />
           <Route
@@ -52,17 +52,17 @@ const App = () => {
           <Route
             exact
             path="/article/create"
-            element={isAuthenticated ? <NewArticle /> : <NotFound />}
+            element={isAuthenticated ? <NewArticle token={token}/> : <NotFound />}
           />
           <Route
             exact
             path="/article/edit/:id"
-            element={isAuthenticated ? <NewArticle /> : <NotFound />}
+            element={isAuthenticated ? <NewArticle token={token}/> : <NotFound />}
           />
           <Route
             exact
             path="/category/create"
-            element={isAuthenticated ? <NewCategory /> : <NotFound />}
+            element={isAuthenticated ? <NewCategory token={token}/> : <NotFound />}
           />
           <Route exact path="*" element={<NotFound />} />
         </Routes>
