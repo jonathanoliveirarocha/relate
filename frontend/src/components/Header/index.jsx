@@ -10,13 +10,13 @@ const Header = (props) => {
     <>
       <header className="abosolute top-0 w-full h-14 bg-gray-800 min-w-[385px] shadow-md">
         <div className="w-full flex items-center relative h-full">
-          <a href="/">
+          <a href="/dev-relate/">
             <h1 className="text-white font-bold text-lg ml-4">Dev Relate</h1>
           </a>
 
           <div className="absolute right-[5%] flex gap-2 items-center">
             {window.location.href === "https://jonathanoliveirarocha.github.io/dev-relate/" ||
-            window.location.href === "http://localhost:5173/dev-relate/#" ? (
+            window.location.href === "https://jonathanoliveirarocha.github.io/dev-relate/#" ? (
               <form onSubmit={search} className="space-x-1">
                 <input
                   type="text"
@@ -49,7 +49,7 @@ const LogOutButton = ({ setToken }) => {
   const deleteToken = () => {
     localStorage.removeItem("tokenStorage");
     setToken(null);
-    window.location.href = "/";
+    window.location.href = "/dev-relate/";
   };
   return (
     <>

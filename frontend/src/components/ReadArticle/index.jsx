@@ -24,7 +24,7 @@ const ReadArticle = () => {
   return (
     <>
       <div className="w-full min-h-[100vb] flex justify-center py-8 px-4">
-        <a href="/">
+        <a href="/dev-relate/">
           <button className="absolute top-16 left-4 w-6">
             <img src={ArrowBack} alt="Seta para voltar" />
             {/* Used Image: https://www.svgrepo.com/svg/521959/arrow-down-circle */}

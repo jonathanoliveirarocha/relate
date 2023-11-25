@@ -109,7 +109,7 @@ const Article = ({ context, isAuthenticated, token }) => {
         {isAuthenticated ? (
           <>
             <a
-              href={`/article/edit/${context?._id ?? null}`}
+              href={`/dev-relate/article/edit/${context?._id ?? null}`}
               className="absolute right-44 bottom-2 text-sm bg-yellow-50 border border-yellow-500 text-yellow-600 px-2 rounded-sm hover:bg-yellow-100"
             >
               <button>Editar</button>
@@ -126,7 +126,7 @@ const Article = ({ context, isAuthenticated, token }) => {
           </>
         ) : null}
         <a
-          href={`/read/${context?._id ?? null}`}
+          href={`/dev-relate/read/${context?._id ?? null}`}
           className="absolute text-sm right-4 bottom-2 hover:opacity-80"
         >
           Leia Mais
