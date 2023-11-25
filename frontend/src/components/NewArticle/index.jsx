@@ -172,13 +172,13 @@ const Form = ({ context }) => {
           <>
             <input
               type="button"
-              className="w-full py-1 rounded-md bg-green-600 text-white hover:bg-green-700 cursor-pointer"
+              className="w-full py-1 bg-green-50 border border-green-500 text-green-600 px-2 rounded-md hover:bg-green-100 cursor-pointer"
               onClick={loadData}
               value="Carregar Dados"
             />
             <button
               type="submit"
-              className="w-full py-1 rounded-md bg-gray-500 text-white hover:bg-gray-600"
+              className="w-full py-1 bg-gray-50 border border-gray-500 text-gray-600 px-2 rounded-md hover:bg-gray-100"
             >
               Atualizar
             </button>
@@ -186,7 +186,7 @@ const Form = ({ context }) => {
         ) : (
           <button
             type="submit"
-            className="w-full py-1 rounded-md bg-gray-500 text-white hover:bg-gray-600"
+            className="w-full py-1 bg-gray-50 border border-gray-500 text-gray-600 px-2 rounded-md hover:bg-gray-100"
           >
             Publicar
           </button>

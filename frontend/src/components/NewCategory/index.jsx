@@ -37,7 +37,7 @@ const NewCategory = () => {
               />
             </div>
             <button
-              className="w-full py-1 rounded-md bg-gray-500 text-white hover:bg-gray-600"
+              className="w-full py-1 rounded-md border border-gray-500 bg-gray-50 text-bg-gray-600 hover:bg-gray-100"
               type="submit"
             >
               Criar

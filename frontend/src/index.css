@@ -18,6 +18,10 @@ body {
   background: transparent;
 }
 
+.shadow-article {
+  box-shadow: rgba(0, 0, 0, 0.25) 0.0625rem 0.0625rem 4px 0px;
+}
+
 .abbreviated-paragraph {
   max-height: 35px;
   overflow: hidden;

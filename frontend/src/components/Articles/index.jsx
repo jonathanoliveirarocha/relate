@@ -40,7 +40,7 @@ const Articles = (props) => {
     <>
       <div className="w-full flex-1 mx-[18px] sm:mx-2 my-4">
         <a href="/article/create">
-          <button className="bg-green-600 px-2 rounded-sm text-white hover:bg-green-700 mb-2">
+          <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 rounded-sm px-2 mb-2">
             Criar
           </button>
         </a>
@@ -76,20 +76,20 @@ const Article = ({ context }) => {
 
   return (
     <>
-      <div className="w-full h-24 shadow-lg rounded-lg p-1 relative">
+      <div className="w-full h-[6.5rem] rounded-md px-2 py-1 mb-3 relative shadow-article">
         <h1 className="font-bold text-lg">{context?.title ?? "Carregando"}</h1>
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
         <a
           href={`/article/edit/${context?._id ?? null}`}
-          className="absolute right-44 bottom-2 text-sm bg-yellow-500 text-white px-2 rounded-sm hover:bg-yellow-600"
+          className="absolute right-44 bottom-2 text-sm bg-yellow-50 border border-yellow-500 text-yellow-600 px-2 rounded-sm hover:bg-yellow-100"
         >
           <button>Editar</button>
         </a>
 
         <button
-          className="absolute right-24 bottom-2 text-sm bg-red-400 text-white px-2 rounded-sm hover:bg-red-500"
+          className="absolute right-24 bottom-2 text-sm bg-red-50 border border-red-500 text-red-600 px-2 rounded-sm hover:bg-red-100"
           onClick={() => {
             removeArticle(`${context?._id ?? null}`);
           }}

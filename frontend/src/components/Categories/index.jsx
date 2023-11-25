@@ -39,7 +39,7 @@ const Categories = (props) => {
           <ul className="space-y-2">
             <li>
               <a href="/category/create">
-                <button className="bg-green-600 hover:bg-green-700 w-full rounded-md text-white">
+                <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 w-full rounded-md">
                   Nova
                 </button>
               </a>
@@ -49,7 +49,7 @@ const Categories = (props) => {
                 onClick={() => {
                   props.setSearch("");
                 }}
-                className="shadow-md w-full text-center px-2 rounded-md bg-white"
+                className="w-full text-center px-2 rounded-md bg-white text-gray-600 border border-gray-500 hover:bg-gray-50"
               >
                 Tudo
               </button>
@@ -83,7 +83,7 @@ const Category = ({ context, setSearch }) => {
           onClick={() => {
             setSearch(context?._id);
           }}
-          className="shadow-md w-full text-center px-2 relative rounded-md bg-white"
+          className="w-full text-center px-2 relative rounded-md bg-white text-gray-600 border border-gray-500 hover:bg-gray-50"
         >
           <div
             onClick={() => {
