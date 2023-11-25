@@ -35,13 +35,17 @@ const Categories = (props) => {
         <div>
           <h2 className="mx-4 mb-1 font-bold text-lg">Categorias</h2>
           <ul className="space-y-2">
-            <li>
-              <a href="/category/create">
-                <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 w-full rounded-md">
-                  Nova
-                </button>
-              </a>
-            </li>
+            {props.isAuthenticated ? (
+              <>
+                <li>
+                  <a href="/category/create">
+                    <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 w-full rounded-md">
+                      Nova
+                    </button>
+                  </a>
+                </li>
+              </>
+            ) : null}
             <li>
               <button
                 onClick={() => {
@@ -70,7 +74,7 @@ const Categories = (props) => {
 
 const Category = ({ context, setSearch, isAuthenticated, token }) => {
   const removeCategory = async (id) => {
-    console.log(token)
+    console.log(token);
     const url = `http://localhost:5000/category/delete/${id}`;
     const confirm = window.confirm(
       "Tem certeza que deseja excluir essa categoria?"
