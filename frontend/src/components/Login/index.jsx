@@ -18,7 +18,7 @@ const Login = (props) => {
     if (response.ok) {
       props.setToken(data.token);
       localStorage.setItem("tokenStorage", JSON.stringify(data.token));
-      window.location.href = "/dev-relate/";
+      window.location.href = "/";
     } else {
       alert(data.message);
     }

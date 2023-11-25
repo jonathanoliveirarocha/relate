@@ -38,7 +38,7 @@ const Categories = (props) => {
             {props.isAuthenticated ? (
               <>
                 <li>
-                  <a href="/dev-relate/category/create">
+                  <a href="/category/create">
                     <button className="border border-green-500 text-green-600 bg-green-50 hover:bg-green-100 w-full rounded-md">
                       Nova
                     </button>

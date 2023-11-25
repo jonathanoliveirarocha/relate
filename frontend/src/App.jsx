@@ -40,28 +40,28 @@ const App = () => {
         <Routes>
           <Route
             exact
-            path="/dev-relate/"
+            path="/"
             element={<Home search={search} setSearch={setSearch} isAuthenticated={isAuthenticated} token={token}/>}
           />
-          <Route exact path="/dev-relate/read/:id" element={<ReadArticle />} />
+          <Route exact path="/read/:id" element={<ReadArticle />} />
           <Route
             exact
-            path="/dev-relate/auth/admin"
+            path="/auth/admin"
             element={<Login setToken={setToken} token={token} />}
           />
           <Route
             exact
-            path="/dev-relate/article/create"
+            path="/article/create"
             element={isAuthenticated ? <NewArticle token={token}/> : <NotFound />}
           />
           <Route
             exact
-            path="/dev-relate/article/edit/:id"
+            path="/article/edit/:id"
             element={isAuthenticated ? <NewArticle token={token}/> : <NotFound />}
           />
           <Route
             exact
-            path="/dev-relate/category/create"
+            path="/category/create"
             element={isAuthenticated ? <NewCategory token={token}/> : <NotFound />}
           />
           <Route exact path="*" element={<NotFound />} />
