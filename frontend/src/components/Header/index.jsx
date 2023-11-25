@@ -15,8 +15,8 @@ const Header = (props) => {
           </a>
 
           <div className="absolute right-[5%] flex gap-2 items-center">
-            {window.location.href === "http://localhost:5173/" ||
-            window.location.href === "http://localhost:5173/#" ? (
+            {window.location.href === "https://dev-relate-frontend.vercel.app/" ||
+            window.location.href === "https://dev-relate-frontend.vercel.app/#" ? (
               <form onSubmit={search} className="space-x-1">
                 <input
                   type="text"
