@@ -17,7 +17,7 @@ body {
 }
 
 .abbreviated-paragraph {
-  max-height: 35px;
+  max-height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
