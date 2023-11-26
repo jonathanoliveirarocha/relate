@@ -33,7 +33,7 @@ const ReadArticle = () => {
         <div className="w-full max-w-[1000px]">
           <h1 className="h1">{data.title}</h1>
           <Text content={data.content} />
-          <p className="text-sm text-gray-600 absolute mt-12">{new Date((data?.data ?? null)).toLocaleString('pt-BR', { timezone: 'UTC' })}</p>
+          <p className="text-sm text-gray-600 mt-12">{new Date((data?.data ?? null)).toLocaleString('pt-BR', { timezone: 'UTC' })}</p>
        
         </div>
       </div>
