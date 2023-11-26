@@ -97,7 +97,7 @@ const Article = ({ context, isAuthenticated, token }) => {
   return (
     <>
       <div className="w-full h-[7rem] rounded-md px-3 py-2 mb-3 relative shadow-article">
-        <h1 className="font-bold text-lg">{context?.title ?? "Carregando"}</h1>
+        <h1 className="font-bold text-lg abbreviated-title">{context?.title ?? "Carregando"}</h1>
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
