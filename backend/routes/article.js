@@ -66,7 +66,7 @@ router.get("/search/keyword/:keyword", async (req, res) => {
           { content: { $regex: keyword, $options: "i" } },
           { title: { $regex: keyword, $options: "i" } },
         ],
-      });
+      }).sort({ data: -1 });
       res.json(articles);
     };
 
