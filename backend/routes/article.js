@@ -73,7 +73,7 @@ router.get("/search/keyword/:keyword", async (req, res) => {
     if (keyword.length == 24) {
       const category = await Category.findOne({ _id: new ObjectId(keyword) });
       if (category) {
-        const articles = await Article.find({ category: keyword });
+        const articles = await Article.find({ category: keyword }).sort({ data: -1 });
         res.json(articles);
       } else {
         searchByKeyword(keyword);
