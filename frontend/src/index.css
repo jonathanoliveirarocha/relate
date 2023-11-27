@@ -65,6 +65,16 @@ body {
   }
 }
 
+.ol {
+  list-style-type: decimal;
+  margin-left: 1.2rem;
+  margin-bottom: 1rem;
+  & li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
 .a {
   color: rgb(66, 66, 221);
   &:hover {
