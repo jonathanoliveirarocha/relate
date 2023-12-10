@@ -7,7 +7,9 @@ const Articles = (props) => {
     if (props.search === "") {
       const fetchData = async () => {
         try {
-          const response = await fetch("https://dev-relate.vercel.app/article/showall");
+          const response = await fetch(
+            "https://dev-relate.vercel.app/article/showall"
+          );
           const obj = await response.json();
           setData(obj);
         } catch (error) {
@@ -22,7 +24,9 @@ const Articles = (props) => {
       let response;
       try {
         if (props.search === "") {
-          response = await fetch("https://dev-relate.vercel.app/article/showall");
+          response = await fetch(
+            "https://dev-relate.vercel.app/article/showall"
+          );
         } else {
           response = await fetch(
             `https://dev-relate.vercel.app/article/search/keyword/${props.search}`
@@ -65,14 +69,37 @@ const Articles = (props) => {
 };
 
 const ScrollUp = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    setIsVisible(scrollTop > 100);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   return (
     <>
-      <a href="#">
-        <button className="fixed text-white z-50 bottom-4 right-4 w-7 bg-white">
-          <img src={ArrowUp} alt="Seta para subir página" />
-          {/* Used Image: https://www.svgrepo.com/svg/521979/arrow-up-square */}
-        </button>
-      </a>
+      {isVisible && (
+      
+          <button className="fixed text-white z-50 bottom-4 right-4 w-7 bg-white">
+            <img src={ArrowUp} alt="Seta para subir página" onClick={scrollToTop}/>
+            {/* Used Image: https://www.svgrepo.com/svg/521979/arrow-up-square */}
+          </button>
+ 
+      )}
     </>
   );
 };
@@ -97,7 +124,9 @@ const Article = ({ context, isAuthenticated, token }) => {
   return (
     <>
       <div className="w-full h-[7rem] rounded-md px-3 py-2 mb-3 relative shadow-article">
-        <h1 className="font-bold text-lg abbreviated-title">{context?.title ?? "Carregando"}</h1>
+        <h1 className="font-bold text-lg abbreviated-title">
+          {context?.title ?? "Carregando"}
+        </h1>
         <span className="text-sm text-gray-600 abbreviated-paragraph">
           <Text content={context?.content ?? "Carregando"} />
         </span>
