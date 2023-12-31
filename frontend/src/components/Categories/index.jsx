@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { categoryService } from "../../api/categoryService";
 
 const Categories = (props) => {
   const [menuActive, setMenuActive] = useState(false);
@@ -6,13 +7,7 @@ const Categories = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch("https://dev-relate.vercel.app/category/showall");
-        const obj = await response.json();
-        setData(obj);
-      } catch (error) {
-        console.log("Erro ao buscar dados da API");
-      }
+      setData(await categoryService.showAllCategories());
     };
 
     fetchData();
@@ -21,6 +16,7 @@ const Categories = (props) => {
   const changeMenu = () => {
     setMenuActive(!menuActive);
   };
+
   return (
     <>
       <div
@@ -74,19 +70,11 @@ const Categories = (props) => {
 
 const Category = ({ context, setSearch, isAuthenticated, token }) => {
   const removeCategory = async (id) => {
-    console.log(token);
-    const url = `https://dev-relate.vercel.app/category/delete/${id}`;
     const confirm = window.confirm(
       "Tem certeza que deseja excluir essa categoria?"
     );
     if (confirm) {
-      const response = await fetch(url, {
-        headers: {
-          Authorization: token,
-        },
-        method: "DELETE",
-      });
-      response.ok ? location.reload() : alert("Erro Interno!");
+      await categoryService.deleteCategoryById(id, token);
     }
   };
   return (

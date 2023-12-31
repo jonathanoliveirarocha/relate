@@ -1,7 +1,5 @@
 const categoryService = require("../services/category.service");
 const articleService = require("../services/article.service");
-const Category = require("../models/Category");
-const Article = require("../models/Article");
 
 const categoryController = {
   showAllCategories: async (req, res) => {
@@ -16,7 +14,7 @@ const categoryController = {
   createCategory: async (req, res) => {
     try {
       const { category } = req.body;
-      const existing = await Category.findOne({ name: category });
+      const existing = await categoryService.showOneCategoryByName(category);
       if (existing) {
         return res.status(409).json({ error: "Categoria já cadastrada!" });
       } else {
@@ -31,7 +29,7 @@ const categoryController = {
   deleteCategory: async (req, res) => {
     try {
       await articleService.deleteManyByCategory(req.params.id);
-      await categoryService.deleteById(id);
+      await categoryService.deleteById(req.params.id);
       res
         .status(200)
         .json({ status: "Categoria e artigos referentes foram deletados!" });

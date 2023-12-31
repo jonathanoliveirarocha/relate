@@ -47,36 +47,44 @@ const articleService = {
   },
 
   createArticle: async (article, token) => {
-    const url = `${BASE_URL}/create`;
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(article),
-    });
-    if (response.ok) {
-      alert("Adicionado com sucesso!");
-    } else {
-      alert("Erro Interno");
+    try {
+      const url = `${BASE_URL}/create`;
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
+      });
+      if (response.ok) {
+        alert("Adicionado com sucesso!");
+      } else {
+        alert("Erro Interno");
+      }
+    } catch (error) {
+      console.log("Erro ao buscar dados da API");
     }
   },
 
   updateArticleById: async (article, id, token) => {
-    const url = `${BASE_URL}/update/${id}`;
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(article),
-    });
-    if (response.ok) {
-      alert("Atualizado com sucesso!");
-    } else {
-      alert("Erro Interno");
+    try {
+      const url = `${BASE_URL}/update/${id}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
+      });
+      if (response.ok) {
+        alert("Atualizado com sucesso!");
+      } else {
+        alert("Erro Interno");
+      }
+    } catch (error) {
+      console.log("Erro ao buscar dados da API");
     }
   },
 };
