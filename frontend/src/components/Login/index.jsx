@@ -1,19 +1,13 @@
 import { useState } from "react";
+import { authService } from "../../api/auth.service";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const userLogin = async (e) => {
     e.preventDefault();
-    const url = "https://dev-relate.vercel.app/auth/admin";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await authService.loginAdminUser({ email, password });
     const data = await response.json();
     if (response.ok) {
       props.setToken(data.token);

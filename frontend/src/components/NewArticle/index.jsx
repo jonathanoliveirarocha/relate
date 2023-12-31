@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { articleService } from "../../api/articleService";
-import { categoryService } from "../../api/categoryService";
+import { articleService } from "../../api/article.service";
+import { categoryService } from "../../api/category.service";
 
 const NewArticle = (props) => {
   const { id } = useParams();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ArrowUp from "../../assets/arrow-up.svg";
-import { articleService } from "../../api/articleService";
+import { articleService } from "../../api/article.service";
 
 const Articles = (props) => {
   const [data, setData] = useState([]);

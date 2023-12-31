@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArrowBack from "../../assets/arrow-back.svg";
-import { articleService } from "../../api/articleService";
+import { articleService } from "../../api/article.service";
 
 const ReadArticle = () => {
   const { id } = useParams();

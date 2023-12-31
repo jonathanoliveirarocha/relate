@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { categoryService } from "../../api/categoryService";
+import { categoryService } from "../../api/category.service";
 
 const NewCategory = (props) => {
   const [category, setCategory] = useState(null);

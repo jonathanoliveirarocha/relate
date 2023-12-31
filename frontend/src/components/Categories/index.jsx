@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { categoryService } from "../../api/categoryService";
+import { categoryService } from "../../api/category.service";
 
 const Categories = (props) => {
   const [menuActive, setMenuActive] = useState(false);
