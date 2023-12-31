@@ -40,6 +40,10 @@ const articleService = {
     });
     return articles;
   },
+
+  deleteManyByCategory: async (id) => {
+    await Article.deleteMany({ category: id });
+  },
 };
 
 module.exports = articleService;
