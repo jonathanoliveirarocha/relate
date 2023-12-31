@@ -1,20 +1,13 @@
 import { useEffect, useState } from "react";
 import ArrowUp from "../../assets/arrow-up.svg";
+import { articleService } from "../../api/articleService";
 
 const Articles = (props) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     if (props.search === "") {
       const fetchData = async () => {
-        try {
-          const response = await fetch(
-            "https://dev-relate.vercel.app/article/showall"
-          );
-          const obj = await response.json();
-          setData(obj);
-        } catch (error) {
-          console.log("Erro ao buscar dados da API");
-        }
+        setData(await articleService.showAllArticles());
       };
       fetchData();
     }
@@ -22,21 +15,12 @@ const Articles = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       let response;
-      try {
-        if (props.search === "") {
-          response = await fetch(
-            "https://dev-relate.vercel.app/article/showall"
-          );
-        } else {
-          response = await fetch(
-            `https://dev-relate.vercel.app/article/search/keyword/${props.search}`
-          );
-        }
-        const obj = await response.json();
-        setData(obj);
-      } catch (error) {
-        console.log("Erro ao buscar dados da API");
+      if (props.search === "") {
+        response = await articleService.showAllArticles();
+      } else {
+        response = await articleService.showArticlesByKeyword(props.search);
       }
+      setData(response);
     };
     fetchData();
   }, [props.search]);
@@ -89,16 +73,18 @@ const ScrollUp = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   return (
     <>
       {isVisible && (
-      
-          <button className="fixed text-white z-50 bottom-4 right-4 w-7 bg-white">
-            <img src={ArrowUp} alt="Seta para subir página" onClick={scrollToTop}/>
-            {/* Used Image: https://www.svgrepo.com/svg/521979/arrow-up-square */}
-          </button>
- 
+        <button className="fixed text-white z-50 bottom-4 right-4 w-7 bg-white">
+          <img
+            src={ArrowUp}
+            alt="Seta para subir página"
+            onClick={scrollToTop}
+          />
+          {/* Used Image: https://www.svgrepo.com/svg/521979/arrow-up-square */}
+        </button>
       )}
     </>
   );
@@ -106,18 +92,11 @@ const ScrollUp = () => {
 
 const Article = ({ context, isAuthenticated, token }) => {
   const removeArticle = async (id) => {
-    const url = `https://dev-relate.vercel.app/article/delete/${id}`;
     const confirm = window.confirm(
       "Tem certeza que deseja excluir esse artigo?"
     );
     if (confirm) {
-      const response = await fetch(url, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
-        },
-      });
-      response.ok ? location.reload() : alert("Erro Interno!");
+      await articleService.deleteArticleById(id, token);
     }
   };
 

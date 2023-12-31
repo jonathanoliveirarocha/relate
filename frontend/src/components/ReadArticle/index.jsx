@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ArrowBack from "../../assets/arrow-back.svg"
+import ArrowBack from "../../assets/arrow-back.svg";
+import { articleService } from "../../api/articleService";
 
 const ReadArticle = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://dev-relate.vercel.app/article/showone/${id}`
-        );
-        const obj = await response.json();
-        setData(obj);
-      } catch (error) {
-        console.log("Erro ao buscar dados da API");
-      }
+      setData(await articleService.showOneArticleById(id));
     };
 
     fetchData();
@@ -33,8 +26,11 @@ const ReadArticle = () => {
         <div className="w-full max-w-[1000px]">
           <h1 className="h1">{data.title}</h1>
           <Text content={data.content} />
-          <p className="text-sm text-gray-600 mt-12">{new Date((data?.data ?? null)).toLocaleString('pt-BR', { timezone: 'UTC' })}</p>
-       
+          <p className="text-sm text-gray-600 mt-12">
+            {new Date(data?.data ?? null).toLocaleString("pt-BR", {
+              timezone: "UTC",
+            })}
+          </p>
         </div>
       </div>
     </>

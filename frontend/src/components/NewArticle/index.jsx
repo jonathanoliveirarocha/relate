@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { articleService } from "../../api/articleService";
+import { categoryService } from "../../api/categoryService";
 
 const NewArticle = (props) => {
   const { id } = useParams();
@@ -7,15 +9,7 @@ const NewArticle = (props) => {
   if (id) {
     useEffect(() => {
       const fetchData = async () => {
-        try {
-          const response = await fetch(
-            `https://dev-relate.vercel.app/article/showone/${id}`
-          );
-          const obj = await response.json();
-          setData(obj);
-        } catch (error) {
-          console.log("Erro ao buscar dados da API");
-        }
+        setData(await articleService.showOneArticleById(id));
       };
 
       fetchData();
@@ -41,9 +35,7 @@ const Form = ({ context, token }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://dev-relate.vercel.app/category/showall");
-        const obj = await response.json();
-        setData(obj);
+        setData(await categoryService.showAllCategories());
       } catch (error) {
         console.log("Erro ao buscar dados da API");
       }
@@ -70,37 +62,15 @@ const Form = ({ context, token }) => {
   };
 
   const createArticle = async () => {
-    const url = "https://dev-relate.vercel.app/article/create";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, category, content }),
-    });
-    if (response.ok) {
-      alert("Adicionado com sucesso!");
-    } else {
-      alert("Erro Interno");
-    }
+    await articleService.createArticle({ title, category, content }, token);
   };
 
   const updateArticle = async () => {
-    const url = `https://dev-relate.vercel.app/article/update/${context._id}`;
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, category, content }),
-    });
-    if (response.ok) {
-      alert("Atualizado com sucesso!");
-    } else {
-      alert("Erro Interno");
-    }
+    await articleService.updateArticleById(
+      { title, category, content },
+      context._id,
+      token
+    );
   };
 
   const SelectCategory = () => {

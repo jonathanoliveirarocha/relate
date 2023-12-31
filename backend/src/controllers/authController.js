@@ -10,7 +10,7 @@ const authController = {
       const { email, password } = req.body;
       const user = await userService.findByEmail(email);
       if (!user) {
-        return done(null, false, { message: "Esta conta não existe!" });
+        res.status(404).json({ message: "Esta conta não existe!" });
       } else {
         bcrypt.compare(password, user.password, (err, logged) => {
           if (logged) {
