@@ -70,7 +70,6 @@ const Categories = (props) => {
 
 const Category = ({ context, setSearch, isAuthenticated, token }) => {
   const removeCategory = async (id) => {
-    console.log(token)
     const confirm = window.confirm(
       "Tem certeza que deseja excluir essa categoria?"
     );

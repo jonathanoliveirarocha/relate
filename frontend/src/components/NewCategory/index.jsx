@@ -1,23 +1,11 @@
 import { useState } from "react";
+import { categoryService } from "../../api/categoryService";
 
 const NewCategory = (props) => {
   const [category, setCategory] = useState(null);
   const createCategory = async (e) => {
     e.preventDefault();
-    const url = "https://dev-relate.vercel.app/category/create";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: props.token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ category }),
-    });
-    if (response.ok) {
-      alert("Categoria criada com sucesso!");
-    } else {
-      alert("Erro Interno");
-    }
+    await categoryService.createCategory(category, props.token);
   };
 
   return (
