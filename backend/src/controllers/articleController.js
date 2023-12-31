@@ -1,12 +1,11 @@
 const articleService = require("../services/article.service");
+const categoryService = require("../services/category.service");
 const { ObjectId } = require("mongodb");
-const Article = require("../models/Article");
-const Category = require("../models/Category");
 
 const articleController = {
   showAllArticles: async (req, res) => {
     try {
-      const articles = await Article.find({}).sort({ data: -1 }).limit(30);
+      const articles = await articleService.showAllArticles();
       res.status(200).json(articles);
     } catch (error) {
       res.status(500).json({ erro: "Erro interno!" });
@@ -16,8 +15,7 @@ const articleController = {
   createArticle: async (req, res) => {
     try {
       const { title, category, content } = req.body;
-      const newArticle = new Article({ title, category, content });
-      await newArticle.save();
+      await articleService.createArticle({ title, category, content });
       res.status(200).json({ message: "Criado com sucesso!" });
     } catch (error) {
       res.status(500).json({ erro: "Erro interno!" });
@@ -26,7 +24,7 @@ const articleController = {
 
   showOneArticleById: async (req, res) => {
     try {
-      const article = await Article.findById(req.params.id);
+      const article = await articleService.showOneArticleById(req.params.id);
       res.status(200).json(article);
     } catch (error) {
       res.status(500).json({ erro: "Erro interno!" });
@@ -36,11 +34,11 @@ const articleController = {
   updateOneArticleById: async (req, res) => {
     try {
       const { title, category, content } = req.body;
-      await Article.findOneAndUpdate(
-        { _id: req.params.id },
-        { title, category, content },
-        { new: true }
-      );
+      await articleService.updateOneArticleById(req.params.id, {
+        title,
+        category,
+        content,
+      });
       res.status(200).json({ message: "Atualizado com sucesso!" });
     } catch (error) {
       res.status(500).json({ erro: "Erro interno!" });
@@ -49,7 +47,7 @@ const articleController = {
 
   deleteOneArticleById: async (req, res) => {
     try {
-      await Article.findByIdAndDelete(req.params.id);
+      await articleService.deleteOneArticleById(req.params.id);
       res.status(200).json({ message: "Excluído com sucesso!" });
     } catch (error) {
       res.status(500).json({ erro: "Erro interno!" });
@@ -60,21 +58,16 @@ const articleController = {
     try {
       const keyword = req.params.keyword;
       const searchByKeyword = async (keyword) => {
-        const articles = await Article.find({
-          $or: [
-            { content: { $regex: keyword, $options: "i" } },
-            { title: { $regex: keyword, $options: "i" } },
-          ],
-        }).sort({ data: -1 });
+        const articles = await articleService.searchByKeyword(keyword);
         res.json(articles);
       };
 
       if (keyword.length == 24) {
-        const category = await Category.findOne({ _id: new ObjectId(keyword) });
+        const category = await categoryService.showOneCategoryById(
+          new ObjectId(keyword)
+        );
         if (category) {
-          const articles = await Article.find({ category: keyword }).sort({
-            data: -1,
-          });
+          const articles = await articleService.findByCategory(keyword);
           res.json(articles);
         } else {
           searchByKeyword(keyword);

@@ -16,12 +16,12 @@ const articleService = {
     return article;
   },
 
-  updateOneArticleById: async (article) => {
+  updateOneArticleById: async (id, article) => {
     await Article.findOneAndUpdate({ _id: id }, article, { new: true });
   },
 
-  deleteOneArticleById: async (article) => {
-    await Article.findOneAndUpdate({ _id: id }, article, { new: true });
+  deleteOneArticleById: async (id) => {
+    await Article.findByIdAndDelete(id);
   },
 
   searchByKeyword: async (keyword) => {
@@ -34,7 +34,7 @@ const articleService = {
     return articles;
   },
 
-  findByCategory: async (category) => {
+  findByCategory: async (keyword) => {
     const articles = await Article.find({ category: keyword }).sort({
       data: -1,
     });
