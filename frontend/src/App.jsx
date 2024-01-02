@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { authService } from "./api/auth.service";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,34 +15,38 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [token, setToken] = useState(tokenStorage);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        if (token) {
-          const response = await fetch("https://dev-relate.vercel.app/auth/validate", {
-            method: "POST",
-            headers: {
-              Authorization: token,
-            },
-          });
-          response.ok ? setIsAuthenticated(true) : setIsAuthenticated(false);
-        }
-      } catch (error) {
-        console.log("Erro ao buscar dados da API");
-      }
+      const response = await authService.verifyAuth(token);
+      response ? setIsAuthenticated(true) : setIsAuthenticated(false);
     };
+    
     fetchData();
   }, [token]);
 
   return (
     <>
-      <Header search={search} isAuthenticated={isAuthenticated} setToken={setToken} setSearch={setSearch} location={location} />
+      <Header
+        search={search}
+        isAuthenticated={isAuthenticated}
+        setToken={setToken}
+        setSearch={setSearch}
+        location={location}
+      />
       <Router>
         <Routes>
           <Route
             exact
             path="/"
-            element={<Home search={search} setSearch={setSearch} isAuthenticated={isAuthenticated} token={token}/>}
+            element={
+              <Home
+                search={search}
+                setSearch={setSearch}
+                isAuthenticated={isAuthenticated}
+                token={token}
+              />
+            }
           />
           <Route exact path="/read/:id" element={<ReadArticle />} />
           <Route
@@ -52,17 +57,23 @@ const App = () => {
           <Route
             exact
             path="/article/create"
-            element={isAuthenticated ? <NewArticle token={token}/> : <NotFound />}
+            element={
+              isAuthenticated ? <NewArticle token={token} /> : <NotFound />
+            }
           />
           <Route
             exact
             path="/article/edit/:id"
-            element={isAuthenticated ? <NewArticle token={token}/> : <NotFound />}
+            element={
+              isAuthenticated ? <NewArticle token={token} /> : <NotFound />
+            }
           />
           <Route
             exact
             path="/category/create"
-            element={isAuthenticated ? <NewCategory token={token}/> : <NotFound />}
+            element={
+              isAuthenticated ? <NewCategory token={token} /> : <NotFound />
+            }
           />
           <Route exact path="*" element={<NotFound />} />
         </Routes>

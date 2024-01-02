@@ -16,6 +16,30 @@ const authService = {
       console.log("Erro ao buscar dados da API");
     }
   },
+
+  verifyAuth: async (token) => {
+    try {
+      if (token) {
+        const response = await fetch(
+          "https://dev-relate.vercel.app/auth/validate",
+          {
+            method: "POST",
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (response.ok) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } catch (error) {
+      console.log("Erro ao buscar dados da API");
+    }
+  },
 };
 
 export { authService };
