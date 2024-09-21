@@ -17,7 +17,7 @@ export default function Home() {
         </a>
       </header>
 
-      <section id="hero" className="relative bg-black text-white">
+      <section className="relative bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:h-screen lg:items-center lg:px-12">
           <div className="mx-auto mt-32 max-w-3xl shrink-0 lg:mx-0 lg:mt-0 lg:max-w-xl lg:pt-8">
             <div className="space-y-2">
@@ -39,37 +39,41 @@ export default function Home() {
               >
                 Ver Artigos
               </a>
-
-              <button className="inline-flex scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-auto px-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  className="mr-3"
-                  viewBox="1.0 1.0 22.0 22.0"
+              <a href="/aboutme">
+                <button
+                  href="/aboutme"
+                  className="inline-flex scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-auto px-0"
                 >
-                  <g>
-                    <path
-                      d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3ZM1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12Z"
-                      fill="rgb(244, 244, 245)"
-                    />
-                  </g>
-                  <g>
-                    <path
-                      d="M11 8.66666V18.6667H13V8.66666H11Z"
-                      fill="rgb(244, 244, 245)"
-                    />
-                  </g>
-                  <g>
-                    <path
-                      d="M11 5.33332V7.55554H13V5.33332H11Z"
-                      fill="rgb(244, 244, 245)"
-                    />
-                  </g>
-                </svg>
-                Sobre Mim
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    className="mr-3"
+                    viewBox="1.0 1.0 22.0 22.0"
+                  >
+                    <g>
+                      <path
+                        d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3ZM1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12Z"
+                        fill="rgb(244, 244, 245)"
+                      />
+                    </g>
+                    <g>
+                      <path
+                        d="M11 8.66666V18.6667H13V8.66666H11Z"
+                        fill="rgb(244, 244, 245)"
+                      />
+                    </g>
+                    <g>
+                      <path
+                        d="M11 5.33332V7.55554H13V5.33332H11Z"
+                        fill="rgb(244, 244, 245)"
+                      />
+                    </g>
+                  </svg>
+                  Sobre Mim
+                </button>
+              </a>
             </div>
           </div>
 
