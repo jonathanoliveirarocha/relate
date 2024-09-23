@@ -1,6 +1,14 @@
 import React from "react";
 import PageLogo from "../assets/relate-logo.png";
-import * as Icons from "./Icons";
+import { Mail, Phone, MapPin, CircleAlert, Briefcase, GraduationCap, Award, Globe, ClipboardList, Linkedin, Github, } from "lucide-react";
+import ReactCountryFlag from "react-country-flag";
+import { FaReact } from "react-icons/fa6";
+import { FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaBootstrap, } from "react-icons/fa";
+import { SiExpress, SiMongodb } from "react-icons/si";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { IoLogoJavascript } from "react-icons/io5";
+import { GrMysql } from "react-icons/gr";
+import { DiScrum } from "react-icons/di";
 
 const Header = () => {
   return (
@@ -21,7 +29,7 @@ const Header = () => {
 const ContactLink = ({ href, icon: IconComponent, text }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">
     <div className="flex items-center">
-      <IconComponent />
+      {IconComponent}
       <span className="text-sm hover:underline">{text}</span>
     </div>
   </a>
@@ -31,27 +39,27 @@ const ResumeHeader = () => {
   const personalInfo = [
     {
       href: "mailto:jonathandeoliveirarocha2002@gmail.com",
-      icon: Icons.Email,
+      icon: <Mail className="w-5 h-5 mr-2" />,
       text: "jonathandeoliveirarocha2002@gmail.com",
     },
     {
       href: "https://api.whatsapp.com/send?phone=5531999414881&text=Ol%C3%A1!",
-      icon: Icons.Phone,
+      icon: <Phone className="w-5 h-5 mr-2" />,
       text: "+55 (31) 99941-4881",
     },
     {
       href: "https://www.google.com/maps/place/S%C3%A3o+Paulo,+SP/@-23.6820636,-46.9249557,10z/data=!4m6!3m5!1s0x94ce448183a461d1:0x9ba94b08ff335bae!8m2!3d-23.5557714!4d-46.6395571!16zL20vMDIycGZt?entry=ttu&g_ep=EgoyMDI0MDkxOC4xIKXMDSoASAFQAw%3D%3D",
-      icon: Icons.City,
+      icon: <MapPin className="w-5 h-5 mr-2" />,
       text: "São Paulo, SP - Brasil",
     },
     {
       href: "https://www.linkedin.com/in/jonathandeoliveirarocha",
-      icon: Icons.LinkedIn,
+      icon: <Linkedin className="w-5 h-5 mr-2 mt-[-2px]" />,
       text: "jonathandeoliveirarocha",
     },
     {
       href: "https://github.com/jonathanoliveirarocha",
-      icon: Icons.GitHub,
+      icon: <Github className="w-5 h-5 mr-2" />,
       text: "jonathanoliveirarocha",
     },
   ];
@@ -83,13 +91,13 @@ const AboutMeSection = () => {
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold mb-4 flex items-center border-b border-gray-700 pb-2">
-        <Icons.AboutMeThick />
+        <CircleAlert className="w-6 h-6 mr-2" />
         Sobre Mim
       </h2>
       <p className="text-gray-400 text-justify">
         Olá, explorador! Sou Jonathan, mineiro de 21 anos, desenvolvedor e
         curioso por natureza. Criei esse blog para aprender e compartilhar
-        minhas maiores paixões: tecnologia, astronomia e música. À primeira
+        minhas maiores paixões: Astronomia, tecnologia e música. À primeira
         vista, pode parecer que essas áreas não têm muito em comum, mas todas se
         conectam pelo mesmo fio: a curiosidade de entender o mundo e o universo.
         Vamos nessa, com leveza, diversão e muita inspiração!
@@ -123,7 +131,7 @@ const ExperienceSection = () => {
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold mb-4 flex items-center border-b border-gray-700 pb-2">
-        <Icons.Experience />
+        <Briefcase className="w-6 h-6 mr-2" />
         Experiência
       </h2>
       {personalExperience.map((job, index) => (
@@ -164,7 +172,7 @@ const EducationSection = () => {
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold mb-4 flex items-center border-b border-gray-700 pb-2">
-        <Icons.Education />
+        <GraduationCap className="w-6 h-6 mr-2" />
         Educação
       </h2>
       {personalEducation.map((edu, index) => (
@@ -208,7 +216,7 @@ const CertificateSection = () => {
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold mb-4 flex items-center border-b border-gray-700 pb-2">
-        <Icons.Certificate />
+        <Award className="w-6 h-6 mr-2" />
         Certificações
       </h2>
       {personalCertifications.map((cert, index) => (
@@ -237,24 +245,34 @@ const CertificateSection = () => {
 
 const LanguagesSection = () => {
   const personalLanguages = {
-    Português: <Icons.Brazil />,
-    Inglês: <Icons.USA />,
-    Espanhol: <Icons.Argentina />,
+    Português: "BR",
+    Inglês: "US",
+    Espanhol: "AR",
   };
 
   return (
     <section className="mb-8">
       <h2 className="text-2xl font-semibold mb-4 flex items-center border-b border-gray-700 pb-2">
-        <Icons.Languages />
+        <Globe className="w-6 h-6 mr-2" />
         Idiomas
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {Object.entries(personalLanguages).map(([lang, icon]) => (
+        {Object.entries(personalLanguages).map(([lang, countryCode]) => (
           <div
             key={lang}
             className="bg-zinc-900 gap-3 rounded-lg p-3 flex items-center justify-center"
           >
-            {icon}
+            <ReactCountryFlag
+              countryCode={countryCode}
+              svg
+              style={{
+                width: "1.5em",
+                height: "1.5em",
+                borderRadius: "6px",
+                color: "white"
+              }}
+              title={lang}
+            />
             <span>{lang}</span>
           </div>
         ))}
@@ -265,31 +283,31 @@ const LanguagesSection = () => {
 
 const SkillsSection = () => {
   const personalSkills = {
-    "Node.js": <Icons.NodeJS />,
-    React: <Icons.React />,
-    HTML: <Icons.HTML />,
-    "Express.js": <Icons.ExpressJS />,
-    "Tailwind CSS": <Icons.TailwindCSS />,
-    CSS: <Icons.CSS />,
-    MongoDB: <Icons.MongoDB />,
-    Git: <Icons.Git />,
-    JavaScript: <Icons.JavaScript />,
-    MySQL: <Icons.MySQL />,
-    SCRUM: <Icons.Scrum />,
-    Bootstrap: <Icons.Bootstrap />,
+    "Node.js": <FaNodeJs className="w-5 h-5" />,
+    React: <FaReact className="w-5 h-5" />,
+    HTML: <FaHtml5 className="w-5 h-5" />,
+    "Express.js": <SiExpress className="w-5 h-5" />,
+    "Tailwind CSS": <RiTailwindCssFill className="w-5 h-5" />,
+    CSS: <FaCss3Alt className="w-5 h-5" />,
+    MongoDB: <SiMongodb className="w-5 h-5" />,
+    Git: <FaGitAlt className="w-5 h-5" />,
+    JavaScript: <IoLogoJavascript className="w-5 h-5" />,
+    MySQL: <GrMysql className="w-5 h-5" />,
+    SCRUM: <DiScrum className="w-5 h-5" />,
+    Bootstrap: <FaBootstrap className="w-5 h-5" />,
   };
 
   return (
     <section>
       <h2 className="text-2xl font-semibold mb-4 flex items-center border-b border-gray-700 pb-2">
-        <Icons.Skills />
+        <ClipboardList className="w-6 h-6 mr-2" />
         Habilidades
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {Object.entries(personalSkills).map(([skill, icon]) => (
           <div
             key={skill}
-            className="bg-zinc-900 gap-3 rounded-lg p-3 flex items-center justify-center"
+            className="bg-zinc-900 gap-2 rounded-lg p-3 flex items-center justify-center"
           >
             {icon}
             <span>{skill}</span>

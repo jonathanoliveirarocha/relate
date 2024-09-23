@@ -1,7 +1,7 @@
 import React from "react";
 import BackgroundAstronomy from "../assets/bg-astronomy-image.jpg";
 import PageLogo from "../assets/relate-logo.png";
-import { AboutMeThin } from "./Icons";
+import { CircleAlert } from "lucide-react";
 
 const Header = () => (
   <header className="absolute top-0 left-0 z-50 w-full py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-32">
@@ -44,7 +44,7 @@ const Content = () => (
 
 const ActionButtons = () => (
   <div className="mt-10 flex items-center gap-x-8">
-    <LinkButton href="/" text="Ver Artigos" />
+    <LinkButton href="/articles" text="Ver Artigos" />
     <AboutMeButton />
   </div>
 );
@@ -61,7 +61,7 @@ const LinkButton = ({ href, text }) => (
 const AboutMeButton = () => (
   <a href="/aboutme">
     <button className="inline-flex scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-auto px-0">
-      <AboutMeThin />
+      <CircleAlert className="w-5 mr-3" />
       Sobre Mim
     </button>
   </a>
