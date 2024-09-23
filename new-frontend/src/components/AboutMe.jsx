@@ -1,9 +1,27 @@
 import React from "react";
 import PageLogo from "../assets/relate-logo.png";
-import { Mail, Phone, MapPin, CircleAlert, Briefcase, GraduationCap, Award, Globe, ClipboardList, Linkedin, Github, } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  CircleAlert,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Globe,
+  ClipboardList,
+  Linkedin,
+  Github,
+} from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { FaReact } from "react-icons/fa6";
-import { FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaBootstrap, } from "react-icons/fa";
+import {
+  FaNodeJs,
+  FaHtml5,
+  FaCss3Alt,
+  FaGitAlt,
+  FaBootstrap,
+} from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io5";
@@ -12,16 +30,18 @@ import { DiScrum } from "react-icons/di";
 
 const Header = () => {
   return (
-    <header className="relative z-50 w-full py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-32">
-      <a href="/">
-        <img
-          src={PageLogo}
-          alt="Page logo"
-          width={200}
-          height={50}
-          className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] xl:w-[200px]"
-        />
-      </a>
+    <header className="p-4 h-16 flex justify-between bg-black items-center">
+      <div className="flex items-center absolute pl-4">
+        <a href="/">
+          <img
+            src={PageLogo}
+            alt="Page logo"
+            width={100}
+            height={25}
+            className="w-[100px]"
+          />
+        </a>
+      </div>
     </header>
   );
 };
@@ -269,7 +289,7 @@ const LanguagesSection = () => {
                 width: "1.5em",
                 height: "1.5em",
                 borderRadius: "6px",
-                color: "white"
+                color: "white",
               }}
               title={lang}
             />
@@ -322,7 +342,7 @@ export default function AboutMe() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-black text-gray-100 pb-8 px-8">
+      <div className="min-h-screen bg-black text-gray-100 mt-6 pb-8 px-8">
         <div className="max-w-4xl mx-auto">
           <ResumeHeader />
           <AboutMeSection />

@@ -3,8 +3,8 @@ import PageLogo from "../assets/relate-logo.png";
 
 export default function ReadArticle() {
   return (
-    <div className="min-h-screen bg-[#111111] text-white font-sans">
-      <header className="p-4 h-16 flex justify-between bg-black items-center border-b border-[#333333]">
+    <div className="min-h-screen bg-black text-white font-sans">
+      <header className="p-4 h-16 flex justify-between bg-black items-center">
         <div className="flex items-center absolute pl-4">
           <a href="/">
             <img

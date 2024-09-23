@@ -1,8 +1,8 @@
-import { ChevronDown, Github, Linkedin } from "lucide-react";
+import { ChevronDown, Github, Linkedin, Search } from "lucide-react";
 import PageLogo from "../assets/relate-logo.png";
 
 const FeaturedCard = ({ title, description }) => (
-  <div className="bg-[#111111] py-6 px-4 rounded-lg border border-[#333333]">
+  <div className="bg-b py-6 px-4 rounded-lg border border-border border-[#27272a80] hover:bg-[#111111] cursor-pointer">
     <h3 className="text-xl font-bold mb-2">{title}</h3>
     <p className="text-[#888888] text-sm">{description}</p>
   </div>
@@ -10,8 +10,8 @@ const FeaturedCard = ({ title, description }) => (
 
 export default function Articles() {
   return (
-    <div className="min-h-screen bg-[#111111] text-white font-sans">
-      <header className="px-4 h-16 flex justify-between bg-black items-center border-b border-[#333333]">
+    <div className="min-h-screen bg-balck text-white font-sans">
+      <header className="px-4 h-16 flex justify-between bg-black items-center">
         <div className="flex items-center pl-4">
           <a href="/">
             <img
@@ -27,7 +27,7 @@ export default function Articles() {
           <input
             type="text"
             placeholder="Pesquisar"
-            className="bg-[#1a1a1a] text-[#888888] px-4 py-[6px] pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
+            className="bg-[#1a1a1a] text-[#888888] px-4 py-[6px] pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b3b3f80]"
           />
         </div>
       </header>
