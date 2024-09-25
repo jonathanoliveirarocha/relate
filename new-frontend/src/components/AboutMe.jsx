@@ -1,27 +1,9 @@
 import React from "react";
 import PageLogo from "../assets/relate-logo.png";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  CircleAlert,
-  Briefcase,
-  GraduationCap,
-  Award,
-  Globe,
-  ClipboardList,
-  Linkedin,
-  Github,
-} from "lucide-react";
+import { Mail, Phone, MapPin, CircleAlert, Briefcase, GraduationCap, Award, Globe, ClipboardList, Linkedin, Github, } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { FaReact } from "react-icons/fa6";
-import {
-  FaNodeJs,
-  FaHtml5,
-  FaCss3Alt,
-  FaGitAlt,
-  FaBootstrap,
-} from "react-icons/fa";
+import { FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaBootstrap, } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io5";
@@ -30,7 +12,7 @@ import { DiScrum } from "react-icons/di";
 
 const Header = () => {
   return (
-    <header className="p-4 h-16 flex justify-between bg-black items-center">
+    <header className="sm:p-4 h-16 flex justify-between bg-black items-center">
       <div className="flex items-center absolute pl-4">
         <a href="/">
           <img
@@ -338,11 +320,45 @@ const SkillsSection = () => {
   );
 };
 
+const Footer = () => {
+  return (
+    <footer className="mt-8">
+      <div className="max-w-6xl mx-auto py-8 ">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-4 md:mb-0 text-[#888888] text-sm italic">
+            <p>&copy; 2024 Relate. Todos os direitos reservados.</p>
+          </div>
+          <div className="flex space-x-4">
+            <a
+              href="https://github.com/jonathanoliveirarocha/relate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#888888] hover:text-white transition-colors"
+            >
+              <Github className="w-6 h-6" />
+              <span className="sr-only">GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/somerelate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#888888] hover:text-white transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
+              <span className="sr-only">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 export default function AboutMe() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-black text-gray-100 mt-6 pb-8 px-8">
+      <div className="min-h-screen bg-black text-gray-100 mt-6 px-4">
         <div className="max-w-4xl mx-auto">
           <ResumeHeader />
           <AboutMeSection />
@@ -351,6 +367,7 @@ export default function AboutMe() {
           <CertificateSection />
           <LanguagesSection />
           <SkillsSection />
+          <Footer />
         </div>
       </div>
     </>

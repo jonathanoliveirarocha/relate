@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import AboutMe from "./components/AboutMe";
 import ReadArticle from "./components/ReadArticle";
 import Articles from "./components/Articles";
-
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           <Route exact path="/articles" element={<Articles />} />
           <Route exact path="/aboutme" element={<AboutMe />} />
           <Route exact path="/article/:id" element={<ReadArticle />} />
+          <Route exact path="/admin/auth/login" element={<Login />} />
         </Routes>
       </Router>
     </>
