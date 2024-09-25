@@ -4,6 +4,7 @@ import AboutMe from "./components/AboutMe";
 import ReadArticle from "./components/ReadArticle";
 import Articles from "./components/Articles";
 import Login from "./components/Login";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/aboutme" element={<AboutMe />} />
           <Route exact path="/article/:id" element={<ReadArticle />} />
           <Route exact path="/admin/auth/login" element={<Login />} />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
