@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import Header from '../components/Header';
+import Header from "../components/Header";
 
 const InputField = ({ id, label, type, value, onChange, placeholder }) => (
   <div className="mb-4">
@@ -31,7 +31,7 @@ export default function Login() {
 
   return (
     <>
-      <Header styles="absolute"/>
+      <Header styles="absolute" />
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="w-full max-w-md px-4">
           <h2 className="text-2xl font-semibold mb-3">
@@ -48,7 +48,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="email@exemple.com"
+              placeholder="email@example.com"
             />
 
             <div className="mb-6">
