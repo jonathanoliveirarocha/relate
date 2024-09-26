@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Eye, Trash2, Pencil, LogOut } from "lucide-react";
+import { Eye, Trash2, Pencil, LogOut, SquarePlus } from "lucide-react";
 import Footer from "../components/Footer";
 import PageLogo from "../assets/relate-logo.png";
+import { isAuthenticated as verifyAuthenticated } from "../utils/Auth";
 
 const FeaturedCard = ({ title, description }) => (
   <a href="/article/teste">
@@ -46,7 +47,14 @@ const SearchInput = () => (
   />
 );
 
-const ArticleCard = ({ title, description, onEdit, onDelete, isAuthenticated, href }) => (
+const ArticleCard = ({
+  title,
+  description,
+  onEdit,
+  onDelete,
+  isAuthenticated,
+  href,
+}) => (
   <a href={`/article/${href}`}>
     <div className="bg-b py-6 px-4 border-b border-subtle hover:bg-dark cursor-pointer">
       <div className="flex relative">
@@ -80,7 +88,7 @@ const ArticleInfo = () => (
 
 const Articles = () => {
   const [category, setCategory] = useState("all");
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(verifyAuthenticated());
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -94,15 +102,18 @@ const Articles = () => {
 
   return (
     <>
-      <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <Header
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+      />
       <div className="min-h-screen bg-balck text-white font-sans px-4">
         <main className="max-w-6xl mx-auto min-h-screen">
           <FeaturedArticles />
-          <RecentArticles 
-            isAuthenticated={isAuthenticated} 
-            onEdit={handleEdit} 
-            onDelete={handleDelete} 
-            setCategory={setCategory} 
+          <RecentArticles
+            isAuthenticated={isAuthenticated}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            setCategory={setCategory}
           />
         </main>
         <Footer />
@@ -115,13 +126,15 @@ const FeaturedArticles = () => (
   <section className="mb-8">
     <h2 className="text-3xl font-bold my-4">Em destaque</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {Array(3).fill().map((_, index) => (
-        <FeaturedCard
-          key={index}
-          title="Título"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
-        />
-      ))}
+      {Array(3)
+        .fill()
+        .map((_, index) => (
+          <FeaturedCard
+            key={index}
+            title="Título"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
+          />
+        ))}
     </div>
   </section>
 );
@@ -132,24 +145,36 @@ const RecentArticles = ({ isAuthenticated, onEdit, onDelete, setCategory }) => (
       <h2 className="text-3xl font-bold">Recentes</h2>
       <CategorySelector setCategory={setCategory} />
     </div>
+    {isAuthenticated && (
+      <div className="mt-2 py-2 px-4 flex justify-end">
+        <a href="/admin/article/create">
+          <SquarePlus className="hover:opacity-80" />
+        </a>
+      </div>
+    )}
     <div className="h-fit w-full space-y-3">
-      {Array(2).fill().map((_, index) => (
-        <ArticleCard
-          key={index}
-          title="Titulo"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
-          onEdit={onEdit}
-          onDelete={onDelete}
-          isAuthenticated={isAuthenticated}
-          href={"teste"}
-        />
-      ))}
+      {Array(2)
+        .fill()
+        .map((_, index) => (
+          <ArticleCard
+            key={index}
+            title="Titulo"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
+            onEdit={onEdit}
+            onDelete={onDelete}
+            isAuthenticated={isAuthenticated}
+            href={"teste"}
+          />
+        ))}
     </div>
   </section>
 );
 
 const CategorySelector = ({ setCategory }) => (
-  <select className="px-2 bg-black" onChange={(e) => setCategory(e.target.value)}>
+  <select
+    className="px-2 bg-black"
+    onChange={(e) => setCategory(e.target.value)}
+  >
     <option value="all">Tudo</option>
     <option value="astronomy">Astronomia</option>
     <option value="tech">Tecnologia</option>

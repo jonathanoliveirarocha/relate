@@ -57,7 +57,7 @@ const ArticleForm = ({
     />
     <FormattingToolbar onFormat={onFormat} />
     <TextArea value={content.body} onChange={onBodyChange} />
-    <div className="flex gap-4">
+    <div className="flex gap-4 mt-2">
       <select className="w-1/2 bg-black" onChange={onCategoryChange}>
         <option value="astronomy">Astronomia</option>
         <option value="tech">Tecnologia</option>

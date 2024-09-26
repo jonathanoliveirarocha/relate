@@ -29,9 +29,9 @@ const BackButton = () => (
 );
 
 export default function ReadArticle() {
-  const articleTitle = "Título"; // Replace with dynamic title
-  const articleDate = "22/06/2023, 22:27:58"; // Replace with dynamic date
-  const articleViews = 1280; // Replace with dynamic views
+  const articleTitle = "Título";
+  const articleDate = "22/06/2023, 22:27:58";
+  const articleViews = 1280;
 
   return (
     <>
