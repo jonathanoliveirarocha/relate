@@ -10,13 +10,11 @@ import NewArticle from "./pages/NewArticle";
 import PrivateRoute from "./utils/PrivateRoute";
 import {isAuthenticated} from "./utils/Auth";
 
-const transition = { duration: 1 };
-
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transition}><Home /></motion.div>} />
+        <Route exact path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}><Home /></motion.div>} />
         <Route exact path="/articles" element={<Articles />} />
         <Route exact path="/aboutme" element={<AboutMe />} />
         <Route exact path="/article/:id" element={<ReadArticle />} />

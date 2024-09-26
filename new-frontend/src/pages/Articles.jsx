@@ -131,7 +131,7 @@ const FeaturedArticles = () => (
         .map((_, index) => (
           <FeaturedCard
             key={index}
-            title="Transições de pagina no React com Animações"
+            title="Título"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
           />
         ))}
@@ -158,7 +158,7 @@ const RecentArticles = ({ isAuthenticated, onEdit, onDelete, setCategory }) => (
         .map((_, index) => (
           <ArticleCard
             key={index}
-            title="Transições de pagina no React com Animações"
+            title="Titulo"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
             onEdit={onEdit}
             onDelete={onDelete}
