@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from '../components/Header';
-import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, Terminal, Link, Image} from "lucide-react";
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, Terminal, Link, Image, List, ListOrdered} from "lucide-react";
 
 const FormattingToolbar = ({ onFormat }) => {
   const toolbarButtons = [
@@ -8,6 +8,8 @@ const FormattingToolbar = ({ onFormat }) => {
     { Icon: Italic, format: "italic", title: "Itálico" },
     { Icon: Underline, format: "underline", title: "Sublinhado" },
     { Icon: Type, format: "subtitle", title: "Subtítulo" },
+    { Icon: List, format: "list", title: "Lista" },
+    { Icon: ListOrdered, format: "list-ordered", title: "Lista ordenada" },
     { Icon: AlignJustify, format: "align-justify", title: "Justificar" },
     { Icon: AlignLeft, format: "align-left", title: "Alinhar à Esquerda" },
     { Icon: AlignCenter, format: "align-center", title: "Centralizar" },
@@ -113,7 +115,15 @@ const NewArticle = () => {
       subtitle: `<h2 class="text-subtitle">${selectedText}</h2>`,
       terminal: `<div class="terminal"><div class="terminal-header"><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div></div><div class="terminal-content"><p>${selectedText}</p></div></div>`,
       link: `<a class="styled-a" href="${selectedText}" target="_blank">${selectedText}</a>`,
-      image: `<img src="${selectedText}" class="styled-img" alt="Imagem ilustrativa"/>`
+      image: `<img src="${selectedText}" class="styled-img" alt="Imagem ilustrativa"/>`,
+      list: (() => {
+        const listItems = selectedText.split('\n').map(line =>`<li>${line.trim()}</li>`).join('');
+        return `<ul class="styled-list">${listItems}</ul>`;
+      })(),
+      "list-ordered": (() => {
+        const listItems = selectedText.split('\n').map(line => `<li>${line.trim()}</li>`).join('');
+        return `<ol class="styled-list-ordered">${listItems}</ol>`;
+      })(),
     };
 
     setContent({

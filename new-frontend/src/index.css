@@ -110,3 +110,24 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   margin-bottom: 2rem;
 }
+
+.styled-list {
+  list-style-type: disc;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.styled-list-ordered {
+  list-style-type: decimal;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.styled-list li,
+.styled-list-ordered li {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+  line-height: 1.6;
+}
