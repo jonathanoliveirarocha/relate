@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const ArticleHeader = ({ title }) => (
-  <h2 className="text-4xl font-bold mb-4 text-left">{title}</h2>
+  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-left">{title}</h2>
 );
 
 const ArticleSection = ({ children, className }) => (
@@ -50,7 +50,9 @@ export default function ReadArticle() {
             mollis varius. Sed tempus, lectus ut lobortis tristique, dui quam
             lacinia magna, vel sodales urna lectus placerat nisi.
           </ArticleSection>
-          <h3 className="text-2xl font-semibold mt-8 mb-2">Subtítulo</h3>
+          <h3 className="text-xl md:text-2xl font-semibold mt-8 mb-2">
+            Subtítulo
+          </h3>
           <ArticleSection>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla est
             felis, elementum id tincidunt ac, viverra eget tortor. Vivamus

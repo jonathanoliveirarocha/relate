@@ -81,7 +81,7 @@ const ArticleForm = ({
 
 const ArticlePreview = ({ title, body }) => (
   <div className="h-full overflow-auto">
-    <h1 className="text-4xl text-white font-bold mb-4">{title}</h1>
+    <h1 className="text-3xl md:text-4xl text-white font-bold mb-4">{title}</h1>
     <div
       dangerouslySetInnerHTML={{ __html: body }}
       className="prose prose-invert max-w-none text-primary"
