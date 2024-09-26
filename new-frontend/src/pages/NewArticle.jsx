@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import Header from '../components/Header';
-import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, } from "lucide-react";
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, Terminal, Link, Image} from "lucide-react";
 
 const FormattingToolbar = ({ onFormat }) => {
   const toolbarButtons = [
     { Icon: Bold, format: "bold", title: "Negrito" },
     { Icon: Italic, format: "italic", title: "Itálico" },
     { Icon: Underline, format: "underline", title: "Sublinhado" },
+    { Icon: Type, format: "subtitle", title: "Subtítulo" },
+    { Icon: AlignJustify, format: "align-justify", title: "Justificar" },
     { Icon: AlignLeft, format: "align-left", title: "Alinhar à Esquerda" },
     { Icon: AlignCenter, format: "align-center", title: "Centralizar" },
     { Icon: AlignRight, format: "align-right", title: "Alinhar à Direita" },
-    { Icon: AlignJustify, format: "align-justify", title: "Justificar" },
-    { Icon: Type, format: "subtitle", title: "Subtítulo" },
+    { Icon: Link, format: "link", title: "Link" },
+    { Icon: Image, format: "image", title: "Imagem" },
+    { Icon: Terminal, format: "terminal", title: "Terminal" },
   ];
 
   return (
@@ -75,7 +78,7 @@ const ArticleForm = ({
 );
 
 const ArticlePreview = ({ title, body }) => (
-  <div>
+  <div className="h-full overflow-auto">
     <h1 className="text-4xl text-white font-bold mb-4">{title}</h1>
     <div
       dangerouslySetInnerHTML={{ __html: body }}
@@ -108,6 +111,9 @@ const NewArticle = () => {
       "align-right": `<p class="styled-p text-right">${selectedText}</p>`,
       "align-justify": `<p class="styled-p text-justify">${selectedText}</p>`,
       subtitle: `<h2 class="text-subtitle">${selectedText}</h2>`,
+      terminal: `<div class="terminal"><div class="terminal-header"><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div></div><div class="terminal-content"><p>${selectedText}</p></div></div>`,
+      link: `<a class="styled-a" href="${selectedText}" target="_blank">${selectedText}</a>`,
+      image: `<img src="${selectedText}" class="styled-img" alt="Imagem ilustrativa"/>`
     };
 
     setContent({
@@ -121,7 +127,7 @@ const NewArticle = () => {
   return (
     <>
       <Header styles="absolute"/>
-      <div className="flex flex-col md:flex-row min-h-screen z-50 bg-black text-gray-100 py-[70px] px-4">
+      <div className="flex flex-col gap-4 md:flex-row h-screen z-50 bg-black text-gray-100 py-[70px] px-4">
         <div
           className={`w-full md:w-1/2 ${showPreview ? "hidden md:block" : ""}`}
         >
@@ -139,7 +145,7 @@ const NewArticle = () => {
         </div>
 
         <div
-          className={`w-full md:w-1/2 p-4 ${
+          className={`w-full md:w-1/2 ${
             !showPreview ? "hidden md:block" : ""
           }`}
         >
