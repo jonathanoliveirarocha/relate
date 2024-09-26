@@ -8,3 +8,32 @@ body {
   color: white;
   background-color: black;
 }
+
+.styled-p {
+  font-size: medium;
+  margin-bottom: 2rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justified {
+  text-align: justify;
+}
+
+.text-subtitle {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: white;
+}

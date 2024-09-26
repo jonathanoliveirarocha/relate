@@ -29,7 +29,7 @@ export default function Login() {
     <>
       <Header />
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="w-full max-w-md p-8">
+        <div className="w-full max-w-md px-4">
           <h2 className="text-2xl font-semibold mb-3">
             Faça login com sua conta
           </h2>
@@ -91,14 +91,14 @@ export default function Login() {
                 type="submit"
                 className="w-full bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
               >
-                Sign in
+                Entrar
               </button>
             </div>
           </form>
 
           <div className="mt-4 text-center">
             <a href="/" className="text-sm text-white hover:underline">
-              Voltar
+              Voltar ao Início
             </a>
           </div>
         </div>

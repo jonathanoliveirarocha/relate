@@ -57,7 +57,7 @@ export default function ReadArticle() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-black text-white font-sans max-w-3xl mx-auto px-4">
+      <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
         <main className="py-8 text-justify">
           <h2 className="text-4xl font-bold mb-4">Título</h2>
           <p className="mb-8 text-[#919096]">
