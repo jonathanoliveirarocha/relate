@@ -1,15 +1,46 @@
-import { ArrowLeft, Eye } from "lucide-react";
+import { ArrowBigLeft, Eye } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+const ArticleHeader = ({ title }) => (
+  <h2 className="text-4xl font-bold mb-4">{title}</h2>
+);
+
+const ArticleSection = ({ children, className }) => (
+  <p className={`mb-4 text-primary ${className}`}>{children}</p>
+);
+
+const ArticleMetadata = ({ date, views }) => (
+  <div className="flex justify-between text-sm text-primary opacity-60 mt-8">
+    <span>{date}</span>
+    <span className="flex items-center">
+      <Eye className="w-4 h-4 mr-1" />
+      {views}
+    </span>
+  </div>
+);
+
+const BackButton = () => (
+  <a href="/articles">
+    <button className="fixed bottom-8 left-4 hover:bg-darker text-white p-1 rounded-full shadow-lg">
+      <ArrowBigLeft width={25} />
+    </button>
+  </a>
+);
+
 export default function ReadArticle() {
+  const articleTitle = "Título"; // Replace with dynamic title
+  const articleDate = "22/06/2023, 22:27:58"; // Replace with dynamic date
+  const articleViews = 1280; // Replace with dynamic views
+
   return (
     <>
       <Header />
+      <BackButton />
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
         <main className="py-8 text-justify">
-          <h2 className="text-4xl font-bold mb-4">Título</h2>
-          <p className="mb-8 text-primary">
+          <ArticleHeader title={articleTitle} />
+          <ArticleSection>
             Vivamus rutrum, ipsum in mattis rhoncus, arcu nibh faucibus enim,
             vehicula venenatis ipsum leo non nisi. Donec at risus et magna
             fermentum dapibus ut vitae nunc. Suspendisse eget vestibulum nulla.
@@ -18,9 +49,9 @@ export default function ReadArticle() {
             eu libero at turpis aliquet hendrerit non at urna. Proin consectetur
             mollis varius. Sed tempus, lectus ut lobortis tristique, dui quam
             lacinia magna, vel sodales urna lectus placerat nisi.
-          </p>
-          <h3 className="text-2xl font-semibold mb-4">Subtítulo</h3>
-          <p className="mb-4 text-primary">
+          </ArticleSection>
+          <h3 className="text-2xl font-semibold mt-8 mb-2">Subtítulo</h3>
+          <ArticleSection>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla est
             felis, elementum id tincidunt ac, viverra eget tortor. Vivamus
             cursus ante id nisi pharetra, eu facilisis orci vestibulum. Vivamus
@@ -34,8 +65,8 @@ export default function ReadArticle() {
             interdum feugiat sed ut mauris. Donec iaculis, nulla a efficitur
             commodo, elit ipsum vehicula nisi, at gravida odio tellus lacinia
             quam.
-          </p>
-          <p className="mb-4 text-primary">
+          </ArticleSection>
+          <ArticleSection>
             Fusce venenatis ex quis euismod lobortis. Sed a neque nec quam
             pharetra eleifend id at erat. Integer sed enim vel nisi mattis
             viverra. Curabitur vitae augue dictum, consequat quam eleifend,
@@ -49,8 +80,8 @@ export default function ReadArticle() {
             Mauris auctor, est quis cursus auctor, eros felis luctus ligula, et
             auctor neque quam imperdiet turpis. Pellentesque ac suscipit tellus,
             id pharetra turpis.
-          </p>
-          <p className="mb-4 text-primary">
+          </ArticleSection>
+          <ArticleSection>
             Maecenas commodo facilisis odio sit amet pulvinar. Interdum et
             malesuada fames ac ante ipsum primis in faucibus. Duis pellentesque
             ultricies vulputate. Suspendisse potenti. Praesent eget fermentum
@@ -60,14 +91,8 @@ export default function ReadArticle() {
             vitae nulla nec, ultricies ullamcorper justo. Praesent volutpat,
             ante quis congue imperdiet, risus quam pellentesque metus, nec
             congue eros ipsum non sem.
-          </p>
-          <div className="flex justify-between text-sm text-primary opacity-60 mt-8">
-            <span>22/06/2023, 22:27:58</span>
-            <span className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" />
-              1280
-            </span>
-          </div>
+          </ArticleSection>
+          <ArticleMetadata date={articleDate} views={articleViews} />
         </main>
         <Footer />
       </div>

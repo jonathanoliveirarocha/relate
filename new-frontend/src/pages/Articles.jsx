@@ -128,7 +128,7 @@ const FeaturedArticles = () => (
 
 const RecentArticles = ({ isAuthenticated, onEdit, onDelete, setCategory }) => (
   <section>
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center pb-4 border-b border-subtle">
       <h2 className="text-3xl font-bold">Recentes</h2>
       <CategorySelector setCategory={setCategory} />
     </div>
