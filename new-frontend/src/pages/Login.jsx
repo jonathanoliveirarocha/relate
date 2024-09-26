@@ -1,59 +1,55 @@
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import PageLogo from "../assets/relate-logo.png";
+import Header from '../components/Header';
 
-const Header = () => {
-  return (
-    <header className="sm:p-4 h-16 flex w-full absolute z-50 justify-between bg-black items-center">
-      <div className="flex items-center absolute pl-4">
-        <a href="/">
-          <img
-            src={PageLogo}
-            alt="Page logo"
-            width={100}
-            height={25}
-            className="w-[100px]"
-          />
-        </a>
-      </div>
-    </header>
-  );
-};
+const InputField = ({ id, label, type, value, onChange, placeholder }) => (
+  <div className="mb-4">
+    <label htmlFor={id} className="block mb-2 text-sm font-medium">
+      {label}
+    </label>
+    <input
+      type={type}
+      id={id}
+      className="w-full px-3 py-2 bg-black border border-border border-subtle rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      required
+    />
+    <p className="mt-1 text-xs text-gray-400">{placeholder}</p>
+  </div>
+);
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   return (
     <>
-      <Header />
+      <Header styles="absolute"/>
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="w-full max-w-md px-4">
           <h2 className="text-2xl font-semibold mb-3">
             Faça login com sua conta
           </h2>
-
           <p className="mb-6 text-sm opacity-80">
             Essa área é restrita apenas para administradores.
           </p>
 
           <form>
-            <div className="mb-4">
-              <label htmlFor="email" className="block mb-2 text-sm font-medium">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full px-3 py-2 bg-black border border-border border-[#27272a80] rounded-md focus:outline-none focus:ring-2 focus:ring-white"
-                placeholder="john.doe@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <p className="mt-1 text-xs text-gray-400">Digite o seu E-mail</p>
-            </div>
+            <InputField
+              id="email"
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email@exemple.com"
+            />
 
             <div className="mb-6">
               <label
@@ -66,7 +62,7 @@ export default function Login() {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  className="w-full px-3 py-2 bg-black border border-border border-[#27272a80] rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+                  className="w-full px-3 py-2 bg-black border border-border border-subtle rounded-md focus:outline-none focus:ring-2 focus:ring-white"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -74,7 +70,7 @@ export default function Login() {
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={togglePasswordVisibility}
                 >
                   {showPassword ? (
                     <EyeOffIcon className="h-5 w-5 text-gray-400" />

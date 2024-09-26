@@ -1,57 +1,6 @@
-import { ArrowLeft, Eye, Github, Linkedin } from "lucide-react";
-import PageLogo from "../assets/relate-logo.png";
-
-const Header = () => {
-  return (
-    <header className="sm:p-4 h-16 flex justify-between bg-black items-center">
-      <div className="flex items-center absolute pl-4">
-        <a href="/">
-          <img
-            src={PageLogo}
-            alt="Page logo"
-            width={100}
-            height={25}
-            className="w-[100px]"
-          />
-        </a>
-      </div>
-    </header>
-  );
-};
-
-const Footer = () => {
-  return (
-    <footer className="mt-8">
-      <div className="max-w-6xl mx-auto py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-[#888888] text-sm italic">
-            <p>&copy; 2024 Relate. Todos os direitos reservados.</p>
-          </div>
-          <div className="flex space-x-4">
-            <a
-              href="https://github.com/jonathanoliveirarocha/relate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888888] hover:text-white transition-colors"
-            >
-              <Github className="w-6 h-6" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/somerelate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888888] hover:text-white transition-colors"
-            >
-              <Linkedin className="w-6 h-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
+import { ArrowLeft, Eye } from "lucide-react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function ReadArticle() {
   return (
@@ -60,7 +9,7 @@ export default function ReadArticle() {
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
         <main className="py-8 text-justify">
           <h2 className="text-4xl font-bold mb-4">Título</h2>
-          <p className="mb-8 text-[#919096]">
+          <p className="mb-8 text-primary">
             Vivamus rutrum, ipsum in mattis rhoncus, arcu nibh faucibus enim,
             vehicula venenatis ipsum leo non nisi. Donec at risus et magna
             fermentum dapibus ut vitae nunc. Suspendisse eget vestibulum nulla.
@@ -71,7 +20,7 @@ export default function ReadArticle() {
             lacinia magna, vel sodales urna lectus placerat nisi.
           </p>
           <h3 className="text-2xl font-semibold mb-4">Subtítulo</h3>
-          <p className="mb-4 text-[#919096]">
+          <p className="mb-4 text-primary">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla est
             felis, elementum id tincidunt ac, viverra eget tortor. Vivamus
             cursus ante id nisi pharetra, eu facilisis orci vestibulum. Vivamus
@@ -86,7 +35,7 @@ export default function ReadArticle() {
             commodo, elit ipsum vehicula nisi, at gravida odio tellus lacinia
             quam.
           </p>
-          <p className="mb-4 text-[#919096]">
+          <p className="mb-4 text-primary">
             Fusce venenatis ex quis euismod lobortis. Sed a neque nec quam
             pharetra eleifend id at erat. Integer sed enim vel nisi mattis
             viverra. Curabitur vitae augue dictum, consequat quam eleifend,
@@ -101,7 +50,7 @@ export default function ReadArticle() {
             auctor neque quam imperdiet turpis. Pellentesque ac suscipit tellus,
             id pharetra turpis.
           </p>
-          <p className="mb-4 text-[#919096]">
+          <p className="mb-4 text-primary">
             Maecenas commodo facilisis odio sit amet pulvinar. Interdum et
             malesuada fames ac ante ipsum primis in faucibus. Duis pellentesque
             ultricies vulputate. Suspendisse potenti. Praesent eget fermentum
@@ -112,7 +61,7 @@ export default function ReadArticle() {
             ante quis congue imperdiet, risus quam pellentesque metus, nec
             congue eros ipsum non sem.
           </p>
-          <div className="flex justify-between text-sm text-[#919096] opacity-60 mt-8">
+          <div className="flex justify-between text-sm text-primary opacity-60 mt-8">
             <span>22/06/2023, 22:27:58</span>
             <span className="flex items-center">
               <Eye className="w-4 h-4 mr-1" />

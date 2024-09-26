@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import AboutMe from "./components/AboutMe";
-import ReadArticle from "./components/ReadArticle";
-import Articles from "./components/Articles";
-import Login from "./components/Login";
-import NotFound from "./components/NotFound";
-import NewArticle from "./components/NewArticle";
+import Home from "./pages/Home";
+import AboutMe from "./pages/AboutMe";
+import ReadArticle from "./pages/ReadArticle";
+import Articles from "./pages/Articles";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import NewArticle from "./pages/NewArticle";
 
 function App() {
   return (

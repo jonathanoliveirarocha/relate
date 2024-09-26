@@ -1,11 +1,12 @@
-import { ChevronDown, Github, Linkedin, Search } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import Footer from '../components/Footer';
 import PageLogo from "../assets/relate-logo.png";
 
 const FeaturedCard = ({ title, description, href }) => (
   <a href="/article/teste">
-    <div className="bg-b py-6 px-4 rounded-lg border border-border border-[#27272a80] hover:bg-[#111111] cursor-pointer">
+    <div className="bg-b py-6 px-4 rounded-lg border border-border border-subtle hover:bg-dark cursor-pointer">
       <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-[#919096] text-sm">{description}</p>
+      <p className="text-primary text-sm">{description}</p>
     </div>
   </a>
 );
@@ -28,46 +29,46 @@ const Header = () => {
         <input
           type="text"
           placeholder="Pesquisar"
-          className="bg-[#1a1a1a] text-[#919096] placeholder-[#919096] px-4 py-[6px] pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b3b3f80]"
+          className="bg-darker text-primary placeholder-primary px-4 py-[6px] pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
         />
       </div>
     </header>
   );
 };
 
-const Footer = () => {
-  return (
-    <footer className="mt-8">
-      <div className="max-w-6xl mx-auto py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-[#888888] text-sm italic">
-            <p>&copy; 2024 Relate. Todos os direitos reservados.</p>
-          </div>
-          <div className="flex space-x-4">
-            <a
-              href="https://github.com/jonathanoliveirarocha/relate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888888] hover:text-white transition-colors"
-            >
-              <Github className="w-6 h-6" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/somerelate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888888] hover:text-white transition-colors"
-            >
-              <Linkedin className="w-6 h-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
+// const Footer = () => {
+//   return (
+//     <footer className="mt-8">
+//       <div className="max-w-6xl mx-auto py-8">
+//         <div className="flex flex-col md:flex-row justify-between items-center">
+//           <div className="mb-4 md:mb-0 text-secondary text-sm italic">
+//             <p>&copy; 2024 Relate. Todos os direitos reservados.</p>
+//           </div>
+//           <div className="flex space-x-4">
+//             <a
+//               href="https://github.com/jonathanoliveirarocha/relate"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="text-secondary hover:text-white transition-colors"
+//             >
+//               <Github className="w-6 h-6" />
+//               <span className="sr-only">GitHub</span>
+//             </a>
+//             <a
+//               href="https://www.linkedin.com/company/somerelate"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="text-secondary hover:text-white transition-colors"
+//             >
+//               <Linkedin className="w-6 h-6" />
+//               <span className="sr-only">LinkedIn</span>
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
 
 export default function Articles() {
   return (

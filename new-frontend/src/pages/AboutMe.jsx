@@ -1,5 +1,6 @@
 import React from "react";
-import PageLogo from "../assets/relate-logo.png";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Mail, Phone, MapPin, CircleAlert, Briefcase, GraduationCap, Award, Globe, ClipboardList, Linkedin, Github, } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { FaReact } from "react-icons/fa6";
@@ -9,24 +10,6 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io5";
 import { GrMysql } from "react-icons/gr";
 import { DiScrum } from "react-icons/di";
-
-const Header = () => {
-  return (
-    <header className="sm:p-4 h-16 flex justify-between bg-black items-center">
-      <div className="flex items-center absolute pl-4">
-        <a href="/">
-          <img
-            src={PageLogo}
-            alt="Page logo"
-            width={100}
-            height={25}
-            className="w-[100px]"
-          />
-        </a>
-      </div>
-    </header>
-  );
-};
 
 const ContactLink = ({ href, icon: IconComponent, text }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">
@@ -317,40 +300,6 @@ const SkillsSection = () => {
         ))}
       </div>
     </section>
-  );
-};
-
-const Footer = () => {
-  return (
-    <footer className="mt-8">
-      <div className="max-w-6xl mx-auto py-8 ">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-[#888888] text-sm italic">
-            <p>&copy; 2024 Relate. Todos os direitos reservados.</p>
-          </div>
-          <div className="flex space-x-4">
-            <a
-              href="https://github.com/jonathanoliveirarocha/relate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888888] hover:text-white transition-colors"
-            >
-              <Github className="w-6 h-6" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/company/somerelate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#888888] hover:text-white transition-colors"
-            >
-              <Linkedin className="w-6 h-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 };
 

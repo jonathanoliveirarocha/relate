@@ -1,22 +1,6 @@
 import React, { useState } from "react";
-import PageLogo from "../assets/relate-logo.png";
+import Header from '../components/Header';
 import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, } from "lucide-react";
-
-const Header = () => (
-  <header className="sm:p-4 h-16 flex w-full absolute z-50 justify-between bg-black items-center">
-    <div className="flex items-center absolute pl-4">
-      <a href="/">
-        <img
-          src={PageLogo}
-          alt="Page logo"
-          width={100}
-          height={25}
-          className="w-[100px]"
-        />
-      </a>
-    </div>
-  </header>
-);
 
 const FormattingToolbar = ({ onFormat }) => {
   const toolbarButtons = [
@@ -37,7 +21,7 @@ const FormattingToolbar = ({ onFormat }) => {
           key={format}
           size={26}
           title={title}
-          className="p-1 hover:bg-[#1a1a1a] rounded cursor-pointer"
+          className="p-1 hover:bg-darker rounded cursor-pointer"
           onClick={() => onFormat(format)}
         />
       ))}
@@ -51,7 +35,7 @@ const TextArea = ({ value, onChange }) => (
     value={value}
     onChange={onChange}
     placeholder="Conteúdo"
-    className="w-full h-[calc(100%-120px)] p-2 bg-black border border-[#27272a80] rounded-md"
+    className="w-full h-[calc(100%-120px)] p-2 bg-black border border-subtle rounded-md"
   />
 );
 
@@ -69,7 +53,7 @@ const ArticleForm = ({
       value={content.title}
       onChange={onTitleChange}
       placeholder="Título"
-      className="w-full mb-4 p-2 bg-black border border-[#27272a80] rounded-md"
+      className="w-full mb-4 p-2 bg-black border border-subtle rounded-md"
     />
     <FormattingToolbar onFormat={onFormat} />
     <TextArea value={content.body} onChange={onBodyChange} />
@@ -95,7 +79,7 @@ const ArticlePreview = ({ title, body }) => (
     <h1 className="text-4xl text-white font-bold mb-4">{title}</h1>
     <div
       dangerouslySetInnerHTML={{ __html: body }}
-      className="prose prose-invert max-w-none text-[#919096]"
+      className="prose prose-invert max-w-none text-primary"
     />
   </div>
 );
@@ -136,7 +120,7 @@ const NewArticle = () => {
 
   return (
     <>
-      <Header />
+      <Header styles="absolute"/>
       <div className="flex flex-col md:flex-row min-h-screen z-50 bg-black text-gray-100 py-[70px] px-4">
         <div
           className={`w-full md:w-1/2 ${showPreview ? "hidden md:block" : ""}`}
@@ -164,7 +148,7 @@ const NewArticle = () => {
 
         <button
           onClick={togglePreview}
-          className="fixed bottom-4 right-4 md:hidden bg-[#1a1a1a] text-white p-2 rounded-full shadow-lg"
+          className="fixed bottom-4 right-4 md:hidden bg-darker text-white p-2 rounded-full shadow-lg"
         >
           {showPreview ? <EyeOff size={24} /> : <Eye size={24} />}
         </button>

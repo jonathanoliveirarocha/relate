@@ -60,7 +60,7 @@ const LinkButton = ({ href, text }) => (
 
 const AboutMeButton = () => (
   <a href="/aboutme">
-    <button className="inline-flex scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-auto px-0">
+    <button className="inline-flex scale-100 items-center justify-center rounded-sm text-sm font-medium ring-offset-background transition-[transform,background-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-95 disabled:pointer-events-none disabled:opacity-50 underline-offset-4 hover:underline h-auto px-0">
       <CircleAlert className="w-5 mr-3" />
       Sobre Mim
     </button>
