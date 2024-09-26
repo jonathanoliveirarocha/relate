@@ -7,7 +7,7 @@ import { isAuthenticated as verifyAuthenticated } from "../utils/Auth";
 const FeaturedCard = ({ title, description }) => (
   <a href="/article/teste">
     <div className="bg-b py-6 px-4 rounded-lg border border-border border-subtle hover:bg-dark cursor-pointer">
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <h3 className="text-xl font-bold mb-2 styled-title-card">{title}</h3>
       <p className="text-primary text-sm limited-text">{description}</p>
     </div>
   </a>
@@ -58,7 +58,7 @@ const ArticleCard = ({
   <a href={`/article/${href}`}>
     <div className="bg-b py-6 px-4 border-b border-subtle hover:bg-dark cursor-pointer">
       <div className="flex relative">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+        <h3 className="text-xl font-bold mb-2 styled-title-card">{title}</h3>
         {isAuthenticated && (
           <ActionButtons onEdit={onEdit} onDelete={onDelete} />
         )}

@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const ArticleHeader = ({ title }) => (
-  <h2 className="text-4xl font-bold mb-4">{title}</h2>
+  <h2 className="text-4xl font-bold mb-4 text-left">{title}</h2>
 );
 
 const ArticleSection = ({ children, className }) => (
