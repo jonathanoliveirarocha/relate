@@ -41,7 +41,7 @@ export default function Login() {
         storeJwtToken(responseData.token);
         redirectToArticles();
       } else {
-        displayErrorMessage(responseData.message);
+        displayErrorMessage(responseData.error);
       }
     } catch (error) {
       console.error("An error occurred during the login process:", error);
