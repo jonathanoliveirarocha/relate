@@ -70,7 +70,7 @@ const ArticleForm = ({
       </select>
       <button
         type="submit"
-        className="w-1/2 bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+        className="w-1/2 bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200"
         onClick={onSave}
       >
         Salvar

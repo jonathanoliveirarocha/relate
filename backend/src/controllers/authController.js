@@ -5,37 +5,38 @@ const secretKey = process.env.SESSION_KEY;
 const userService = require("../services/user.service");
 
 const authController = {
-  submitForm: async (req, res) => {
+  submitAdminLoginForm: async (req, res) => {
     try {
       const { email, password } = req.body;
+
       const user = await userService.findByEmail(email);
       if (!user) {
-        res.status(404).json({ message: "Esta conta não existe!" });
-      } else {
-        bcrypt.compare(password, user.password, (err, logged) => {
-          if (logged) {
-            if (user.admin == 1) {
-              const token = jwt.sign({ email }, secretKey, {
-                expiresIn: "12h",
-              });
-              res.json({ token });
-            } else {
-              res
-                .status(401)
-                .json({ message: "Você não é um administador do site!" });
-            }
-          } else {
-            res.status(401).json({ message: "Credenciais inválidas!" });
-          }
-        });
+        return res.status(404).json({ message: "Conta não encontrada!" });
       }
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Credenciais inválidas!" });
+      }
+
+      if (!user.isAdmin) {
+        return res
+          .status(403)
+          .json({ message: "Acesso negado: Não é administrador!" });
+      }
+
+      const token = jwt.sign({ email: user.email, id: user._id }, secretKey, {
+        expiresIn: "12h",
+      });
+
+      return res.json({ token });
     } catch (err) {
-      res.status(500).json({ erro: "Erro interno!" });
+      return res.status(500).json({ error: "Erro interno do servidor!" });
     }
   },
 
-  validadeUser: (req, res) => {
-    res.status(200).json({ message: "Autenticado com sucesso!" });
+  validateAuthenticatedUser: (req, res) => {
+    return res.status(200).json({ message: "Autenticado com sucesso!" });
   },
 };
 

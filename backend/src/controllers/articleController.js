@@ -1,14 +1,12 @@
 const articleService = require("../services/article.service");
-const categoryService = require("../services/category.service");
-const { ObjectId } = require("mongodb");
 
 const articleController = {
-  showAllArticles: async (req, res) => {
+  getAllArticles: async (req, res) => {
     try {
-      const articles = await articleService.showAllArticles();
+      const articles = await articleService.getAllArticles();
       res.status(200).json(articles);
     } catch (error) {
-      res.status(500).json({ erro: "Erro interno!" });
+      res.status(500).json({ error: "Erro ao buscar artigos!" });
     }
   },
 
@@ -16,67 +14,85 @@ const articleController = {
     try {
       const { title, category, content } = req.body;
       await articleService.createArticle({ title, category, content });
-      res.status(200).json({ message: "Criado com sucesso!" });
+      res.status(201).json({ message: "Artigo criado com sucesso!" });
     } catch (error) {
-      res.status(500).json({ erro: "Erro interno!" });
+      res.status(500).json({ error: "Erro ao criar artigo!" });
     }
   },
 
-  showOneArticleById: async (req, res) => {
+  getArticleById: async (req, res) => {
     try {
-      const article = await articleService.showOneArticleById(req.params.id);
+      const articleId = req.params.id;
+
+      const article = await articleService.getArticleById(articleId);
+
+      if (!article) {
+        return res.status(404).json({ error: "Artigo não encontrado!" });
+      }
+
+      await articleService.incrementViewCount(articleId);
+
       res.status(200).json(article);
     } catch (error) {
-      res.status(500).json({ erro: "Erro interno!" });
+      res.status(500).json({ error: "Erro ao buscar artigo!" });
     }
   },
 
-  updateOneArticleById: async (req, res) => {
+  updateArticleById: async (req, res) => {
     try {
       const { title, category, content } = req.body;
-      await articleService.updateOneArticleById(req.params.id, {
-        title,
-        category,
-        content,
-      });
-      res.status(200).json({ message: "Atualizado com sucesso!" });
+      const updatedArticle = await articleService.updateArticleById(
+        req.params.id,
+        {
+          title,
+          category,
+          content,
+        }
+      );
+      if (!updatedArticle) {
+        return res.status(404).json({ error: "Artigo não encontrado!" });
+      }
+      res.status(200).json({ message: "Artigo atualizado com sucesso!" });
     } catch (error) {
-      res.status(500).json({ erro: "Erro interno!" });
+      res.status(500).json({ error: "Erro ao atualizar artigo!" });
     }
   },
 
-  deleteOneArticleById: async (req, res) => {
+  deleteArticleById: async (req, res) => {
     try {
-      await articleService.deleteOneArticleById(req.params.id);
-      res.status(200).json({ message: "Excluído com sucesso!" });
+      const deletedArticle = await articleService.deleteArticleById(
+        req.params.id
+      );
+      if (!deletedArticle) {
+        return res.status(404).json({ error: "Artigo não encontrado!" });
+      }
+      res.status(200).json({ message: "Artigo excluído com sucesso!" });
     } catch (error) {
-      res.status(500).json({ erro: "Erro interno!" });
+      res.status(500).json({ error: "Erro ao excluir artigo!" });
     }
   },
 
-  searchByKeywords: async (req, res) => {
+  searchArticlesByKeyword: async (req, res) => {
     try {
       const keyword = req.params.keyword;
-      const searchByKeyword = async (keyword) => {
-        const articles = await articleService.searchByKeyword(keyword);
-        res.json(articles);
-      };
 
-      if (keyword.length == 24) {
-        const category = await categoryService.showOneCategoryById(
-          new ObjectId(keyword)
-        );
-        if (category) {
-          const articles = await articleService.findByCategory(keyword);
-          res.json(articles);
-        } else {
-          searchByKeyword(keyword);
-        }
-      } else {
-        searchByKeyword(keyword);
-      }
+      const articles = await articleService.searchArticlesByKeyword(keyword);
+      res.status(200).json(articles);
     } catch (error) {
-      res.status(500).json({ erro: "Erro interno!" });
+      res
+        .status(500)
+        .json({ error: "Erro ao buscar artigos por palavra-chave!" });
+    }
+  },
+
+  searchArticlesByCategory: async (req, res) => {
+    try {
+      const category = req.params.category;
+
+      const articles = await articleService.getArticlesByCategory(category);
+      res.status(200).json(articles);
+    } catch (error) {
+      res.status(500).json({ error: "Erro ao buscar artigos por categoria!" });
     }
   },
 };
