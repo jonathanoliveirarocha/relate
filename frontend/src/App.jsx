@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}><Home /></motion.div>} />
         <Route exact path="/articles" element={<Articles />} />
-        <Route exact path="/aboutme" element={<AboutMe />} />
+        <Route exact path="/aboutme" element={<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}><AboutMe /></motion.div>} />
         <Route exact path="/article/:id" element={<ReadArticle />} />
         <Route exact path="/admin/auth/login" element={!isAuthenticated() ? <Login /> : <Navigate to="/articles" />} />
         <Route exact path="/admin/article/create" element={ <PrivateRoute element={<NewArticle />} isAuthenticated={isAuthenticated()} /> } />
