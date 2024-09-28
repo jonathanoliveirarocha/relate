@@ -1,60 +1,40 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import {
-  Bold,
-  Italic,
-  Underline,
-  AlignLeft,
-  AlignCenter,
-  AlignRight,
-  AlignJustify,
-  Type,
-  Eye,
-  EyeOff,
-  Terminal,
-  Link,
-  Image,
-  List,
-  ListOrdered,
-} from "lucide-react";
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, Terminal, Link, Image, List, ListOrdered, } from "lucide-react";
 import { articleService } from "../api/article.service";
 import { useParams } from "react-router-dom";
 
-const getJwtToken = () => {
-  return localStorage.getItem("jwtToken");
-};
+const getJwtToken = () => localStorage.getItem("jwtToken");
 
-const FormattingToolbar = ({ onFormat }) => {
-  const toolbarButtons = [
-    { Icon: Bold, format: "bold", title: "Negrito" },
-    { Icon: Italic, format: "italic", title: "Itálico" },
-    { Icon: Underline, format: "underline", title: "Sublinhado" },
-    { Icon: Type, format: "subtitle", title: "Subtítulo" },
-    { Icon: List, format: "list", title: "Lista" },
-    { Icon: ListOrdered, format: "list-ordered", title: "Lista ordenada" },
-    { Icon: AlignJustify, format: "align-justify", title: "Justificar" },
-    { Icon: AlignLeft, format: "align-left", title: "Alinhar à Esquerda" },
-    { Icon: AlignCenter, format: "align-center", title: "Centralizar" },
-    { Icon: AlignRight, format: "align-right", title: "Alinhar à Direita" },
-    { Icon: Link, format: "link", title: "Link" },
-    { Icon: Image, format: "image", title: "Imagem" },
-    { Icon: Terminal, format: "terminal", title: "Terminal" },
-  ];
+const toolbarButtonsConfig = [
+  { Icon: Bold, format: "bold", title: "Negrito" },
+  { Icon: Italic, format: "italic", title: "Itálico" },
+  { Icon: Underline, format: "underline", title: "Sublinhado" },
+  { Icon: Type, format: "subtitle", title: "Subtítulo" },
+  { Icon: List, format: "list", title: "Lista" },
+  { Icon: ListOrdered, format: "list-ordered", title: "Lista Ordenada" },
+  { Icon: AlignJustify, format: "align-justify", title: "Justificar" },
+  { Icon: AlignLeft, format: "align-left", title: "Alinhar à Esquerda" },
+  { Icon: AlignCenter, format: "align-center", title: "Centralizar" },
+  { Icon: AlignRight, format: "align-right", title: "Alinhar à Direita" },
+  { Icon: Link, format: "link", title: "Link" },
+  { Icon: Image, format: "image", title: "Imagem" },
+  { Icon: Terminal, format: "terminal", title: "Terminal" },
+];
 
-  return (
-    <div className="mb-2 flex flex-wrap gap-2 items-center">
-      {toolbarButtons.map(({ Icon, format, title }) => (
-        <Icon
-          key={format}
-          size={26}
-          title={title}
-          className="p-1 hover:bg-darker rounded cursor-pointer"
-          onClick={() => onFormat(format)}
-        />
-      ))}
-    </div>
-  );
-};
+const FormattingToolbar = ({ onFormat }) => (
+  <div className="mb-2 flex flex-wrap gap-2 items-center">
+    {toolbarButtonsConfig.map(({ Icon, format, title }) => (
+      <Icon
+        key={format}
+        size={26}
+        title={title}
+        className="p-1 hover:bg-darker rounded cursor-pointer"
+        onClick={() => onFormat(format)}
+      />
+    ))}
+  </div>
+);
 
 const TextArea = ({ value, onChange }) => (
   <textarea
@@ -74,40 +54,36 @@ const ArticleForm = ({
   onCategoryChange,
   onSave,
   category,
-}) => {
-  const { id } = useParams();
-  return (
-    <form className="h-full">
-      <input
-        type="text"
-        value={content.title}
-        onChange={onTitleChange}
-        placeholder="Título"
-        className="w-full mb-4 p-2 bg-black border border-subtle rounded-md"
-      />
-      <FormattingToolbar onFormat={onFormat} />
-      <TextArea value={content.body} onChange={onBodyChange} />
-      <div className="flex gap-4 mt-2">
-        <select
-          className="w-1/2 bg-black"
-          value={category}
-          onChange={onCategoryChange}
-        >
-          <option value="astronomy">Astronomia</option>
-          <option value="tech">Tecnologia</option>
-          <option value="music">Música</option>
-        </select>
-        <button
-          type="submit"
-          className="w-1/2 bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200"
-          onClick={onSave}
-        >
-          {id ? "Editar" : "Salvar"}
-        </button>
-      </div>
-    </form>
-  );
-};
+}) => (
+  <form className="h-full" onSubmit={onSave}>
+    <input
+      type="text"
+      value={content.title}
+      onChange={onTitleChange}
+      placeholder="Título"
+      className="w-full mb-4 p-2 bg-black border border-subtle rounded-md"
+    />
+    <FormattingToolbar onFormat={onFormat} />
+    <TextArea value={content.body} onChange={onBodyChange} />
+    <div className="flex gap-4 mt-2">
+      <select
+        className="w-1/2 bg-black"
+        value={category}
+        onChange={onCategoryChange}
+      >
+        <option value="astronomy">Astronomia</option>
+        <option value="tech">Tecnologia</option>
+        <option value="music">Música</option>
+      </select>
+      <button
+        type="submit"
+        className="w-1/2 bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200"
+      >
+        {content.id ? "Editar" : "Salvar"}
+      </button>
+    </div>
+  </form>
+);
 
 const ArticlePreview = ({ title, body }) => (
   <div className="h-full overflow-auto">
@@ -129,13 +105,12 @@ const NewArticle = () => {
     const fetchData = async () => {
       if (id) {
         const response = await articleService.fetchArticleById(id);
-        setContent({ title: response.title, body: response.content });
+        setContent({ title: response.title, body: response.content, id });
         setCategory(response.category);
       }
     };
-
     fetchData();
-  }, []);
+  }, [id]);
 
   const handleInputChange = (field, value) =>
     setContent((prevContent) => ({ ...prevContent, [field]: value }));
@@ -159,20 +134,8 @@ const NewArticle = () => {
       terminal: `<div class="terminal"><div class="terminal-header"><div class="circle red"></div><div class="circle yellow"></div><div class="circle green"></div></div><div class="terminal-content"><p>${selectedText}</p></div></div>`,
       link: `<a class="styled-a" href="${selectedText}" target="_blank">${selectedText}</a>`,
       image: `<img src="${selectedText}" class="styled-img" alt="Imagem ilustrativa"/>`,
-      list: (() => {
-        const listItems = selectedText
-          .split("\n")
-          .map((line) => `<li>${line.trim()}</li>`)
-          .join("");
-        return `<ul class="styled-list">${listItems}</ul>`;
-      })(),
-      "list-ordered": (() => {
-        const listItems = selectedText
-          .split("\n")
-          .map((line) => `<li>${line.trim()}</li>`)
-          .join("");
-        return `<ol class="styled-list-ordered">${listItems}</ol>`;
-      })(),
+      list: wrapTextWithTag(selectedText, "ul"),
+      "list-ordered": wrapTextWithTag(selectedText, "ol"),
     };
 
     setContent({
@@ -181,57 +144,39 @@ const NewArticle = () => {
     });
   };
 
+  const wrapTextWithTag = (text, tag) => {
+    const listItems = text
+      .split("\n")
+      .map((line) => `<li>${line.trim()}</li>`)
+      .join("");
+    return `<${tag} class="styled-list">${listItems}</${tag}>`;
+  };
+
   const togglePreview = () => setShowPreview((prev) => !prev);
-
-  const createArticle = async () => {
-    if (content.title == "" || content.body == "") {
-      alert("Preencha todos os campos!");
-      return;
-    }
-
-    const token = getJwtToken();
-    const response = await articleService.createArticle(
-      {
-        title: content.title,
-        content: content.body,
-        category,
-      },
-      token
-    );
-
-    if (response) {
-      window.location.href = "/articles";
-    }
-  };
-
-  const editArticle = async () => {
-    if (content.title == "" || content.body == "") {
-      alert("Preencha todos os campos!");
-      return;
-    }
-    const token = getJwtToken();
-    const response = await articleService.updateArticle(
-      {
-        title: content.title,
-        content: content.body,
-        category,
-      },
-      id,
-      token
-    );
-    if (response) {
-      window.location.href = "/articles";
-    }
-  };
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    if (id) {
-      await editArticle();
-    } else {
-      await createArticle();
+    if (!content.title || !content.body) {
+      alert("Preencha todos os campos!");
+      return;
     }
+
+    const token = getJwtToken();
+    const saveArticle = id
+      ? articleService.updateArticle(
+          { title: content.title, content: content.body, category },
+          id,
+          token
+        )
+      : articleService.createArticle(
+          { title: content.title, content: content.body, category },
+          token
+        );
+
+    const response = await saveArticle;
+    if (response) window.location.href = "/articles";
   };
+
   return (
     <>
       <Header styles="absolute" />
@@ -258,9 +203,9 @@ const NewArticle = () => {
 
         <button
           onClick={togglePreview}
-          className="fixed bottom-4 right-4 md:hidden bg-darker text-white p-2 rounded-full shadow-lg"
+          className="fixed bottom-4 right-4 bg-white text-black rounded-full p-3 shadow-md hover:bg-gray-300 transition-all duration-300 md:hidden"
         >
-          {showPreview ? <EyeOff size={24} /> : <Eye size={24} />}
+          {showPreview ? <EyeOff size={26} /> : <Eye size={26} />}
         </button>
       </div>
     </>

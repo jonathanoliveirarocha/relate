@@ -2,7 +2,6 @@ import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Header from "../components/Header";
 import { authService } from "../api/auth.service";
-
 const InputField = ({ id, label, type, value, onChange, placeholder }) => (
   <div className="mb-4">
     <label htmlFor={id} className="block mb-2 text-sm font-medium">
@@ -26,39 +25,34 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => !prevState);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleAdminLoginSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      const loginResponse = await authService.loginAsAdmin({ email, password });
-      const responseData = await loginResponse.json();
-
-      if (loginResponse.ok) {
-        storeJwtToken(responseData.token);
-        redirectToArticles();
+      const { ok, token, error } = await loginAdmin();
+      if (ok) {
+        storeJwtToken(token);
+        redirectTo("/articles");
       } else {
-        displayErrorMessage(responseData.error);
+        displayErrorMessage(error);
       }
     } catch (error) {
-      console.error("An error occurred during the login process:", error);
+      console.error("Login error:", error);
     }
   };
 
-  const storeJwtToken = (token) => {
-    localStorage.setItem("jwtToken", token);
+  const loginAdmin = async () => {
+    const loginResponse = await authService.loginAsAdmin({ email, password });
+    const responseData = await loginResponse.json();
+    return { ok: loginResponse.ok, ...responseData };
   };
 
-  const redirectToArticles = () => {
-    window.location.href = "/articles";
-  };
+  const storeJwtToken = (token) => localStorage.setItem("jwtToken", token);
 
-  const displayErrorMessage = (message) => {
-    alert(message);
-  };
+  const redirectTo = (path) => (window.location.href = path);
+
+  const displayErrorMessage = (message) => alert(message);
 
   return (
     <>
@@ -113,14 +107,12 @@ export default function Login() {
               <p className="mt-1 text-xs text-gray-400">Digite a sua senha</p>
             </div>
 
-            <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="w-full bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-              >
-                Entrar
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+            >
+              Entrar
+            </button>
           </form>
 
           <div className="mt-4 text-center">
