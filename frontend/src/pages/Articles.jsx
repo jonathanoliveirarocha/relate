@@ -4,6 +4,10 @@ import Footer from "../components/Footer";
 import PageLogo from "../assets/relate-logo.png";
 import { isAuthenticated as verifyAuthenticated } from "../utils/Auth";
 
+const clearJwtToken = () => {
+  localStorage.removeItem("jwtToken");
+};
+
 const FeaturedCard = ({ title, description }) => (
   <a href="/article/teste">
     <div className="bg-b py-6 px-4 rounded-lg border border-border border-subtle hover:bg-dark cursor-pointer">
@@ -13,7 +17,7 @@ const FeaturedCard = ({ title, description }) => (
   </a>
 );
 
-const Header = ({ isAuthenticated, setIsAuthenticated }) => (
+const Header = ({ isAuthenticated, onLogout }) => (
   <header className="px-4 h-16 flex justify-between bg-black items-center">
     <div className="flex items-center pl-4">
       <a href="/">
@@ -32,7 +36,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => (
         <LogOut
           width={20}
           className="cursor-pointer hover:opacity-80"
-          onClick={() => setIsAuthenticated(false)}
+          onClick={onLogout}
         />
       )}
     </div>
@@ -47,14 +51,7 @@ const SearchInput = () => (
   />
 );
 
-const ArticleCard = ({
-  title,
-  description,
-  onEdit,
-  onDelete,
-  isAuthenticated,
-  href,
-}) => (
+const ArticleCard = ({ title, description, onEdit, onDelete, isAuthenticated, href }) => (
   <a href={`/article/${href}`}>
     <div className="bg-b py-6 px-4 border-b border-subtle hover:bg-dark cursor-pointer">
       <div className="flex relative">
@@ -100,13 +97,18 @@ const Articles = () => {
     alert("Remove");
   };
 
+  const handleLogout = () => {
+    clearJwtToken();
+    setIsAuthenticated(false);
+  };
+
   return (
     <>
       <Header
         isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
+        onLogout={handleLogout}
       />
-      <div className="min-h-screen bg-balck text-white font-sans px-4">
+      <div className="min-h-screen bg-black text-white font-sans px-4">
         <main className="max-w-6xl mx-auto min-h-screen">
           <FeaturedArticles />
           <RecentArticles
@@ -159,7 +161,7 @@ const RecentArticles = ({ isAuthenticated, onEdit, onDelete, setCategory }) => (
           <ArticleCard
             key={index}
             title="Titulo"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus fringilla porta. Sed eget."
             onEdit={onEdit}
             onDelete={onDelete}
             isAuthenticated={isAuthenticated}
