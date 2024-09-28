@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://dev-relate.vercel.app/article";
+const API_BASE_URL = "https://relate-backend.vercel.app/article";
 
 const articleService = {
   fetchAllArticles: async () => {
@@ -44,7 +44,6 @@ const articleService = {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao criar artigo!");
       }
-      alert("Artigo adicionado com sucesso!");
       return await response.json();
     } catch (error) {
       console.error(error.message);
@@ -67,7 +66,6 @@ const articleService = {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao atualizar artigo!");
       }
-      alert("Artigo atualizado com sucesso!");
       return await response.json();
     } catch (error) {
       console.error(error.message);
@@ -83,12 +81,10 @@ const articleService = {
           Authorization: token,
         },
       });
-
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao deletar artigo!");
       }
-      alert("Artigo deletado com sucesso!");
       return true;
     } catch (error) {
       console.error(error.message);

@@ -29,9 +29,9 @@ const articleService = {
       throw new Error("Erro ao buscar o artigo!");
     }
   },
-  
+
   incrementViewCount: async (id) => {
-    await Article.findByIdAndUpdate(id, { $inc: { views: 1 } });
+    await Article.findByIdAndUpdate(id, { $inc: { viewCount: 1 } });
   },
 
   updateArticleById: async (id, updatedData) => {

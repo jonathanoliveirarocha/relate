@@ -10,8 +10,16 @@ body {
 }
 
 .styled-p {
-  font-size: medium;
+  font-size: small;
   margin-bottom: 2rem;
+}
+
+.text-md-styled p {
+  font-size: medium !important;
+}
+
+.text-align-left p {
+  text-align: left;
 }
 
 .text-left {

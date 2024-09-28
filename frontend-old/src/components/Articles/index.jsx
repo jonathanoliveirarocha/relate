@@ -12,6 +12,7 @@ const Articles = (props) => {
       fetchData();
     }
   }, []);
+  
   useEffect(() => {
     const fetchData = async () => {
       let response;
