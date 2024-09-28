@@ -29,15 +29,36 @@ const BackButton = () => (
 
 export default function ReadArticle() {
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setData(await articleService.fetchArticleById(id));
-    };
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
 
-    fetchData();
+    return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const loadArticle = async () => {
+      const articleData = await articleService.fetchArticleById(id);
+      setArticle(articleData);
+    };
+    loadArticle();
+  }, [id]);
+
+  if (!article || loading) {
+    return (
+      <>
+        <Header />
+        <BackButton />
+        <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
+          <ArticleSkeleton />
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -45,16 +66,16 @@ export default function ReadArticle() {
       <BackButton />
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
         <main className="py-8 text-justify">
-          <ArticleHeader title={data.title} />
+          <ArticleHeader title={article.title} />
           <div
-            dangerouslySetInnerHTML={{ __html: data.content }}
+            dangerouslySetInnerHTML={{ __html: article.content }}
             className="text-primary text-md-styled"
           />
           <ArticleMetadata
-            date={new Date(data.publishedAt).toLocaleString("pt-BR", {
-              timezone: "UTC",
+            date={new Date(article.publishedAt).toLocaleString("pt-BR", {
+              timeZone: "UTC",
             })}
-            views={data.viewCount}
+            views={article.viewCount}
           />
         </main>
         <Footer />
@@ -62,3 +83,78 @@ export default function ReadArticle() {
     </>
   );
 }
+
+const SkeletonItem = ({ className }) => (
+  <div className={`bg-[#1a1a1a] rounded animate-pulse ${className}`}></div>
+);
+
+const ArticleSkeleton = () => {
+  return (
+    <div className="min-h-screen bg-black text-white max-w-3xl mx-auto pt-8">
+      <SkeletonItem className="h-8 md:h-10 w-3/4 mb-6" />
+
+      <div className="flex items-center space-x-4 mb-8">
+        <SkeletonItem className="h-10 w-10 rounded-full" />
+        <div className="space-y-2">
+          <SkeletonItem className="h-4 w-32" />
+          <SkeletonItem className="h-3 w-24" />
+        </div>
+      </div>
+
+      <div className="space-y-2 mb-8">
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-11/12" />
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-4/5" />
+      </div>
+
+      <SkeletonItem className="h-48 md:h-64 w-full mb-8" />
+
+      <SkeletonItem className="h-6 md:h-7 w-2/3 mb-4" />
+
+      <div className="space-y-2 mb-8">
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-11/12" />
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-4/5" />
+        <SkeletonItem className="h-4 w-full" />
+      </div>
+
+      <div className="pl-4 border-l-4 border-[#27272a80] mb-8">
+        <SkeletonItem className="h-4 w-11/12 mb-2" />
+        <SkeletonItem className="h-4 w-10/12" />
+      </div>
+
+      <div className="space-y-2 mb-8">
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-11/12" />
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-4/5" />
+      </div>
+
+      <SkeletonItem className="h-6 md:h-7 w-1/2 mb-4" />
+
+      <div className="space-y-3 mb-8">
+        <div className="flex items-center space-x-2">
+          <SkeletonItem className="h-3 w-3 rounded-full" />
+          <SkeletonItem className="h-4 w-11/12" />
+        </div>
+        <div className="flex items-center space-x-2">
+          <SkeletonItem className="h-3 w-3 rounded-full" />
+          <SkeletonItem className="h-4 w-10/12" />
+        </div>
+        <div className="flex items-center space-x-2">
+          <SkeletonItem className="h-3 w-3 rounded-full" />
+          <SkeletonItem className="h-4 w-11/12" />
+        </div>
+      </div>
+
+      <div className="space-y-2 mb-8">
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-11/12" />
+        <SkeletonItem className="h-4 w-full" />
+        <SkeletonItem className="h-4 w-3/4" />
+      </div>
+    </div>
+  );
+};
