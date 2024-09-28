@@ -1,6 +1,28 @@
-import React, { useState } from "react";
-import Header from '../components/Header';
-import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, Terminal, Link, Image, List, ListOrdered} from "lucide-react";
+import React, { useState, useEffect } from "react";
+import Header from "../components/Header";
+import {
+  Bold,
+  Italic,
+  Underline,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  Type,
+  Eye,
+  EyeOff,
+  Terminal,
+  Link,
+  Image,
+  List,
+  ListOrdered,
+} from "lucide-react";
+import { articleService } from "../api/article.service";
+import { useParams } from "react-router-dom";
+
+const getJwtToken = () => {
+  return localStorage.getItem("jwtToken");
+};
 
 const FormattingToolbar = ({ onFormat }) => {
   const toolbarButtons = [
@@ -51,48 +73,69 @@ const ArticleForm = ({
   onFormat,
   onCategoryChange,
   onSave,
-}) => (
-  <form className="h-full">
-    <input
-      type="text"
-      value={content.title}
-      onChange={onTitleChange}
-      placeholder="Título"
-      className="w-full mb-4 p-2 bg-black border border-subtle rounded-md"
-    />
-    <FormattingToolbar onFormat={onFormat} />
-    <TextArea value={content.body} onChange={onBodyChange} />
-    <div className="flex gap-4 mt-2">
-      <select className="w-1/2 bg-black" onChange={onCategoryChange}>
-        <option value="astronomy">Astronomia</option>
-        <option value="tech">Tecnologia</option>
-        <option value="music">Música</option>
-      </select>
-      <button
-        type="submit"
-        className="w-1/2 bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200"
-        onClick={onSave}
-      >
-        Salvar
-      </button>
-    </div>
-  </form>
-);
+  category,
+}) => {
+  const { id } = useParams();
+  return (
+    <form className="h-full">
+      <input
+        type="text"
+        value={content.title}
+        onChange={onTitleChange}
+        placeholder="Título"
+        className="w-full mb-4 p-2 bg-black border border-subtle rounded-md"
+      />
+      <FormattingToolbar onFormat={onFormat} />
+      <TextArea value={content.body} onChange={onBodyChange} />
+      <div className="flex gap-4 mt-2">
+        <select
+          className="w-1/2 bg-black"
+          value={category}
+          onChange={onCategoryChange}
+        >
+          <option value="astronomy">Astronomia</option>
+          <option value="tech">Tecnologia</option>
+          <option value="music">Música</option>
+        </select>
+        <button
+          type="submit"
+          className="w-1/2 bg-white text-black font-semibold py-2 px-4 rounded-md hover:bg-gray-200"
+          onClick={onSave}
+        >
+          {id ? "Editar" : "Salvar"}
+        </button>
+      </div>
+    </form>
+  );
+};
 
 const ArticlePreview = ({ title, body }) => (
   <div className="h-full overflow-auto">
     <h1 className="text-3xl md:text-4xl text-white font-bold mb-4">{title}</h1>
     <div
       dangerouslySetInnerHTML={{ __html: body }}
-      className="prose prose-invert max-w-none text-primary"
+      className="prose prose-invert max-w-none text-primary text-md-styled"
     />
   </div>
 );
 
 const NewArticle = () => {
+  const { id } = useParams();
   const [content, setContent] = useState({ title: "", body: "" });
   const [showPreview, setShowPreview] = useState(false);
   const [category, setCategory] = useState("astronomy");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (id) {
+        const response = await articleService.fetchArticleById(id);
+        setContent({ title: response.title, body: response.content });
+        setCategory(response.category);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleInputChange = (field, value) =>
     setContent((prevContent) => ({ ...prevContent, [field]: value }));
@@ -117,11 +160,17 @@ const NewArticle = () => {
       link: `<a class="styled-a" href="${selectedText}" target="_blank">${selectedText}</a>`,
       image: `<img src="${selectedText}" class="styled-img" alt="Imagem ilustrativa"/>`,
       list: (() => {
-        const listItems = selectedText.split('\n').map(line =>`<li>${line.trim()}</li>`).join('');
+        const listItems = selectedText
+          .split("\n")
+          .map((line) => `<li>${line.trim()}</li>`)
+          .join("");
         return `<ul class="styled-list">${listItems}</ul>`;
       })(),
       "list-ordered": (() => {
-        const listItems = selectedText.split('\n').map(line => `<li>${line.trim()}</li>`).join('');
+        const listItems = selectedText
+          .split("\n")
+          .map((line) => `<li>${line.trim()}</li>`)
+          .join("");
         return `<ol class="styled-list-ordered">${listItems}</ol>`;
       })(),
     };
@@ -134,9 +183,58 @@ const NewArticle = () => {
 
   const togglePreview = () => setShowPreview((prev) => !prev);
 
+  const createArticle = async () => {
+    if (content.title == "" || content.body == "") {
+      alert("Preencha todos os campos!");
+      return;
+    }
+
+    const token = getJwtToken();
+    const response = await articleService.createArticle(
+      {
+        title: content.title,
+        content: content.body,
+        category,
+      },
+      token
+    );
+
+    if (response) {
+      window.location.href = "/articles";
+    }
+  };
+
+  const editArticle = async () => {
+    if (content.title == "" || content.body == "") {
+      alert("Preencha todos os campos!");
+      return;
+    }
+    const token = getJwtToken();
+    const response = await articleService.updateArticle(
+      {
+        title: content.title,
+        content: content.body,
+        category,
+      },
+      id,
+      token
+    );
+    if (response) {
+      window.location.href = "/articles";
+    }
+  };
+
+  const handleSubmitForm = async (e) => {
+    e.preventDefault();
+    if (id) {
+      await editArticle();
+    } else {
+      await createArticle();
+    }
+  };
   return (
     <>
-      <Header styles="absolute"/>
+      <Header styles="absolute" />
       <div className="flex flex-col gap-4 md:flex-row h-screen z-50 bg-black text-gray-100 py-[70px] px-4">
         <div
           className={`w-full md:w-1/2 ${showPreview ? "hidden md:block" : ""}`}
@@ -147,17 +245,13 @@ const NewArticle = () => {
             onBodyChange={(e) => handleInputChange("body", e.target.value)}
             onFormat={handleFormat}
             onCategoryChange={(e) => setCategory(e.target.value)}
-            onSave={(e) => {
-              e.preventDefault();
-              console.log("Save article:", content, category);
-            }}
+            onSave={handleSubmitForm}
+            category={category}
           />
         </div>
 
         <div
-          className={`w-full md:w-1/2 ${
-            !showPreview ? "hidden md:block" : ""
-          }`}
+          className={`w-full md:w-1/2 ${!showPreview ? "hidden md:block" : ""}`}
         >
           <ArticlePreview title={content.title} body={content.body} />
         </div>
