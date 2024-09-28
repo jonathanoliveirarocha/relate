@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  scroll-behavior: smooth;
+  color: white;
+  background-color: black;
+}
+
+.styled-p {
+  font-size: medium;
+  margin-bottom: 2rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justified {
+  text-align: justify;
+}
+
+.text-subtitle {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .text-subtitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.limited-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.terminal {
+  width: 100%;
+  height: fit-content;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #1d1f21;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.red {
+  background-color: #ff605c;
+}
+
+.yellow {
+  background-color: #ffbd44;
+}
+
+.green {
+  background-color: #00ca56;
+}
+
+.terminal-content {
+  flex-grow: 1;
+  height: auto;
+  padding: 10px;
+  overflow-y: auto;
+  white-space: pre-line;
+}
+
+.styled-a {
+  margin-bottom: 2rem;
+  max-width: 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #3b82f6;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.styled-img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+.styled-list {
+  list-style-type: disc;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.styled-list-ordered {
+  list-style-type: decimal;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.styled-list li,
+.styled-list-ordered li {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.styled-title-card {
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const articleSchema = new mongoose.Schema({
   title: {
@@ -9,19 +10,14 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  publishedAt: { 
+  data: {
     type: Date,
     default: Date.now,
   },
   category: {
-    type: String,
-    required: true,
-  },
-  viewCount: { 
-    type: Number,
-    default: 0,
-    required: true,
-  },
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+  }
 });
 
 const Article = mongoose.model("Article", articleSchema);

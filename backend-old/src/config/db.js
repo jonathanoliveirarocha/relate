@@ -4,7 +4,7 @@ const uri = process.env.DB_PASSWORD;
 
 mongoose.connect(uri);
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "Error connecting to MongoDB!"));
+db.on("error", console.error.bind(console, "Error connecting to MongoDB"));
 db.once("open", () => {
   console.log("Connection to MongoDB established!");
 });

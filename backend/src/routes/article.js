@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const articleController = require("../controllers/articleController");
-const { verifyToken } = require("../helpers/verifyToken");
+const { verifyToken } = require("../utils/verifyToken");
 
-router.get("/showall", articleController.showAllArticles);
-router.post("/create", verifyToken, articleController.createArticle);
-router.get("/showone/:id", articleController.showOneArticleById);
-router.put("/update/:id", verifyToken, articleController.updateOneArticleById);
-router.delete("/delete/:id", verifyToken, articleController.deleteOneArticleById);
-router.get("/search/keyword/:keyword", articleController.searchByKeywords);
+router.get("/articles", articleController.getAllArticles);
+router.post("/articles", verifyToken, articleController.createArticle);
+router.get("/articles/:id", articleController.getArticleById);
+router.put("/articles/:id", verifyToken, articleController.updateArticleById);
+router.delete("/articles/:id", verifyToken, articleController.deleteArticleById);
+router.get("/articles/search/keyword/:keyword", articleController.searchArticlesByKeyword);
+router.get("/articles/search/category/:category", articleController.searchArticlesByCategory);
 
 module.exports = router;
