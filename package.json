@@ -1,0 +1,14 @@
+{
+  "name": "relate",
+  "scripts": {
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "install": "npm-run-all --sequential install-backend install-frontend",
+    "start-backend": "cd backend && node index.js",
+    "start-frontend": "cd frontend && npm run dev",
+    "start": "npm-run-all --parallel start-backend start-frontend"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

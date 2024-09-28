@@ -1,54 +1,93 @@
-# Dev Relate
 
-**Accessible project link: <a href="https://dev-relate-frontend.vercel.app/">Dev Relate</a>**
+# Relate
 
-## Summary
+Relate is a space designed for those who are curious and passionate about three universes that, at first glance, may seem completely disconnected: Astronomy, technology and music. What do these themes have in common? At Relate, we believe that it is love that unites them – the love of knowledge, innovation and creativity.
 
-1. [What it is](#what-it-is)
-2. [Folders](#folders)
-3. [Preview](#preview)
 
-## What it is
+## Demo
 
-I've always really enjoyed studying and writing down the content I learned, however, I always had difficulty finding what I wrote down to consult when I needed it, which is why I developed this website. Here, it is possible to create articles based on categories, and filter them both by that category and by keywords. Furthermore, articles have pre-formatted tags to be written and displayed, as well as a preview of what is being written. I chose not to create documentation on how to run the project, because it has very specific characteristics for the purpose I created, in addition to not having a registration route to create an administrator (for security). However, the code is very self-explanatory for anyone who wants to try to get inspired and create something similar.
+https://somerelate.vercel.app/
 
-> Program developed in my native language (Portuguese).
 
-### Technologies and libraries used :
 
-- HTML, CSS , JavaScript
+## Tech Stack
+
 - React
 - Tailwind CSS
+- HTML, CSS , JavaScript
 - Node.js (Back-End)
 - Expresss
 - MongoDB
 
-## Folders
 
-### Backend :
+## Environment Variables
 
-- **/src/config:** Defines project settings
-- **/src/controllers:** Defines the request handling functions
-- **/src/helpers:** Defines recurring auxiliary functions the Database
-- **/src/models:** Defines models for storage in the Database
-- **/src/routes:** Defines API routes
-- **/src/services:** Defines specific files for handling the Database
+If you want to run a local backend, you need to set up the following environment variables in your ".env" file. Additionally, make sure to change the API_BASE_URL to your local port in the path "/frontend/src/api/" for all relevant files.
 
-### Frontend :
+`DB_PASSWORD`
 
-- **/src/api:** Defines all the API calls
-- **/src/assets:** Defines all image files used
-- **/src/components:** Defines each fragmented part of the application
+`SESSION_KEY`
 
-## Preview :
+`PORT`
 
-<table width="100%"> 
-<tr>
-<td width="50%">
-<img src="./SAMPLE/SAMPLE1.png/" alt="Site preview">
-</td> 
-<td width="50%">
-<img src="./SAMPLE/SAMPLE2.png/" alt="Site preview">
-</td> 
-</tr>
-</table>
+
+## Run locally
+
+Clone the project:
+
+```bash
+  git clone https://github.com/jonathanoliveirarocha/relate
+```
+
+Enter the project directory:
+
+```bash
+  cd relate
+```
+
+Install dependencies:
+
+```bash
+  npm install
+```
+
+Start the server:
+
+```bash
+  npm start
+```
+
+The application frontend will run by default at: http://localhost:5173/
+## License
+
+MIT License
+
+Copyright (c) 2024 Jonathan de Oliveira Rocha
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+## Authors
+
+- [@jonathanoliveirarocha](https://github.com/jonathanoliveirarocha)
+
+
+## Support
+
+For support, follow me on [GitHub](https://www.github.com/jonathanoliveirarocha) and [LinkedIn](https://www.linkedin.com/in/jonathandeoliveirarocha).
