@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Header from "../components/Header";
+import { authService } from "../api/auth.service";
 
 const InputField = ({ id, label, type, value, onChange, placeholder }) => (
   <div className="mb-4">
@@ -29,6 +30,36 @@ export default function Login() {
     setShowPassword((prevState) => !prevState);
   };
 
+  const handleAdminLoginSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const loginResponse = await authService.loginAsAdmin({ email, password });
+      const responseData = await loginResponse.json();
+
+      if (loginResponse.ok) {
+        storeJwtToken(responseData.token);
+        redirectToArticles();
+      } else {
+        displayErrorMessage(responseData.error);
+      }
+    } catch (error) {
+      console.error("An error occurred during the login process:", error);
+    }
+  };
+
+  const storeJwtToken = (token) => {
+    localStorage.setItem("jwtToken", token);
+  };
+
+  const redirectToArticles = () => {
+    window.location.href = "/articles";
+  };
+
+  const displayErrorMessage = (message) => {
+    alert(message);
+  };
+
   return (
     <>
       <Header styles="absolute" />
@@ -41,7 +72,7 @@ export default function Login() {
             Essa área é restrita apenas para administradores.
           </p>
 
-          <form>
+          <form onSubmit={handleAdminLoginSubmit}>
             <InputField
               id="email"
               label="Email"

@@ -6,14 +6,14 @@ module.exports = {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return res.status(403).json({ message: "Token não fornecido!" });
+      return res.status(403).json({ error: "Você não tem acesso a este recurso!" });
     }
 
     const token = authHeader;
 
     jwt.verify(token, secretKey, (err, decoded) => {
       if (err) {
-        return res.status(401).json({ message: "Token inválido!" });
+        return res.status(401).json({ error: "Token inválido!" });
       }
       req.user = decoded;
       next();
