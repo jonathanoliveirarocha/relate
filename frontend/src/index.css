@@ -107,6 +107,7 @@ body {
 }
 
 .styled-a {
+  display: inline-block;
   margin-bottom: 2rem;
   max-width: 50%;
   white-space: nowrap;
