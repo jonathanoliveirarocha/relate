@@ -43,7 +43,10 @@ export default function ReadArticle() {
   useEffect(() => {
     const loadArticle = async () => {
       const articleData = await articleService.fetchArticleById(id);
-      setArticle(articleData);
+      if (articleData) {
+        return setArticle(articleData);
+      }
+      window.location.href = `/notfound`;
     };
     loadArticle();
   }, [id]);
