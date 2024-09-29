@@ -68,7 +68,7 @@ export default function ReadArticle() {
       <Header />
       <BackButton />
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
-        <main className="py-8 text-justify">
+        <main className="py-8 text-justify min-h-screen">
           <ArticleHeader title={article.title} />
           <div
             dangerouslySetInnerHTML={{ __html: article.content }}
