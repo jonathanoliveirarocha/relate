@@ -11,7 +11,7 @@ body {
 
 .styled-p {
   font-size: small;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .text-md-styled p {
@@ -130,14 +130,14 @@ body {
   list-style-type: disc;
   margin-left: 1rem;
   padding-left: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .styled-list-ordered {
   list-style-type: decimal;
   margin-left: 1rem;
   padding-left: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .styled-list li,
