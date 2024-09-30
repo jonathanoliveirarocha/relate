@@ -76,7 +76,7 @@ export default function ReadArticle() {
           />
           <ArticleMetadata
             date={new Date(article.publishedAt).toLocaleString("pt-BR", {
-              timeZone: "UTC",
+              timeZone: "America/Sao_Paulo",
             })}
             views={article.viewCount}
           />
