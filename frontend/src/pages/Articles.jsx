@@ -126,7 +126,7 @@ const ArticleInfo = React.memo(({ date, views }) => (
   <div className="flex justify-between text-sm text-primary opacity-60 mt-4">
     <span>
       {new Date(date).toLocaleString("pt-BR", {
-        timeZone: "UTC",
+        timeZone: "America/Sao_Paulo",
       })}
     </span>
     <span className="flex items-center">
