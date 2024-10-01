@@ -122,18 +122,18 @@ To start the development server:
 
 ### Articles
 
-- `GET /api/articles` - Retrieve all articles
-- `POST /api/articles` - Create a new article (requires authentication)
-- `GET /api/articles/:id` - Retrieve a specific article
-- `PUT /api/articles/:id` - Update an article (requires authentication)
-- `DELETE /api/articles/:id` - Delete an article (requires authentication)
-- `GET /api/articles/search/keyword/:keyword` - Search articles by keyword
-- `GET /api/articles/search/category/:category` - Search articles by category
+- `GET /article/articles` - Retrieve all articles
+- `POST /article/articles` - Create a new article (requires authentication)
+- `GET /article/articles/:id` - Retrieve a specific article
+- `PUT /article/articles/:id` - Update an article (requires authentication)
+- `DELETE /article/articles/:id` - Delete an article (requires authentication)
+- `GET /article/articles/search/keyword/:keyword` - Search articles by keyword
+- `GET /article/articles/search/category/:category` - Search articles by category
 
 ### Authentication
 
-- `POST /api/auth/admin/login` - Admin login
-- `POST /api/auth/validate` - Validate authenticated user (requires token)
+- `POST /auth/auth/admin/login` - Admin login
+- `POST /auth/auth/validate` - Validate authenticated user (requires token)
 
 ## Data Models
 
