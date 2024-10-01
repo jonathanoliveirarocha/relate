@@ -159,11 +159,11 @@ To start the development server:
 }
 ```
 
-### Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-### License
+## License
 
 ```bash
 MIT License
@@ -189,10 +189,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-### Authors
+## Authors
 
 - [@jonathanoliveirarocha](https://github.com/jonathanoliveirarocha)
 
-### Support
+## Support
 
 For support, follow the author on [GitHub](https://www.github.com/jonathanoliveirarocha) and [LinkedIn](https://www.linkedin.com/in/jonathandeoliveirarocha).
