@@ -61,19 +61,19 @@ Experience Relate in action: [https://somerelate.vercel.app/](https://somerelate
 ### Installation
 
 1. Clone the repository:
-    ```bash
-      git clone https://github.com/jonathanoliveirarocha/relate
-    ```
+```bash
+  git clone https://github.com/jonathanoliveirarocha/relate
+```
 
 2. Navigate to the project directory:
-    ```bash
-      cd relate
-    ```
+```bash
+  cd relate
+```
 
 3. Install dependencies:
-    ```bash
-      npm install
-    ```
+```bash
+  npm install
+```
 
 ### Environment Variables
 
@@ -93,14 +93,14 @@ To create an admin user in your local MongoDB database:
 
 2. Use the following command to insert an admin user:
 
-    ```bash
-    db.users.insertOne({
-      email: "admin@example.com",
-      password: "hashed_password", // Make sure to hash the password before storing
-      isAdmin: true
-    })
-    ```
-    > Replace `"admin@example.com"` with your desired admin email and `"hashed_password"` with a properly hashed password.
+```bash
+db.users.insertOne({
+  email: "admin@example.com",
+  password: "hashed_password", // Make sure to hash the password before storing
+  isAdmin: true
+})
+```
+> Replace `"admin@example.com"` with your desired admin email and `"hashed_password"` with a properly hashed password.
 
 3. Ensure that the `isAdmin` field is set to `true` for admin privileges. 
 
