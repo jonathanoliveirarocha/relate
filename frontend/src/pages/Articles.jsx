@@ -251,15 +251,11 @@ const Articles = () => {
   const [featuredData, setFeaturedData] = useState([]);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const fetchArticles = useCallback(async () => {
     const articles = await articleService.fetchAllArticles();
     setData(articles);
     setFeaturedData(getFeaturedArticles(articles));
+    setLoading(false);
   }, []);
 
   useEffect(() => {
