@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ArrowBigLeft, Eye } from "lucide-react";
+import { ArrowBigLeft, Eye, Share2 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { articleService } from "../api/article.service";
@@ -26,6 +26,29 @@ const BackButton = () => (
     </button>
   </a>
 );
+
+const ShareButton = ({ link, title, style }) => {
+  const handleShare = () => {
+    const shareData = {
+      title: title,
+      text: "Confira este conteúdo incrível!",
+      url: link,
+    };
+
+    navigator
+      .share(shareData)
+      .then(() => console.log("Conteúdo compartilhado com sucesso."))
+      .catch((error) => console.error("Erro ao compartilhar:", error));
+  };
+
+  return (
+    <Share2
+      size={22}
+      className={`cursor-pointer ${style ? style : ""}`}
+      onClick={handleShare}
+    />
+  );
+};
 
 export default function ReadArticle() {
   const { id } = useParams();
@@ -68,7 +91,12 @@ export default function ReadArticle() {
       <Header />
       <BackButton />
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
-        <main className="py-8 text-justify min-h-screen">
+        <ShareButton
+          link={`http://localhost:5173/article/${id}`}
+          title={article.title}
+          style={"text-primary justify-end float-right"}
+        />
+        <main className="py-10 text-justify min-h-screen">
           <ArticleHeader title={article.title} />
           <div
             dangerouslySetInnerHTML={{ __html: article.content }}
