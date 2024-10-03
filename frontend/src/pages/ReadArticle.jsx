@@ -92,7 +92,7 @@ export default function ReadArticle() {
       <BackButton />
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">
         <ShareButton
-          link={`http://localhost:5173/article/${id}`}
+          link={`https://somerelate.vercel.app/article/${id}`}
           title={article.title}
           style={"text-primary justify-end float-right"}
         />
