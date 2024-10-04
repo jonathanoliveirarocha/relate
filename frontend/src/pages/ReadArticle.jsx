@@ -56,18 +56,12 @@ export default function ReadArticle() {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
     const loadArticle = async () => {
       const articleData = await articleService.fetchArticleById(id);
       if (articleData) {
-        return setArticle(articleData);
+        setArticle(articleData);
+        setLoading(false);
+        return;
       }
       window.location.href = `/notfound`;
     };
