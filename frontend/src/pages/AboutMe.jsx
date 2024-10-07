@@ -33,9 +33,9 @@ const ResumeHeader = () => {
       text: "+55 (31) 99941-4881",
     },
     {
-      href: "https://www.google.com/maps/place/S%C3%A3o+Paulo,+SP/@-23.6820636,-46.9249557,10z/data=!4m6!3m5!1s0x94ce448183a461d1:0x9ba94b08ff335bae!8m2!3d-23.5557714!4d-46.6395571!16zL20vMDIycGZt?entry=ttu&g_ep=EgoyMDI0MDkxOC4xIKXMDSoASAFQAw%3D%3D",
+      href: "https://www.google.com/maps?sca_esv=911310f7fbac1324&rlz=1C1FCXM_pt-PTBR991BR991&output=search&q=S%C3%A3o+Gon%C3%A7alo+do+Rio+Abaixo,+MG+-+Brasil&source=lnms&fbs=AEQNm0AuaLfhdrtx2b9ODfK0pnmiw5nSZwNlVfEzuxKLWTKEHXt5IY2W8nQL2YIQAPJugdjnyungMiDacVc1U-cdjtDc-41tMD6P0rkTK_d0IegjWr-VtDW7y1o75Md8d4UGw__3kUeoiw8QdNd51sU3FAVFvXZ-Tg4emguFhCq0qeCrfu-3Ad0c6-vZGkQUBoptSZVDjSqA6TDMjLGq2Vk118T0-8zPDQ&entry=mc&ved=1t:200715&ictx=111",
       icon: <MapPin className="w-5 h-5 mr-2" />,
-      text: "São Paulo, SP - Brasil",
+      text: "São Gonçalo do Rio Abaixo, MG - Brasil",
     },
     {
       href: "https://www.linkedin.com/in/jonathandeoliveirarocha",
@@ -96,13 +96,13 @@ const ExperienceSection = () => {
     {
       company: "Relate",
       companyWebsite: "/",
-      position: "Desenvolvedor Full Stack",
+      position: "Fundador & Desenvolvedor Full Stack",
       date: "nov 2023 - Presente",
     },
     {
       company: "Projeto Base",
       companyWebsite: "https://projetobaseosasco.ong.br/",
-      position: "Desenvolvedor Web",
+      position: "Desenvolvedor web (Voluntário)",
       date: "nov 2023 - fev 2024",
     },
     {
@@ -143,7 +143,7 @@ const EducationSection = () => {
     {
       institution: "SENAI",
       institutionWebsite: "https://www.fiemg.com.br/senai/",
-      area: "Técnico em Informática para internet",
+      area: "Técnico em Informática para Internet",
       date: "out de 2022 - mai de 2024",
     },
     {
