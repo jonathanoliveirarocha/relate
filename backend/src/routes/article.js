@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const articleController = require("../controllers/articleController");
-const { verifyToken } = require("../utils/verifyToken");
+const { verifyToken } = require("../middlewares/authMiddleware");
 
 router.get("/articles", articleController.getAllArticles);
 router.post("/articles", verifyToken, articleController.createArticle);
