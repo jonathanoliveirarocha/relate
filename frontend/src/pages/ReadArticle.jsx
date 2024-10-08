@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ArrowBigLeft, Eye, Share2 } from "lucide-react";
+import { ArrowBigLeft, Eye, IdCard, Share2 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { articleService } from "../api/article.service";
@@ -101,7 +101,7 @@ export default function ReadArticle() {
         <title>Relate - {article.title}</title>
         <meta name="description" content={extractAndShortenText(article.content)} />
         <meta name="keywords" content={`${separateWordsByComma(article.title)}, astronomia, tecnologia, música, conhecimento, blog, artigos, ciência`} />
-        <link rel="canonical" href={`https://somerelate.vercel.app/article/${article?article.id:null}`} />
+        <link rel="canonical" href={`https://somerelate.vercel.app/article/${id}`} />
       </Helmet>
       <Header />
       <BackButton />
