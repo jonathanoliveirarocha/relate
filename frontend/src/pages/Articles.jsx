@@ -3,7 +3,7 @@ import { Eye, Trash2, Pencil, LogOut, SquarePlus } from "lucide-react";
 import Footer from "../components/Footer";
 import PageLogo from "../assets/relate-logo.png";
 import { isAuthenticated as verifyAuthenticated } from "../utils/Auth";
-import { articleService } from "../api/article.service";
+import { articleService } from "../api/articleService";
 import { Helmet } from "react-helmet";
 
 const SkeletonItem = ({ className }) => (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Header from "../components/Header";
-import { authService } from "../api/auth.service";
+import { authService } from "../api/authService";
 const InputField = ({ id, label, type, value, onChange, placeholder }) => (
   <div className="mb-4">
     <label htmlFor={id} className="block mb-2 text-sm font-medium">

@@ -1,4 +1,4 @@
-const articleService = require("../services/article.service");
+const articleService = require("../services/articleService");
 
 const articleController = {
   getAllArticles: async (req, res) => {
