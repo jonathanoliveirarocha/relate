@@ -315,7 +315,7 @@ export default function AboutMe() {
         />
         <meta
           name="keywords"
-          content="Jonathan, node.js, javascript, react, mongodb, back-end, front-end, full stack, currículo, programador, desenvolvedor, blog, astronomia, tecnologia, música, curiosidade, Minas Gerais"
+          content="Relate, Jonathan, node.js, javascript, react, mongodb, back-end, front-end, full stack, currículo, programador, desenvolvedor, blog, astronomia, tecnologia, música, curiosidade, Minas Gerais"
         />
         <link rel="canonical" href="https://somerelate.vercel.app/aboutme" />
       </Helmet>
