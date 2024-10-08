@@ -10,6 +10,7 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io5";
 import { GrMysql } from "react-icons/gr";
 import { DiScrum } from "react-icons/di";
+import { Helmet } from "react-helmet";
 
 const ContactLink = ({ href, icon: IconComponent, text }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">
@@ -306,6 +307,18 @@ const SkillsSection = () => {
 export default function AboutMe() {
   return (
     <>
+    <Helmet>
+        <title>Relate - Sobre Mim</title>
+        <meta
+          name="description"
+          content="Olá, sou Jonathan, um desenvolvedor full stack de 21 anos, apaixonado por astronomia, tecnologia e música. Explore meu blog e descubra mais sobre minhas paixões e experiências."
+        />
+        <meta
+          name="keywords"
+          content="Jonathan, node.js, javascript, react, mongodb, back-end, front-end, full stack, currículo, programador, desenvolvedor, blog, astronomia, tecnologia, música, curiosidade, Minas Gerais"
+        />
+        <link rel="canonical" href="https://somerelate.vercel.app/aboutme" />
+      </Helmet>
       <Header />
       <div className="min-h-screen bg-black text-gray-100 mt-6 px-4">
         <div className="max-w-4xl mx-auto">
