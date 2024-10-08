@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ArrowBigLeft, Eye, IdCard, Share2 } from "lucide-react";
+import { ArrowBigLeft, Eye, Share2 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { articleService } from "../api/articleService";

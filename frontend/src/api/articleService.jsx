@@ -42,6 +42,9 @@ const articleService = {
 
       if (!response.ok) {
         const errorResponse = await response.json();
+        localStorage.removeItem("jwtToken");
+        alert("Sua sessão expirou!");
+        window.location.href = "/admin/auth/login";
         throw new Error(errorResponse.error || "Falha ao criar artigo!");
       }
       return await response.json();
@@ -64,6 +67,9 @@ const articleService = {
 
       if (!response.ok) {
         const errorResponse = await response.json();
+        localStorage.removeItem("jwtToken");
+        alert("Sua sessão expirou!");
+        window.location.href = "/admin/auth/login";
         throw new Error(errorResponse.error || "Falha ao atualizar artigo!");
       }
       return await response.json();
@@ -83,6 +89,9 @@ const articleService = {
       });
       if (!response.ok) {
         const errorResponse = await response.json();
+        localStorage.removeItem("jwtToken");
+        alert("Sua sessão expirou!");
+        window.location.href = "/admin/auth/login";
         throw new Error(errorResponse.error || "Falha ao deletar artigo!");
       }
       return true;
