@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import PageLogo from "../assets/relate-logo.png";
 import { isAuthenticated as verifyAuthenticated } from "../utils/Auth";
 import { articleService } from "../api/article.service";
+import { Helmet } from "react-helmet";
 
 const SkeletonItem = ({ className }) => (
   <div className={`bg-[#1a1a1a] rounded animate-pulse ${className}`} />
@@ -310,6 +311,18 @@ const Articles = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Relate - Artigos</title>
+        <meta
+          name="description"
+          content="Saudações, explorador! O Relate é um espaço para curiosos apaixonados por astronomia, tecnologia e música. Descubra como esses mundos se conectam!"
+        />
+        <meta
+          name="keywords"
+          content="astronomia, tecnologia, música, conhecimento, blog, artigos, ciência"
+        />
+        <link rel="canonical" href="https://somerelate.vercel.app/articles" />
+      </Helmet>
       <Header
         isAuthenticated={isAuthenticated}
         onLogout={handleLogout}

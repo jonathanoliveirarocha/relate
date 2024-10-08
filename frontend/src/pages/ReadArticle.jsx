@@ -4,6 +4,7 @@ import { ArrowBigLeft, Eye, Share2 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { articleService } from "../api/article.service";
+import { Helmet } from "react-helmet";
 
 const ArticleHeader = ({ title }) => (
   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-left">{title}</h2>
@@ -80,8 +81,28 @@ export default function ReadArticle() {
     );
   }
 
+  const extractAndShortenText = (htmlString) => {
+    const match = htmlString.match(/<p class="styled-p text-justify">(.*?)<\/p>/);
+  
+    if (match && match[1]) {
+      const text = match[1]; 
+  
+      return text.length > 160 ? text.substring(0, 160) : text;
+    }
+  
+    return '';
+  }
+
+  const separateWordsByComma = (inputString) => inputString.split(/\s+/).join(', ');
+
   return (
     <>
+      <Helmet>
+        <title>Relate - {article.title}</title>
+        <meta name="description" content={extractAndShortenText(article.content)} />
+        <meta name="keywords" content={`${separateWordsByComma(article.title)}, astronomia, tecnologia, música, conhecimento, blog, artigos, ciência`} />
+        <link rel="canonical" href={`https://somerelate.vercel.app/article/${article?article.id:null}`} />
+      </Helmet>
       <Header />
       <BackButton />
       <div className="min-h-screen bg-black text-white max-w-3xl mx-auto px-4">

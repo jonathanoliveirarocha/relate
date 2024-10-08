@@ -2,6 +2,7 @@ import React from "react";
 import BackgroundAstronomy from "../assets/bg-astronomy-image.jpg";
 import PageLogo from "../assets/relate-logo.png";
 import { CircleAlert } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const Header = () => (
   <header className="absolute top-0 left-0 z-50 w-full py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-32">
@@ -88,6 +89,18 @@ const Image = () => (
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Relate - Início</title>
+        <meta
+          name="description"
+          content="Saudações, explorador! O Relate é um espaço para curiosos apaixonados por astronomia, tecnologia e música. Descubra como esses mundos se conectam!"
+        />
+        <meta
+          name="keywords"
+          content="astronomia, tecnologia, música, conhecimento, blog, artigos, ciência"
+        />
+        <link rel="canonical" href="https://somerelate.vercel.app/" />
+      </Helmet>
       <Header />
       <HeroSection />
     </>
