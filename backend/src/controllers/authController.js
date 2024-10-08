@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const secretKey = process.env.SESSION_KEY;
-const userService = require("../services/user.service");
+const userService = require("../services/userService");
 
 const authController = {
   submitAdminLoginForm: async (req, res) => {

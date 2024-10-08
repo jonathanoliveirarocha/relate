@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Type, Eye, EyeOff, Terminal, Link, Image, List, ListOrdered, } from "lucide-react";
-import { articleService } from "../api/article.service";
+import { articleService } from "../api/articleService";
 import { useParams } from "react-router-dom";
 
 const getJwtToken = () => localStorage.getItem("jwtToken");
