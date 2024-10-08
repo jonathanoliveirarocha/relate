@@ -100,7 +100,7 @@ export default function ReadArticle() {
       <Helmet>
         <title>Relate - {article.title}</title>
         <meta name="description" content={extractAndShortenText(article.content)} />
-        <meta name="keywords" content={`${separateWordsByComma(article.title)}, astronomia, tecnologia, música, conhecimento, blog, artigos, ciência`} />
+        <meta name="keywords" content={`${separateWordsByComma(article.title)}, Relate, astronomia, tecnologia, música, conhecimento, blog, artigos, ciência`} />
         <link rel="canonical" href={`https://somerelate.vercel.app/article/${id}`} />
       </Helmet>
       <Header />

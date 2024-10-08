@@ -97,7 +97,7 @@ export default function Home() {
         />
         <meta
           name="keywords"
-          content="astronomia, tecnologia, música, conhecimento, blog, artigos, ciência"
+          content="Relate, astronomia, tecnologia, música, conhecimento, blog, artigos, ciência"
         />
         <link rel="canonical" href="https://somerelate.vercel.app/" />
       </Helmet>
