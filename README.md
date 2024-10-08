@@ -41,6 +41,7 @@ Experience Relate in action: [https://somerelate.vercel.app/](https://somerelate
 - React Router for navigation
 - React Icons and Lucide React for iconography
 - React Country Flag for country flag components
+- React Helmet for managing document head (title, meta tags)
 
 ### Backend
 - Node.js
