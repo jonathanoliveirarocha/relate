@@ -6,15 +6,17 @@ import { Helmet } from "react-helmet";
 
 const Header = () => (
   <header className="absolute top-0 left-0 z-50 w-full py-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-32">
-    <a href="/">
-      <img
-        src={PageLogo}
-        alt="Page logo"
-        width={200}
-        height={50}
-        className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] xl:w-[200px]"
-      />
-    </a>
+    <div className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] xl:w-[200px]">
+      <a href="/">
+        <img
+          src={PageLogo}
+          alt="Page logo"
+          width={200}
+          height={50}
+          className="w-full"
+        />
+      </a>
+    </div>
   </header>
 );
 
