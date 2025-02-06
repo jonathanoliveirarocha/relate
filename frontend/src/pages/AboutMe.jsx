@@ -1,10 +1,28 @@
 import React from "react";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { Mail, Phone, MapPin, CircleAlert, Briefcase, GraduationCap, Award, Globe, ClipboardList, Linkedin, Github, } from "lucide-react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  CircleAlert,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Globe,
+  ClipboardList,
+  Linkedin,
+  Github,
+} from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { FaReact } from "react-icons/fa6";
-import { FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaBootstrap, } from "react-icons/fa";
+import {
+  FaNodeJs,
+  FaHtml5,
+  FaCss3Alt,
+  FaGitAlt,
+  FaBootstrap,
+} from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoLogoJavascript } from "react-icons/io5";
@@ -99,6 +117,12 @@ const ExperienceSection = () => {
       companyWebsite: "/",
       position: "Fundador & Desenvolvedor Full Stack",
       date: "nov 2023 - Presente",
+    },
+    {
+      company: "Localiza&Co",
+      companyWebsite: "https://www.localiza.com/",
+      position: "Atendente Assistência a Cliente",
+      date: "nov 2024 - Presente",
     },
     {
       company: "Projeto Base",
@@ -307,7 +331,7 @@ const SkillsSection = () => {
 export default function AboutMe() {
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Relate - Sobre Mim</title>
         <meta
           name="description"
