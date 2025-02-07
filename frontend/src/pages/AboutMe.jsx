@@ -99,7 +99,7 @@ const AboutMeSection = () => {
         Sobre Mim
       </h2>
       <p className="text-gray-400 text-justify">
-        Olá, explorador! Sou Jonathan, mineiro de 21 anos, desenvolvedor e
+        Olá, explorador! Sou Jonathan, mineiro de 22 anos, desenvolvedor e
         curioso por natureza. Criei esse blog para aprender e compartilhar
         minhas maiores paixões: Astronomia, tecnologia e música. À primeira
         vista, pode parecer que essas áreas não têm muito em comum, mas todas se
