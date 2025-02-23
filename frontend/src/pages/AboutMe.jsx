@@ -136,6 +136,12 @@ const ExperienceSection = () => {
       position: "Entrevistador Censitário e de Pesquisas Amostrais",
       date: "jul 2022 - ago 2022",
     },
+    {
+      company: "Autônomo",
+      companyWebsite: "#",
+      position: "Desenvolvedor Python",
+      date: "jan 2020 - jul 2020",
+    },
   ];
 
   return (
