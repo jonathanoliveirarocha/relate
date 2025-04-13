@@ -121,7 +121,7 @@ const ExperienceSection = () => {
     {
       company: "Localiza&Co",
       companyWebsite: "https://www.localiza.com/",
-      position: "Atendente Assistência a Cliente",
+      position: "Atendente de Suporte N1",
       date: "nov 2024 - Presente",
     },
     {
