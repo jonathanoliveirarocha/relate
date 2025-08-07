@@ -113,13 +113,13 @@ const AboutMeSection = () => {
 const ExperienceSection = () => {
   const personalExperience = [
     {
-      company: "Relate",
+      company: "Paciente 360",
       companyWebsite: "https://www.paciente360.com.br/",
       position: "Desenvolvedor Full Stack",
       date: "ago 2025 - Presente",
     },
     {
-      company: "Relate",
+      company: "Pa",
       companyWebsite: "/",
       position: "Fundador & Desenvolvedor Full Stack",
       date: "nov 2023 - Presente",
