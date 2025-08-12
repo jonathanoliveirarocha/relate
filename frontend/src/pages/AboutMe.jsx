@@ -119,7 +119,7 @@ const ExperienceSection = () => {
       date: "ago 2025 - Presente",
     },
     {
-      company: "Pa",
+      company: "Relate",
       companyWebsite: "/",
       position: "Fundador & Desenvolvedor Full Stack",
       date: "nov 2023 - Presente",
