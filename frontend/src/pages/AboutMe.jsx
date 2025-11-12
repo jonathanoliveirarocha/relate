@@ -137,12 +137,6 @@ const ExperienceSection = () => {
       date: "nov 2023 - fev 2024",
     },
     {
-      company: "IBGE",
-      companyWebsite: "https://www.ibge.gov.br/",
-      position: "Entrevistador Censitário e de Pesquisas Amostrais",
-      date: "jul 2022 - ago 2022",
-    },
-    {
       company: "Autônomo",
       companyWebsite: "#",
       position: "Desenvolvedor Python",
