@@ -5,6 +5,7 @@ import PageLogo from "../assets/relate-logo.png";
 import { isAuthenticated as verifyAuthenticated } from "../utils/Auth";
 import { articleService } from "../api/articleService";
 import { Helmet } from "react-helmet";
+import Pagination from "../components/Pagination";
 
 const SkeletonItem = ({ className }) => (
   <div className={`bg-[#1a1a1a] rounded animate-pulse ${className}`} />
@@ -164,6 +165,7 @@ const Articles = () => {
   const [featuredData, setFeaturedData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(verifyAuthenticated());
+  const [total, setTotal] = useState(0);
 
   const getFeaturedArticles = useCallback((articles) => {
     return articles.rows
@@ -183,6 +185,7 @@ const Articles = () => {
     });
 
     setData(articles.rows);
+    setTotal(articles.total);
     setFeaturedData(getFeaturedArticles(articles));
     setLoading(false);
   }, [offset, category, q, getFeaturedArticles]);
@@ -209,6 +212,15 @@ const Articles = () => {
     },
     [fetchArticles],
   );
+
+  useEffect(() => {
+    setOffset(0);
+  }, [category, q]);
+
+  const handlePageChange = useCallback((newOffset) => {
+    setOffset(newOffset);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("jwtToken");
@@ -266,7 +278,10 @@ const Articles = () => {
             sortedArticles.map((article) => (
               <ArticleCard
                 key={article._id}
-                {...article}
+                title={article.title}
+                content={article.content}
+                views={article.viewCount}
+                date={article.publishedAt}
                 id={article._id}
                 isAuthenticated={isAuthenticated}
                 onEdit={handleEdit}
@@ -274,6 +289,13 @@ const Articles = () => {
               />
             ))
           )}
+
+          <Pagination
+            offset={offset}
+            limit={LIST_LIMIT}
+            total={total}
+            onPageChange={handlePageChange}
+          />
         </section>
       </main>
 
