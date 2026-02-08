@@ -1,4 +1,6 @@
-const AUTH_BASE_URL = "https://relate-backend.vercel.app/auth";
+import Environment from "../config/environment";
+
+const AUTH_BASE_URL = Environment.BACKEND_URL + "/auth";
 
 const authService = {
   loginAsAdmin: async (adminCredentials) => {
@@ -13,7 +15,10 @@ const authService = {
       });
       return response;
     } catch (error) {
-      console.error("Error while communicating with the API for admin login:", error);
+      console.error(
+        "Error while communicating with the API for admin login:",
+        error,
+      );
     }
   },
 

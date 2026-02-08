@@ -1,9 +1,11 @@
-const API_BASE_URL = "https://relate-backend.vercel.app/article";
+import Environment from "../config/environment";
+
+const ARTICLES_BASE_URL = Environment.BACKEND_URL + "/articles";
 
 const articleService = {
   fetchAllArticles: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/articles`);
+      const response = await fetch(`${ARTICLES_BASE_URL}/articles`);
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao buscar artigos!");
@@ -17,7 +19,9 @@ const articleService = {
 
   fetchArticleById: async (articleId) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/articles/${articleId}`);
+      const response = await fetch(
+        `${ARTICLES_BASE_URL}/articles/${articleId}`,
+      );
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao buscar artigo!");
@@ -31,7 +35,7 @@ const articleService = {
 
   createArticle: async (articleData, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/articles`, {
+      const response = await fetch(`${ARTICLES_BASE_URL}/articles`, {
         method: "POST",
         headers: {
           Authorization: token,
@@ -56,14 +60,17 @@ const articleService = {
 
   updateArticle: async (articleData, articleId, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/articles/${articleId}`, {
-        method: "PUT",
-        headers: {
-          Authorization: token,
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${ARTICLES_BASE_URL}/articles/${articleId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(articleData),
         },
-        body: JSON.stringify(articleData),
-      });
+      );
 
       if (!response.ok) {
         const errorResponse = await response.json();
@@ -81,12 +88,15 @@ const articleService = {
 
   deleteArticle: async (articleId, token) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/articles/${articleId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: token,
+      const response = await fetch(
+        `${ARTICLES_BASE_URL}/articles/${articleId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
         },
-      });
+      );
       if (!response.ok) {
         const errorResponse = await response.json();
         localStorage.removeItem("jwtToken");
@@ -104,12 +114,12 @@ const articleService = {
   fetchArticlesByCategory: async (category) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/articles/search/category/${category}`
+        `${ARTICLES_BASE_URL}/articles/search/category/${category}`,
       );
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(
-          errorResponse.error || "Falha ao buscar artigos por categoria!"
+          errorResponse.error || "Falha ao buscar artigos por categoria!",
         );
       }
       return await response.json();
@@ -122,12 +132,12 @@ const articleService = {
   fetchArticlesByKeyword: async (keyword) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/articles/search/keyword/${keyword}`
+        `${ARTICLES_BASE_URL}/articles/search/keyword/${keyword}`,
       );
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(
-          errorResponse.error || "Falha ao buscar artigos por palavra-chave!"
+          errorResponse.error || "Falha ao buscar artigos por palavra-chave!",
         );
       }
       return await response.json();
