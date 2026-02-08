@@ -4,13 +4,7 @@ import { buildQueryParams } from "../utils/buildParams";
 const ARTICLES_BASE_URL = Environment.BACKEND_URL + "/articles";
 
 const articleService = {
-  fetchAllArticles: async ({
-    offset,
-    limit,
-    order,
-    category,
-    q,
-  }) => {
+  fetchAllArticles: async ({ offset, limit, order, category, q }) => {
     try {
       const queryParams = buildQueryParams({
         offset,
@@ -116,42 +110,6 @@ const articleService = {
     } catch (error) {
       console.error(error.message);
       return false;
-    }
-  },
-
-  fetchArticlesByCategory: async (category) => {
-    try {
-      const response = await fetch(
-        `${ARTICLES_BASE_URL}/search/category/${category}`,
-      );
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(
-          errorResponse.error || "Falha ao buscar artigos por categoria!",
-        );
-      }
-      return await response.json();
-    } catch (error) {
-      console.error(error.message);
-      return null;
-    }
-  },
-
-  fetchArticlesByKeyword: async (keyword) => {
-    try {
-      const response = await fetch(
-        `${ARTICLES_BASE_URL}/search/keyword/${keyword}`,
-      );
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(
-          errorResponse.error || "Falha ao buscar artigos por palavra-chave!",
-        );
-      }
-      return await response.json();
-    } catch (error) {
-      console.error(error.message);
-      return null;
     }
   },
 };
