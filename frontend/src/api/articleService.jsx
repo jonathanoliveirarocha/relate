@@ -1,6 +1,6 @@
 import Environment from "../config/environment";
 
-const ARTICLES_BASE_URL = Environment.BACKEND_URL + "/articles";
+const ARTICLES_BASE_URL = Environment.BACKEND_URL + "/article";
 
 const articleService = {
   fetchAllArticles: async () => {

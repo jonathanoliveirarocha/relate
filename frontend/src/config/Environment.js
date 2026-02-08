@@ -1,5 +1,5 @@
 const Environment = {
-  BACKEND_URL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000',
+  BACKEND_URL: import.meta.env.VITE_BACKEND_URL,
 };
 
 export default Environment;
