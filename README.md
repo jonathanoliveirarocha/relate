@@ -81,9 +81,15 @@ Experience Relate in action: [https://somerelate.vercel.app/](https://somerelate
 Create a `.env` file in the root directory and add the following variables:
 
 ```bash
+// Backend
 DB_PASSWORD=your_mongodb_password
 SESSION_KEY=your_session_secret_key
 PORT=3000
+```
+
+```bash
+// Frontend
+VITE_BACKEND_URL=http://localhost:3000
 ```
 
 > For local development, update the `API_BASE_URL` in all relevant files under `/frontend/src/api/` to point to your local server (e.g., `http://localhost:3000`).
@@ -123,13 +129,11 @@ To start the development server:
 
 ### Articles
 
-- `GET /article/articles` - Retrieve all articles
-- `POST /article/articles` - Create a new article (requires authentication)
-- `GET /article/articles/:id` - Retrieve a specific article
-- `PUT /article/articles/:id` - Update an article (requires authentication)
-- `DELETE /article/articles/:id` - Delete an article (requires authentication)
-- `GET /article/articles/search/keyword/:keyword` - Search articles by keyword
-- `GET /article/articles/search/category/:category` - Search articles by category
+- `GET /articles` - Retrieve all articles and can receive params (order, offset, limit, category, q)
+- `POST /articles` - Create a new article (requires authentication)
+- `GET /articles/:id` - Retrieve a specific article
+- `PUT /articles/:id` - Update an article (requires authentication)
+- `DELETE /articles/:id` - Delete an article (requires authentication)
 
 ### Authentication
 
