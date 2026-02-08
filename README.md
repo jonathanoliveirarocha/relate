@@ -85,6 +85,7 @@ Create a `.env` file in the root directory and add the following variables:
 DB_PASSWORD=your_mongodb_password
 SESSION_KEY=your_session_secret_key
 PORT=3000
+AUTHORIZED_DOMAINS=http://localhost:5173
 ```
 
 ```bash
