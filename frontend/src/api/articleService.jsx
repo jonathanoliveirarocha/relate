@@ -1,4 +1,4 @@
-import Environment from "../config/environment";
+import Environment from "../config/Environment";
 import { buildQueryParams } from "../utils/buildParams";
 
 const ARTICLES_BASE_URL = Environment.BACKEND_URL + "/articles";
