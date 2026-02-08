@@ -1,4 +1,4 @@
-import Environment from "../config/environment";
+import Environment from "../config/Environment";
 
 const AUTH_BASE_URL = Environment.BACKEND_URL + "/auth";
 
