@@ -56,73 +56,6 @@ const FeaturedCard = React.memo(({ title, content, id }) => (
   </a>
 ));
 
-const SearchInput = React.memo(({ setData }) => {
-  const [keywords, setKeywords] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (keywords.trim() !== "") {
-        const data = await articleService.fetchArticlesByKeyword(keywords);
-        setData(data);
-      }
-    };
-
-    const debounce = setTimeout(fetchData, 300);
-    return () => clearTimeout(debounce);
-  }, [keywords, setData]);
-
-  return (
-    <input
-      value={keywords}
-      onChange={(e) => setKeywords(e.target.value)}
-      type="text"
-      placeholder="Pesquisar"
-      className="bg-darker text-primary placeholder-primary px-4 py-[6px] pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
-    />
-  );
-});
-
-const Header = React.memo(({ isAuthenticated, onLogout, data, setData }) => (
-  <header className="px-4 h-16 flex justify-between bg-black items-center">
-    <div className="flex items-center pl-4">
-      <a href="/">
-        <img
-          src={PageLogo}
-          alt="Page logo"
-          width={100}
-          height={25}
-          className="hidden w-[100px] sm:block"
-        />
-      </a>
-    </div>
-    <div className="flex items-center gap-4 justify-end w-full max-w-[1100px] m-auto">
-      <SearchInput setData={setData} />
-      {isAuthenticated && (
-        <LogOut
-          width={20}
-          className="cursor-pointer hover:opacity-80"
-          onClick={onLogout}
-        />
-      )}
-    </div>
-  </header>
-));
-
-const ActionButtons = React.memo(({ onEdit, onDelete, id }) => (
-  <div className="flex gap-3 z-50 absolute right-0">
-    <Pencil
-      width={18}
-      className="hover:opacity-80"
-      onClick={(e) => onEdit(e, id)}
-    />
-    <Trash2
-      width={18}
-      className="hover:opacity-80"
-      onClick={(e) => onDelete(e, id)}
-    />
-  </div>
-));
-
 const ArticleInfo = React.memo(({ date, views }) => (
   <div className="flex justify-between text-sm text-primary opacity-60 mt-4">
     <span>
@@ -137,14 +70,29 @@ const ArticleInfo = React.memo(({ date, views }) => (
   </div>
 ));
 
+const ActionButtons = React.memo(({ onEdit, onDelete, id }) => (
+  <div className="flex gap-3 absolute right-0">
+    <Pencil
+      width={18}
+      onClick={(e) => onEdit(e, id)}
+      className="hover:opacity-80"
+    />
+    <Trash2
+      width={18}
+      onClick={(e) => onDelete(e, id)}
+      className="hover:opacity-80"
+    />
+  </div>
+));
+
 const ArticleCard = React.memo(
-  ({ title, content, onEdit, onDelete, isAuthenticated, id, date, views }) => (
+  ({ title, content, id, date, views, isAuthenticated, onEdit, onDelete }) => (
     <a href={`/article/${id}`}>
-      <div className="bg-black py-6 px-4 border-b border-subtle hover:bg-dark cursor-pointer">
+      <div className="bg-black py-6 px-4 border-b border-subtle hover:bg-dark">
         <div className="flex relative">
           <h3 className="text-xl font-bold mb-2 styled-title-card">{title}</h3>
           {isAuthenticated && (
-            <ActionButtons onEdit={onEdit} onDelete={onDelete} id={id} />
+            <ActionButtons id={id} onEdit={onEdit} onDelete={onDelete} />
           )}
         </div>
         <div
@@ -154,14 +102,36 @@ const ArticleCard = React.memo(
         <ArticleInfo date={date} views={views} />
       </div>
     </a>
-  )
+  ),
 );
+
+const SearchInput = React.memo(({ q, setQ }) => {
+  const [value, setValue] = useState(q);
+
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      setQ(value.trim());
+    }, 300);
+
+    return () => clearTimeout(debounce);
+  }, [value, setQ]);
+
+  return (
+    <input
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      type="text"
+      placeholder="Pesquisar"
+      className="bg-darker text-primary px-4 py-[6px] rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+    />
+  );
+});
 
 const CategorySelector = React.memo(({ category, setCategory }) => (
   <select
-    className="px-2 bg-black"
     value={category}
     onChange={(e) => setCategory(e.target.value)}
+    className="px-2 bg-black"
   >
     <option value="all">Tudo</option>
     <option value="astronomy">Astronomia</option>
@@ -170,109 +140,60 @@ const CategorySelector = React.memo(({ category, setCategory }) => (
   </select>
 ));
 
-const FeaturedArticles = React.memo(({ data, loading }) => (
-  <section className="mb-8">
-    <h2 className="text-3xl font-bold my-4">Em destaque</h2>
-    {loading || data.length === 0 ? (
-      <FeaturedSkeleton />
-    ) : (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {data.map((article) => (
-          <FeaturedCard
-            key={article._id}
-            title={article.title}
-            content={article.content}
-            id={article._id}
-          />
-        ))}
-      </div>
-    )}
-  </section>
+const Header = React.memo(({ isAuthenticated, onLogout, q, setQ }) => (
+  <header className="px-4 h-16 flex justify-between bg-black items-center">
+    <a href="/">
+      <img src={PageLogo} alt="Logo" className="w-[100px] hidden sm:block" />
+    </a>
+    <div className="flex gap-4 items-center">
+      <SearchInput q={q} setQ={setQ} />
+      {isAuthenticated && (
+        <LogOut width={20} className="cursor-pointer" onClick={onLogout} />
+      )}
+    </div>
+  </header>
 ));
 
-const NoArticlesFound = () => (
-  <div>
-    <h3 className="text-xl mt-6 text-primary ">Nenhum Artigo Encontrado!</h3>
-  </div>
-);
-
-const RecentArticles = React.memo(
-  ({
-    isAuthenticated,
-    onEdit,
-    onDelete,
-    setCategory,
-    data,
-    category,
-    loading,
-  }) => (
-    <section>
-      <div className="flex justify-between items-center pb-4 border-b border-subtle">
-        <h2 className="text-3xl font-bold">Recentes</h2>
-        <CategorySelector category={category} setCategory={setCategory} />
-      </div>
-      {isAuthenticated && (
-        <div className="mt-2 py-2 px-4 flex justify-end">
-          <a href="/admin/article/create">
-            <SquarePlus className="hover:opacity-80" />
-          </a>
-        </div>
-      )}
-      {loading || data.length === 0 ? (
-        loading ? (
-          <RecentSkeleton />
-        ) : (
-          <NoArticlesFound />
-        )
-      ) : (
-        <div className="h-fit w-full space-y-3">
-          {data.map((article) => (
-            <ArticleCard
-              key={article._id}
-              title={article.title}
-              content={article.content}
-              onEdit={onEdit}
-              onDelete={onDelete}
-              isAuthenticated={isAuthenticated}
-              id={article._id}
-              date={article.publishedAt}
-              views={article.viewCount}
-            />
-          ))}
-        </div>
-      )}
-    </section>
-  )
-);
-
 const Articles = () => {
+  const LIST_LIMIT = 15;
+
   const [category, setCategory] = useState("all");
-  const [isAuthenticated, setIsAuthenticated] = useState(verifyAuthenticated());
-  const [loading, setLoading] = useState(true);
-  const [featuredData, setFeaturedData] = useState([]);
+  const [q, setQ] = useState("");
+  const [offset, setOffset] = useState(0);
   const [data, setData] = useState([]);
+  const [featuredData, setFeaturedData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(verifyAuthenticated());
+
+  const getFeaturedArticles = useCallback((articles) => {
+    return articles.rows
+      .slice()
+      .sort((a, b) => b.viewCount - a.viewCount)
+      .slice(0, 3);
+  }, []);
 
   const fetchArticles = useCallback(async () => {
-    const articles = await articleService.fetchAllArticles();
-    setData(articles);
+    setLoading(true);
+
+    const articles = await articleService.fetchAllArticles({
+      offset,
+      limit: LIST_LIMIT,
+      category: category === "all" ? undefined : category,
+      q: q || undefined,
+    });
+
+    setData(articles.rows);
     setFeaturedData(getFeaturedArticles(articles));
     setLoading(false);
-  }, []);
+  }, [offset, category, q, getFeaturedArticles]);
+
+  useEffect(() => {
+    setOffset(0);
+  }, [category, q]);
 
   useEffect(() => {
     fetchArticles();
   }, [fetchArticles]);
-
-  useEffect(() => {
-    const fetchArticlesByCategory = async () => {
-      const articles =
-        category === "all"
-          ? await articleService.fetchAllArticles()
-          : await articleService.fetchArticlesByCategory(category);
-      setData(articles);
-    };
-    fetchArticlesByCategory();
-  }, [category]);
 
   const handleEdit = useCallback((e, id) => {
     e.preventDefault();
@@ -283,67 +204,80 @@ const Articles = () => {
     async (e, id) => {
       e.preventDefault();
       const token = localStorage.getItem("jwtToken");
-      const response = await articleService.deleteArticle(id, token);
-      if (response) {
-        fetchArticles();
-      }
+      await articleService.deleteArticle(id, token);
+      fetchArticles();
     },
-    [fetchArticles]
+    [fetchArticles],
   );
 
-  const handleLogout = useCallback(() => {
+  const handleLogout = () => {
     localStorage.removeItem("jwtToken");
     setIsAuthenticated(false);
-  }, []);
+  };
 
-  const getFeaturedArticles = useCallback((articles) => {
-    return articles
-      .slice()
-      .sort((a, b) => b.viewCount - a.viewCount)
-      .slice(0, 3);
-  }, []);
-
-  const sortedArticles = useMemo(() => {
-    return data
-      .slice()
-      .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-  }, [data]);
+  const sortedArticles = useMemo(
+    () =>
+      data
+        .slice()
+        .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)),
+    [data],
+  );
 
   return (
     <>
       <Helmet>
         <title>Relate - Artigos</title>
-        <meta
-          name="description"
-          content="Saudações, explorador! O Relate é um espaço para curiosos apaixonados por astronomia, tecnologia e música. Descubra como esses mundos se conectam!"
-        />
-        <meta
-          name="keywords"
-          content="Relate, astronomia, tecnologia, música, conhecimento, blog, artigos, ciência"
-        />
-        <link rel="canonical" href="https://somerelate.vercel.app/articles" />
       </Helmet>
+
       <Header
         isAuthenticated={isAuthenticated}
         onLogout={handleLogout}
-        data={data}
-        setData={setData}
+        q={q}
+        setQ={setQ}
       />
-      <div className="min-h-screen bg-black text-white font-sans px-4">
-        <main className="max-w-6xl mx-auto min-h-screen">
-          <FeaturedArticles data={featuredData} loading={loading} />
-          <RecentArticles
-            data={sortedArticles}
-            isAuthenticated={isAuthenticated}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            setCategory={setCategory}
-            category={category}
-            loading={loading}
-          />
-        </main>
-        <Footer />
-      </div>
+
+      <main className="max-w-6xl mx-auto min-h-screen px-4">
+        {loading ? (
+          <FeaturedSkeleton />
+        ) : (
+          <section className="mb-8">
+            <h2 className="text-3xl font-bold my-4">Em destaque</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {featuredData.map((article) => (
+                <FeaturedCard key={article._id} {...article} id={article._id} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section>
+          <div className="flex justify-between items-center pb-4 border-b border-subtle">
+            {" "}
+            <h2 className="text-3xl font-bold">Recentes</h2>{" "}
+            <CategorySelector
+              category={category}
+              setCategory={setCategory}
+            />{" "}
+          </div>
+
+          {loading ? (
+            <RecentSkeleton />
+          ) : (
+            sortedArticles.map((article) => (
+              <ArticleCard
+                key={article._id}
+                {...article}
+                id={article._id}
+                isAuthenticated={isAuthenticated}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            ))
+          )}
+        </section>
+      </main>
+
+      <Footer />
     </>
   );
 };

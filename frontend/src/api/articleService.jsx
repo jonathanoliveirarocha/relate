@@ -1,11 +1,27 @@
 import Environment from "../config/environment";
+import { buildQueryParams } from "../utils/buildParams";
 
 const ARTICLES_BASE_URL = Environment.BACKEND_URL + "/articles";
 
 const articleService = {
-  fetchAllArticles: async () => {
+  fetchAllArticles: async ({
+    offset,
+    limit,
+    order,
+    category,
+    q,
+  }) => {
     try {
-      const response = await fetch(`${ARTICLES_BASE_URL}`);
+      const queryParams = buildQueryParams({
+        offset,
+        limit,
+        order,
+        category,
+        q,
+      });
+
+      const response = await fetch(`${ARTICLES_BASE_URL}?${queryParams}`);
+
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao buscar artigos!");
@@ -19,9 +35,7 @@ const articleService = {
 
   fetchArticleById: async (articleId) => {
     try {
-      const response = await fetch(
-        `${ARTICLES_BASE_URL}/${articleId}`,
-      );
+      const response = await fetch(`${ARTICLES_BASE_URL}/${articleId}`);
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || "Falha ao buscar artigo!");
@@ -60,17 +74,14 @@ const articleService = {
 
   updateArticle: async (articleData, articleId, token) => {
     try {
-      const response = await fetch(
-        `${ARTICLES_BASE_URL}/${articleId}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(articleData),
+      const response = await fetch(`${ARTICLES_BASE_URL}/${articleId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(articleData),
+      });
 
       if (!response.ok) {
         const errorResponse = await response.json();
@@ -88,15 +99,12 @@ const articleService = {
 
   deleteArticle: async (articleId, token) => {
     try {
-      const response = await fetch(
-        `${ARTICLES_BASE_URL}/${articleId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: token,
-          },
+      const response = await fetch(`${ARTICLES_BASE_URL}/${articleId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: token,
         },
-      );
+      });
       if (!response.ok) {
         const errorResponse = await response.json();
         localStorage.removeItem("jwtToken");
