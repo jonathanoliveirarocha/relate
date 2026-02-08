@@ -3,10 +3,31 @@ const articleService = require("../services/articleService");
 const articleController = {
   getAllArticles: async (req, res) => {
     try {
-      const articles = await articleService.getAllArticles();
-      res.status(200).json(articles);
+      const { offset = 0, limit, order = "desc", category, q } = req.query;
+
+      const result = await articleService.getAllArticles({
+        offset: Number(offset),
+        limit: limit !== undefined ? Number(limit) : null,
+        order,
+        category,
+        q,
+      });
+
+      res.status(200).json({
+        success: true,
+        offset: Number(offset),
+        limit: limit ? Number(limit) : null,
+        total: result.total,
+        rows: result.rows,
+      });
     } catch (error) {
-      res.status(500).json({ error: "Erro ao buscar artigos!" });
+      res.status(500).json({
+        success: false,
+        offset: 0,
+        limit: null,
+        total: 0,
+        rows: [],
+      });
     }
   },
 
@@ -47,7 +68,7 @@ const articleController = {
           title,
           category,
           content,
-        }
+        },
       );
       if (!updatedArticle) {
         return res.status(404).json({ error: "Artigo não encontrado!" });
@@ -61,7 +82,7 @@ const articleController = {
   deleteArticleById: async (req, res) => {
     try {
       const deletedArticle = await articleService.deleteArticleById(
-        req.params.id
+        req.params.id,
       );
       if (!deletedArticle) {
         return res.status(404).json({ error: "Artigo não encontrado!" });

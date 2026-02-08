@@ -11,12 +11,37 @@ const articleService = {
     }
   },
 
-  getAllArticles: async () => {
+  getAllArticles: async ({ offset, limit, order, category, q }) => {
     try {
-      const articles = await Article.find({}).sort({ date: -1 }).limit(30);
-      return articles;
+      const filter = {};
+
+      if (category) {
+        filter.category = category;
+      }
+
+      if (q) {
+        filter.$or = [
+          { title: { $regex: q, $options: "i" } },
+          { content: { $regex: q, $options: "i" } },
+        ];
+      }
+
+      const sortOrder = order === "asc" ? 1 : -1;
+
+      let query = Article.find(filter).sort({ date: sortOrder }).skip(offset);
+
+      if (limit !== null) {
+        query = query.limit(limit);
+      }
+
+      const [rows, total] = await Promise.all([
+        query,
+        Article.countDocuments(filter),
+      ]);
+
+      return { rows, total };
     } catch (error) {
-      throw new Error("Erro ao buscar os artigos!");
+      throw new Error("Erro ao buscar artigos!");
     }
   },
 
